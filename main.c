@@ -9,6 +9,5 @@ int main()
   set_bit(bitboard, e4);
   show_bitboard(bitboard);
 
-
   return 0;
 }

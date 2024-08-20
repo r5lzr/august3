@@ -1,9 +1,13 @@
 # depslib dependency file v1.0
-1724188937 source:c:\codeblocks\august3\main.c
+1724188966 source:c:\codeblocks\august3\main.c
+	<stdio.h>
+	<stdlib.h>
 	"bitboard.h"
 
-1724188941 source:c:\codeblocks\august3\bitboard.c
+1724188968 source:c:\codeblocks\august3\bitboard.c
+	<stdio.h>
+	<stdlib.h>
 	"bitboard.h"
 
-1724188950 c:\codeblocks\august3\bitboard.h
+1724189701 c:\codeblocks\august3\bitboard.h
 
