@@ -1,5 +1,9 @@
 # depslib dependency file v1.0
-1724104845 source:c:\codeblocks\august3\main.c
+1724184260 source:c:\codeblocks\august3\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1724184218 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 
