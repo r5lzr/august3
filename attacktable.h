@@ -1,1 +1,6 @@
+U64 overflow_A = 18374403900871474942ULL;
+U64 overflow_H = 9187201950435737471ULL;
+
+U64 pawn_attacks[2][64];
+
 

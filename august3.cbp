@@ -31,9 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="attacktable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="attacktable.h" />
 		<Unit filename="bitboard.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="bitboard.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

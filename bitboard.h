@@ -16,3 +16,5 @@ enum {
 };
 
 enum {white, black};
+
+
