@@ -72,6 +72,12 @@ U64 king_attack_mask(int square)
   return attack_bitmask;
 }
 
+U64 bishop_attack_mask(int square)
+{
+  U64 attack_bitmask = 0ULL;
+
+}
+
 void leaper_attacks_table()
 {
   for (int square = 0; square < 64; square++)
@@ -86,12 +92,12 @@ void leaper_attacks_table()
   }
 
   // accessing every bit mask attack
-  for (int square = 0; square < 64; square++)
-  {
-
-    show_bitboard(king_attacks_table[square]);
-
-  }
+//  for (int square = 0; square < 64; square++)
+//  {
+//
+//    show_bitboard(king_attacks_table[square]);
+//
+//  }
 }
 
 
