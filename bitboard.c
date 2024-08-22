@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bitboard.h"
 
-void show_bitboard(U64 bitboard)
+void show_bitboard(UInt64 bitboard)
 {
   printf("\n");
 

@@ -3,13 +3,13 @@
 #include "bitboard.h"
 #include "attacktable.h"
 
-U64 pawn_attack_mask(int side, int square)
+UInt64 pawn_attack_mask(int side, int square)
 {
 
   // initialised as bitboard, will return attack bit mask
-  U64 attack_bitmask = 0ULL;
+  UInt64 attack_bitmask = 0ULL;
 
-  U64 bitboard = 0ULL;
+  UInt64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -30,11 +30,11 @@ U64 pawn_attack_mask(int side, int square)
   return attack_bitmask;
 }
 
-U64 knight_attack_mask(int square)
+UInt64 knight_attack_mask(int square)
 {
-  U64 attack_bitmask = 0ULL;
+  UInt64 attack_bitmask = 0ULL;
 
-  U64 bitboard = 0ULL;
+  UInt64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -51,11 +51,11 @@ U64 knight_attack_mask(int square)
   return attack_bitmask;
 }
 
-U64 king_attack_mask(int square)
+UInt64 king_attack_mask(int square)
 {
-  U64 attack_bitmask = 0ULL;
+  UInt64 attack_bitmask = 0ULL;
 
-  U64 bitboard = 0ULL;
+  UInt64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -72,10 +72,12 @@ U64 king_attack_mask(int square)
   return attack_bitmask;
 }
 
-U64 bishop_attack_mask(int square)
+UInt64 bishop_attack_mask(int square)
 {
-  U64 attack_bitmask = 0ULL;
+  UInt64 attack_bitmask = 0ULL;
 
+
+  return attack_bitmask;
 }
 
 void leaper_attacks_table()

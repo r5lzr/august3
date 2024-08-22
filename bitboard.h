@@ -1,4 +1,4 @@
-#define U64 unsigned long long
+#define UInt64 unsigned long long
 
 #define get_bit(bitboard, square) (bitboard & (1ULL << square))
 #define set_bit(bitboard, square) (bitboard |= (1ULL << square))
