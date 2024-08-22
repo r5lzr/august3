@@ -29,3 +29,33 @@ U64 pawn_attacks_table(int side, int square)
 
   return attack_bitmask;
 }
+
+U64 knight_attacks_table(int square)
+{
+  U64 attack_bitmask = 0ULL;
+
+  U64 bitboard = 0ULL;
+
+  set_bit(bitboard, square);
+
+  attack_bitmask |= (bitboard >> 17) & overflow_H;
+  attack_bitmask |= (bitboard >> 15) & overflow_A;
+  attack_bitmask |= (bitboard >> 10) & overflow_HG;
+  attack_bitmask |= (bitboard >> 6) & overflow_AB;
+
+  attack_bitmask |= (bitboard << 17) & overflow_A;
+  attack_bitmask |= (bitboard << 15) & overflow_H;
+  attack_bitmask |= (bitboard << 10) & overflow_AB;
+  attack_bitmask |= (bitboard << 6) & overflow_HG;
+
+  return attack_bitmask;
+}
+
+
+
+
+
+
+
+
+
