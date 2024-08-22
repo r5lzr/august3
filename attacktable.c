@@ -51,7 +51,26 @@ U64 knight_attacks_table(int square)
   return attack_bitmask;
 }
 
+U64 king_attacks_table(int square)
+{
+  U64 attack_bitmask = 0ULL;
 
+  U64 bitboard = 0ULL;
+
+  set_bit(bitboard, square);
+
+  attack_bitmask |= (bitboard >> 8);
+  attack_bitmask |= (bitboard >> 9) & overflow_H;
+  attack_bitmask |= (bitboard >> 7) & overflow_A;
+  attack_bitmask |= (bitboard >> 1) & overflow_H;
+
+  attack_bitmask |= (bitboard << 8);
+  attack_bitmask |= (bitboard << 9) & overflow_A;
+  attack_bitmask |= (bitboard << 7) & overflow_H;
+  attack_bitmask |= (bitboard << 1) & overflow_A;
+
+  return attack_bitmask;
+}
 
 
 
