@@ -3,7 +3,7 @@
 #include "bitboard.h"
 #include "attacktable.h"
 
-U64 pawn_attacks_table(int side, int square)
+U64 pawn_attack_mask(int side, int square)
 {
 
   // initialised as bitboard, will return attack bit mask
@@ -30,7 +30,7 @@ U64 pawn_attacks_table(int side, int square)
   return attack_bitmask;
 }
 
-U64 knight_attacks_table(int square)
+U64 knight_attack_mask(int square)
 {
   U64 attack_bitmask = 0ULL;
 
@@ -51,7 +51,7 @@ U64 knight_attacks_table(int square)
   return attack_bitmask;
 }
 
-U64 king_attacks_table(int square)
+U64 king_attack_mask(int square)
 {
   U64 attack_bitmask = 0ULL;
 
@@ -74,23 +74,22 @@ U64 king_attacks_table(int square)
 
 void leaper_attacks_table()
 {
-
   for (int square = 0; square < 64; square++)
   {
-    pawn_attacks[white][square] = pawn_attacks_table(white, square);
+    pawn_attacks_table[white][square] = pawn_attack_mask(white, square);
 
-    pawn_attacks[black][square] = pawn_attacks_table(black, square);
+    pawn_attacks_table[black][square] = pawn_attack_mask(black, square);
 
-    knight_attacks[square] = knight_attacks_table(square);
+    knight_attacks_table[square] = knight_attack_mask(square);
 
-    king_attacks[square] = king_attacks_table(square);
+    king_attacks_table[square] = king_attack_mask(square);
   }
 
   // accessing every bit mask attack
   for (int square = 0; square < 64; square++)
   {
 
-    show_bitboard(king_attacks[square]);
+    show_bitboard(king_attacks_table[square]);
 
   }
 }
