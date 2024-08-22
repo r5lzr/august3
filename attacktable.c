@@ -72,7 +72,25 @@ U64 king_attacks_table(int square)
   return attack_bitmask;
 }
 
+void leaper_attacks_table()
+{
 
+  for (int square = 0; square < 64; square++)
+  {
+    pawn_attacks[white][square] = pawn_attacks_table(white, square);
+
+    pawn_attacks[black][square] = pawn_attacks_table(black, square);
+
+  }
+
+  // accessing every bit mask attack from pawn attacks table
+  for (int square = 0; square < 64; square++)
+  {
+
+    show_bitboard(pawn_attacks[black][square]);
+
+  }
+}
 
 
 
