@@ -81,13 +81,16 @@ void leaper_attacks_table()
 
     pawn_attacks[black][square] = pawn_attacks_table(black, square);
 
+    knight_attacks[square] = knight_attacks_table(square);
+
+    king_attacks[square] = king_attacks_table(square);
   }
 
-  // accessing every bit mask attack from pawn attacks table
+  // accessing every bit mask attack
   for (int square = 0; square < 64; square++)
   {
 
-    show_bitboard(pawn_attacks[black][square]);
+    show_bitboard(king_attacks[square]);
 
   }
 }
