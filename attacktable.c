@@ -72,14 +72,6 @@ UInt64 king_attack_mask(int square)
   return attack_bitmask;
 }
 
-UInt64 bishop_attack_mask(int square)
-{
-  UInt64 attack_bitmask = 0ULL;
-
-
-  return attack_bitmask;
-}
-
 void leaper_attacks_table()
 {
   for (int square = 0; square < 64; square++)

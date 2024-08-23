@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bitboard.h" />
+		<Unit filename="magicbitboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="magicbitboard.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
