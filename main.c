@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bitboard.h"
 
-UInt64 bishop_attack_mask(int square);
+UInt64 rook_attack_mask(int square);
 
 int main()
 {
@@ -10,7 +10,7 @@ int main()
 
   for (int square = 0; square < 64; square++)
   {
-    show_bitboard(bishop_attack_mask(square));
+    show_bitboard(rook_attack_mask(square));
   }
 
 
