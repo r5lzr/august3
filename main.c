@@ -10,13 +10,17 @@ int main()
 
   UInt64 block = 0ULL;
   set_bit(block, e4);
-  set_bit(block, a2);
-  set_bit(block, h6);
+  set_bit(block, a4);
+  set_bit(block, b4);
+  set_bit(block, g3);
 
-  for (int square = 0; square < 64; square++)
-  {
-    show_bitboard(rook_attack_mask(square, block));
-  }
+
+//  for (int square = 0; square < 64; square++)
+//  {
+//    show_bitboard(rook_attack_mask(square, block));
+//  }
+  show_bitboard(block);
+  printf("bitcount: %d\n", count_bits(block));
 
   return 0;
 }
