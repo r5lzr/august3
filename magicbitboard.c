@@ -31,6 +31,7 @@ UInt64 rook_key_mask(int square)
   return key_bitmask;
 }
 
+// attacks indexed from sliding piece lookup table
 UInt64 bishop_attack_mask(int square, UInt64 block)
 {
 	UInt64 attack_bitmask = 0ULL;
@@ -40,33 +41,61 @@ UInt64 bishop_attack_mask(int square, UInt64 block)
   for(r = rk+1, f = fl+1; r <= 7 && f <= 7; r++, f++)
   {
     attack_bitmask |= (1ULL << (f + r*8));
-
     if(block & (1ULL << (f + r * 8))) break;
   };
 
   for(r = rk+1, f = fl-1; r <= 7 && f >= 0; r++, f--)
   {
     attack_bitmask |= (1ULL << (f + r*8));
-
     if(block & (1ULL << (f + r * 8))) break;
 	};
 
   for(r = rk-1, f = fl+1; r >= 0 && f <= 7; r--, f++)
   {
     attack_bitmask |= (1ULL << (f + r*8));
-
     if(block & (1ULL << (f + r * 8))) break;
   };
 
   for(r = rk-1, f = fl-1; r >= 0 && f >= 0; r--, f--)
   {
     attack_bitmask |= (1ULL << (f + r*8));
-
     if(block & (1ULL << (f + r * 8))) break;
   };
 
 	return attack_bitmask;
 }
 
+UInt64 rook_attack_mask(int square, UInt64 block)
+{
+  UInt64 attack_bitmask = 0ULL;
+
+  int rk = square / 8, fl = square % 8, r, f;
+
+  for(r = rk+1; r <= 7; r++)
+  {
+    attack_bitmask |= (1ULL << (fl + r*8));
+    if(block & (1ULL << (fl + r*8))) break;
+  };
+
+  for(r = rk-1; r >= 0; r--)
+  {
+    attack_bitmask |= (1ULL << (fl + r*8));
+    if(block & (1ULL << (fl + r*8))) break;
+  };
+
+  for(f = fl+1; f <= 7; f++)
+  {
+    attack_bitmask |= (1ULL << (f + rk*8));
+    if(block & (1ULL << (f + rk*8))) break;
+  };
+
+  for(f = fl-1; f >= 0; f--)
+  {
+    attack_bitmask |= (1ULL << (f + rk*8));
+    if(block & (1ULL << (f + rk*8))) break;
+  };
+
+  return attack_bitmask;
+}
 
 
