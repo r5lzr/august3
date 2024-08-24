@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bitboard.h"
 
-// based on relevant key bits
+// based on relevant occupancy bits
 UInt64 bishop_key_mask(int square)
 {
   UInt64 key_bitmask = 0ULL;
@@ -30,5 +30,43 @@ UInt64 rook_key_mask(int square)
 
   return key_bitmask;
 }
+
+UInt64 bishop_attack_mask(int square, UInt64 block)
+{
+	UInt64 attack_bitmask = 0ULL;
+
+	int rk = square / 8, fl = square % 8, r, f;
+
+  for(r = rk+1, f = fl+1; r <= 7 && f <= 7; r++, f++)
+  {
+    attack_bitmask |= (1ULL << (f + r*8));
+
+    if(block & (1ULL << (f + r * 8))) break;
+  };
+
+  for(r = rk+1, f = fl-1; r <= 7 && f >= 0; r++, f--)
+  {
+    attack_bitmask |= (1ULL << (f + r*8));
+
+    if(block & (1ULL << (f + r * 8))) break;
+	};
+
+  for(r = rk-1, f = fl+1; r >= 0 && f <= 7; r--, f++)
+  {
+    attack_bitmask |= (1ULL << (f + r*8));
+
+    if(block & (1ULL << (f + r * 8))) break;
+  };
+
+  for(r = rk-1, f = fl-1; r >= 0 && f >= 0; r--, f--)
+  {
+    attack_bitmask |= (1ULL << (f + r*8));
+
+    if(block & (1ULL << (f + r * 8))) break;
+  };
+
+	return attack_bitmask;
+}
+
 
 
