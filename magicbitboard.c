@@ -98,6 +98,7 @@ UInt64 rook_attack_mask(int square, UInt64 block)
   return attack_bitmask;
 }
 
+// based on number of relevant bits
 int count_bits(UInt64 block)
 {
   int count;
@@ -105,6 +106,23 @@ int count_bits(UInt64 block)
   return count;
 }
 
+// based on bit mask variations of relevant occupancy bits
+UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask)
+{
+	UInt64 key_bitmask = 0ULL;
+
+	for (int count = 0; count < relevant_bits; count++)
+	{
+	    int square = __builtin_ctzll(occ_mask);
+
+	    pop_bit(occ_mask, square);
+
+	    if (index & (1 << count))
+		    key_bitmask |= (1ULL << square);
+	}
+
+	return key_bitmask;
+}
 
 
 
