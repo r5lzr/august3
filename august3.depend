@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1724555566 source:c:\codeblocks\august3\main.c
+1724636768 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -19,8 +19,11 @@
 
 1724567657 c:\codeblocks\august3\attacktable.h
 
-1724554135 source:c:\codeblocks\august3\magicbitboard.c
+1724632883 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
+	"magicbitboard.h"
+
+1724568097 c:\codeblocks\august3\magicbitboard.h
 

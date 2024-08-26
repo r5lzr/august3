@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bitboard.h"
+#include "magicbitboard.h"
 
 // based on relevant occupancy bits
 UInt64 bishop_occupancy_mask(int square)
@@ -124,7 +125,18 @@ UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask)
 	return key_bitmask;
 }
 
+// generate 64-bit pseudo random numbers
+UInt64 random_UInt64()
+{
+  UInt64 n1, n2, n3, n4;
 
+  n1 = (UInt64)(rand()) & 0xFFFF;
+  n2 = (UInt64)(rand()) & 0xFFFF;
+  n3 = (UInt64)(rand()) & 0xFFFF;
+  n4 = (UInt64)(rand()) & 0xFFFF;
+
+  return n1 | (n2 << 16) | (n3 << 32) | (n4 << 48);
+}
 
 
 

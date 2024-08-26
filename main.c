@@ -4,6 +4,7 @@
 
 UInt64 rook_occupancy_mask(int square);
 UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask);
+UInt64 random_UInt64();
 
 int main()
 {
@@ -22,7 +23,7 @@ int main()
 //    show_bitboard(rook_attack_mask(square, block));
 //  }
 
-  UInt64 occupancy_mask = rook_occupancy_mask(a1);
+//  UInt64 occupancy_mask = rook_occupancy_mask(a1);
 
 //  for(int index = 0; index < 4096; index++)
 //  {
@@ -30,7 +31,13 @@ int main()
 //
 //  }
 
-  show_bitboard(key_mask(4095, count_bits(occupancy_mask), occupancy_mask));
+//  show_bitboard(key_mask(4095, count_bits(occupancy_mask), occupancy_mask));
+
+    show_bitboard(random_UInt64());
+    show_bitboard(random_UInt64());
+    show_bitboard(random_UInt64());
+    show_bitboard(random_UInt64());
+    show_bitboard(random_UInt64());
 
   return 0;
 }
