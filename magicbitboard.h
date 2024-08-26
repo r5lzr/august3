@@ -20,3 +20,5 @@ const int rook_occupancy_table[64] = {
   11, 10, 10, 10, 10, 10, 10, 11,
   12, 11, 11, 11, 11, 11, 11, 12,
 };
+
+const enum {rook, bishop};

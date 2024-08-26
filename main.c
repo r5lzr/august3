@@ -4,6 +4,7 @@
 
 UInt64 rook_occupancy_mask(int square);
 UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask);
+UInt64 magic_number_candidate();
 UInt64 random_UInt64();
 
 int main()
@@ -32,12 +33,9 @@ int main()
 //  }
 
 //  show_bitboard(key_mask(4095, count_bits(occupancy_mask), occupancy_mask));
+//    show_bitboard(random_UInt64() & random_UInt64() & random_UInt64());
+    show_bitboard(magic_number_candidate());
 
-    show_bitboard(random_UInt64());
-    show_bitboard(random_UInt64());
-    show_bitboard(random_UInt64());
-    show_bitboard(random_UInt64());
-    show_bitboard(random_UInt64());
 
   return 0;
 }

@@ -138,7 +138,10 @@ UInt64 random_UInt64()
   return n1 | (n2 << 16) | (n3 << 32) | (n4 << 48);
 }
 
-
+UInt64 magic_number_candidate()
+{
+  return random_UInt64() & random_UInt64() & random_UInt64();
+}
 
 
 
