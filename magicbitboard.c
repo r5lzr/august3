@@ -252,3 +252,8 @@ UInt64 get_rook_attacks(int square, UInt64 occupancy)
   return rook_attacks_table[square][occupancy];
 }
 
+void slider_attacks_table()
+{
+  init_slider_attacks(bishop);
+  init_slider_attacks(rook);
+}

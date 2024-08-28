@@ -1,3 +1,5 @@
+const enum {rook, bishop};
+
 // shows relevant occupancy bits relative to board position, reduces bit count calls
 const int bishop_relevant_bits[64] = {
   6, 5, 5, 5, 5, 5, 5, 6,

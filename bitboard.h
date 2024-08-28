@@ -1,8 +1,8 @@
 #define UInt64 unsigned long long
 
-#define get_bit(bitboard, square) (bitboard & (1ULL << square))
-#define set_bit(bitboard, square) (bitboard |= (1ULL << square))
-#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? bitboard ^= (1ULL << square) : 0)
+#define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
+#define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))
+#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? ((bitboard) ^= (1ULL << (square))) : 0)
 
 const enum {
   a8, b8, c8, d8, e8, f8, g8, h8,
@@ -17,4 +17,4 @@ const enum {
 
 const enum {white, black};
 
-const enum {rook, bishop};
+
