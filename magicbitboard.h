@@ -1,5 +1,5 @@
 // shows relevant occupancy bits relative to board position, reduces bit count calls
-const int bishop_occupancy_table[64] = {
+const int bishop_relevant_bits[64] = {
   6, 5, 5, 5, 5, 5, 5, 6,
   5, 5, 5, 5, 5, 5, 5, 5,
   5, 5, 7, 7, 7, 7, 5, 5,
@@ -10,7 +10,7 @@ const int bishop_occupancy_table[64] = {
   6, 5, 5, 5, 5, 5, 5, 6,
 };
 
-const int rook_occupancy_table[64] = {
+const int rook_relevant_bits[64] = {
   12, 11, 11, 11, 11, 11, 11, 12,
   11, 10, 10, 10, 10, 10, 10, 11,
   11, 10, 10, 10, 10, 10, 10, 11,
@@ -20,8 +20,6 @@ const int rook_occupancy_table[64] = {
   11, 10, 10, 10, 10, 10, 10, 11,
   12, 11, 11, 11, 11, 11, 11, 12,
 };
-
-const enum {rook, bishop};
 
 UInt64 key_mask_table[4096];
 
@@ -162,3 +160,12 @@ UInt64 bishop_magic_numbers[64] = {
  0x208244210400ULL,
  0x10140848044010ULL,
 };
+
+UInt64 bishop_occupancy_table[64];
+
+UInt64 rook_occupancy_table[64];
+
+UInt64 bishop_attacks_table[64][512];
+
+UInt64 rook_attacks_table[64][4096];
+

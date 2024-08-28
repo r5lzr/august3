@@ -17,4 +17,4 @@ const enum {
 
 const enum {white, black};
 
-
+const enum {rook, bishop};

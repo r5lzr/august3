@@ -7,10 +7,17 @@ UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask);
 UInt64 magic_number_candidate();
 UInt64 random_UInt64();
 void init_magic_numbers();
+UInt64 get_bishop_attacks(int square, UInt64 occupancy);
+UInt64 get_rook_attacks(int square, UInt64 occupancy);
+void init_slider_attacks(int bishop);
 
 int main()
 {
   leaper_attacks_table();
+
+  init_slider_attacks(bishop);
+  init_slider_attacks(rook);
+
 //
 //  UInt64 block = 0ULL;
 //  set_bit(block, e4);
@@ -38,6 +45,14 @@ int main()
 //    show_bitboard(magic_number_candidate());
 
 //  printf("%ud\n", random_UInt64());
-  init_magic_numbers();
+
+  UInt64 occupancy = 0ULL;
+  set_bit(occupancy, e6);
+  set_bit(occupancy, f4);
+  set_bit(occupancy, c4);
+
+  show_bitboard(occupancy);
+  show_bitboard(get_rook_attacks(e4, occupancy));
+
   return 0;
 }
