@@ -2,7 +2,7 @@
 
 #define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
 #define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))
-#define pop_bit(bitboard, square) (get_bit(bitboard, square) ? ((bitboard) ^= (1ULL << (square))) : 0)
+#define pop_bit(bitboard, square) ((bitboard) &= ~(1ULL << (square)))
 
 const enum {
   a8, b8, c8, d8, e8, f8, g8, h8,
