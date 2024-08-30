@@ -13,13 +13,20 @@ int main()
 
   slider_attacks_table();
 
-  UInt64 occupancy = 0ULL;
-  set_bit(occupancy, e6);
-  set_bit(occupancy, f4);
-  set_bit(occupancy, c4);
+//  UInt64 occupancy = 0ULL;
+//  set_bit(occupancy, e6);
+//  set_bit(occupancy, f4);
+//  set_bit(occupancy, c4);
+//
+//  show_bitboard(occupancy);
+//  show_bitboard(get_rook_attacks(e4, occupancy));
 
-  show_bitboard(occupancy);
-  show_bitboard(get_rook_attacks(e4, occupancy));
+  set_bit(bitboards[P], e2);
+
+  show_bitboard(bitboards[P]);
+
+  printf("piece: %c\n", ascii_pieces[P]);
+  printf("piece: %d\n", char_pieces['P']);
 
   return 0;
 }

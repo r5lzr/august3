@@ -22,12 +22,35 @@ UInt64 bitboards[12];
 
 UInt64 occupancies[3];
 
-int side = -1;
+static int side = -1;
 
-int enpassant = no_sq;
+static int enpassant = no_sq;
 
-int castle;
+static int castle;
 
 enum {wk = 1, wq = 2, bk = 4, bq = 8};
 
 enum {P, N, B, R, Q, K, p, n, b, r, q, k};
+
+static char ascii_pieces[12] = "PNBRQKpnbrqk";
+
+static int char_pieces[] = {
+    ['P'] = P,
+    ['N'] = N,
+    ['B'] = B,
+    ['R'] = R,
+    ['Q'] = Q,
+    ['K'] = K,
+    ['p'] = p,
+    ['n'] = n,
+    ['b'] = b,
+    ['r'] = r,
+    ['q'] = q,
+    ['k'] = k
+};
+
+
+
+
+
+
