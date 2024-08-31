@@ -25,8 +25,7 @@ int main()
 
   show_bitboard(bitboards[P]);
 
-  printf("piece: %c\n", ascii_pieces[P]);
-  printf("piece: %d\n", char_pieces['P']);
+  show_board();
 
   return 0;
 }
