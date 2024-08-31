@@ -1,3 +1,7 @@
+#ifndef MAGIC_BITBOARD_H
+#define MAGIC_BITBOARD_H
+
+
 const enum {rook, bishop};
 
 // shows relevant occupancy bits relative to board position, reduces bit count calls
@@ -171,3 +175,5 @@ UInt64 bishop_attacks_table[64][512];
 
 UInt64 rook_attacks_table[64][4096];
 
+
+#endif

@@ -1,3 +1,7 @@
+#ifndef ATTACK_TABLE_H
+#define ATTACK_TABLE_H
+
+
 const UInt64 overflow_A = 18374403900871474942ULL;
 const UInt64 overflow_H = 9187201950435737471ULL;
 const UInt64 overflow_AB = 18229723555195321596ULL;
@@ -9,3 +13,5 @@ UInt64 knight_attacks_table[64];
 
 UInt64 king_attacks_table[64];
 
+
+#endif

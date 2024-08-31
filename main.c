@@ -21,10 +21,6 @@ int main()
 //  show_bitboard(occupancy);
 //  show_bitboard(get_rook_attacks(e4, occupancy));
 
-  set_bit(bitboards[P], e2);
-
-  show_bitboard(bitboards[P]);
-
   show_board();
 
   return 0;

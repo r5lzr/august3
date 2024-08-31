@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "bitboard.h"
 
+int enpassant = no_sq;
+
 void show_bitboard(UInt64 bitboard)
 {
   printf("\n");
@@ -51,5 +53,11 @@ void show_board()
   }
 
   printf("\n     a b c d e f g h\n\n");
+
+  printf("  side: %s\n", !side ? "white" : "black");
+
+  printf("  enpass: %s\n", (enpassant != no_sq) ? square_to_coordinates[enpassant] : "none");
+
+  printf("  castling: %c%c%c%c\n\n", (castle & wk) ? 'K' : '-', (castle & wq) ? 'Q' : '-', (castle & bk) ? 'k' : '-', (castle & bq) ? 'q' : '-' );
 }
 
