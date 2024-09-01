@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "bitboard.h"
-
-UInt64 get_bishop_attacks(int square, UInt64 occupancy);
-UInt64 get_rook_attacks(int square, UInt64 occupancy);
-void init_slider_attacks(int bishop);
-void slider_attacks_table();
+#include "attacktable.h"
+#include "magicbitboard.h"
 
 int main()
 {
@@ -20,8 +17,6 @@ int main()
 //
 //  show_bitboard(occupancy);
 //  show_bitboard(get_rook_attacks(e4, occupancy));
-
-  show_board();
 
   return 0;
 }

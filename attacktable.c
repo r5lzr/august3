@@ -84,17 +84,15 @@ void leaper_attacks_table()
 
     king_attacks_table[square] = king_attack_mask(square);
   }
-
-  // accessing every bit mask attack
-//  for (int square = 0; square < 64; square++)
-//  {
-//
-//    show_bitboard(king_attacks_table[square]);
-//
-//  }
 }
 
 
+const UInt64 overflow_A = 18374403900871474942ULL;
+const UInt64 overflow_H = 9187201950435737471ULL;
+const UInt64 overflow_AB = 18229723555195321596ULL;
+const UInt64 overflow_HG = 4557430888798830399ULL;
 
-
+UInt64 pawn_attacks_table[2][64];
+UInt64 knight_attacks_table[64];
+UInt64 king_attacks_table[64];
 
