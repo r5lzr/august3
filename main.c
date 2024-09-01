@@ -18,5 +18,7 @@ int main()
 //  show_bitboard(occupancy);
 //  show_bitboard(get_rook_attacks(e4, occupancy));
 
+
+
   return 0;
 }

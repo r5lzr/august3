@@ -59,6 +59,10 @@ void show_board()
   printf("  castling: %c%c%c%c\n\n", (castle & wk) ? 'K' : '-', (castle & wq) ? 'Q' : '-', (castle & bk) ? 'k' : '-', (castle & bq) ? 'q' : '-' );
 }
 
+void parse_fen(char *fen)
+{
+
+}
 
 UInt64 bitboards[12];
 UInt64 occupancies[3];

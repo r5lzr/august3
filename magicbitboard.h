@@ -35,4 +35,5 @@ UInt64 get_bishop_attacks(int square, UInt64 occupancy);
 UInt64 get_rook_attacks(int square, UInt64 occupancy);
 void slider_attacks_table();
 
+
 #endif
