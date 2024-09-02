@@ -61,7 +61,62 @@ void show_board()
 
 void parse_fen(char *fen)
 {
+  memset(bitboards, 0ULL, sizeof(bitboards));
 
+  memset(occupancies, 0ULL, sizeof(occupancies));
+
+  side = 0;
+  enpassant = no_sq;
+  castle = 0;
+
+  for (int square = 0; square < 64 && *fen && *fen != ' ';)
+  {
+    if ((*fen >= 'b' && *fen <= 'r') || (*fen >= 'B' && *fen <= 'R'))
+    {
+      int piece = char_pieces[*fen];
+
+      set_bit(bitboards[piece], square);
+
+      square++;
+      fen++;
+    }
+
+    else if (*fen >= '1' && *fen <= '8')
+    {
+      int offset = *fen - '0';
+
+      square += offset;
+      fen++;
+    }
+
+    else if (*fen == '/')
+    {
+      fen++;
+    }
+
+    else
+    {
+      printf("Invalid character in fen: %c\n", *fen);
+      fen++;
+    }
+  }
+
+  fen++;
+
+  (*fen == 'w') ? (side = white) : (side = black);
+
+  fen += 2;
+
+//  while (*fen != ' ')
+//  {
+//    switch (*fen)
+//    {
+//      case 'K': castle |= wk; break;
+//
+//    }
+//  }
+
+  printf("fen: '%s'\n", fen);
 }
 
 UInt64 bitboards[12];
