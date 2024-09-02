@@ -30,3 +30,34 @@
 
 1725171962 c:\codeblocks\august3\magicbitboard.h
 
+1725297650 source:/home/r/codeblocks/august3/attacktable.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"attacktable.h"
+
+1725298562 /home/r/codeblocks/august3/bitboard.h
+
+1725297650 /home/r/codeblocks/august3/attacktable.h
+
+1725297933 source:/home/r/codeblocks/august3/bitboard.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+
+1725298562 source:/home/r/codeblocks/august3/magicbitboard.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bitboard.h"
+	"magicbitboard.h"
+
+1725298562 /home/r/codeblocks/august3/magicbitboard.h
+
+1725299066 source:/home/r/codeblocks/august3/main.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"attacktable.h"
+	"magicbitboard.h"
+
