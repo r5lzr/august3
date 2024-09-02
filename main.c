@@ -18,11 +18,9 @@ int main()
 //  show_bitboard(occupancy);
 //  show_bitboard(get_rook_attacks(e4, occupancy));
 
-  parse_fen(tricky_position);
+  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq e3 0 1 ");
 
   show_board();
-
-//  printf("%d\n", random_UInt64());
 
   return 0;
 }

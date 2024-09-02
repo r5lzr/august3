@@ -107,14 +107,34 @@ void parse_fen(char *fen)
 
   fen += 2;
 
-//  while (*fen != ' ')
-//  {
-//    switch (*fen)
-//    {
-//      case 'K': castle |= wk; break;
-//
-//    }
-//  }
+  while (*fen != ' ')
+  {
+    switch (*fen)
+    {
+      case 'K': castle |= wk; break;
+      case 'Q': castle |= wq; break;
+      case 'k': castle |= bk; break;
+      case 'q': castle |= bq; break;
+      case '-': break;
+    }
+
+    fen++;
+  }
+
+  fen++;
+
+  if (*fen != '-')
+  {
+    int file = fen[0] - 'a';
+    int rank = 8 - (fen[1] - '0');
+
+    enpassant = rank * 8 + file;
+  }
+
+  else
+  {
+    enpassant = no_sq;
+  }
 
   printf("fen: '%s'\n", fen);
 }
