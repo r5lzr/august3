@@ -155,7 +155,8 @@ UInt64 find_magic_number(int square, int relevant_bits, int sliding_piece)
   {
     key_mask_table[index] = key_mask(index, relevant_bits, occ_mask);
 
-    sliding_attack_table[index] = sliding_piece ? bishop_attack_mask(square, key_mask_table[index]) : rook_attack_mask(square, key_mask_table[index]);
+    sliding_attack_table[index] = sliding_piece ? bishop_attack_mask(square, key_mask_table[index])
+    : rook_attack_mask(square, key_mask_table[index]);
   }
 
   for (int count = 0; count < 100000000; count++)
@@ -252,6 +253,12 @@ UInt64 get_rook_attacks(int square, UInt64 occupancy)
   return rook_attacks_table[square][occupancy];
 }
 
+UInt64 get_queen_attacks(int square, UInt64 occupancy)
+{
+  return (get_bishop_attacks(square, occupancy)) | (get_rook_attacks(square, occupancy));
+}
+
+// queen already init by bishop and rook together
 void slider_attacks_table()
 {
   init_slider_attacks(bishop);

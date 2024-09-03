@@ -33,6 +33,7 @@ void init_magic_numbers();
 void init_slider_attacks(int sliding_piece);
 UInt64 get_bishop_attacks(int square, UInt64 occupancy);
 UInt64 get_rook_attacks(int square, UInt64 occupancy);
+UInt64 get_queen_attacks(int square, UInt64 occupancy);
 void slider_attacks_table();
 
 
