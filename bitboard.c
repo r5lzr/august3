@@ -136,6 +136,18 @@ void parse_fen(char *fen)
     enpassant = no_sq;
   }
 
+  for (int piece = P; piece <= K; piece++)
+  {
+    occupancies[white] |= bitboards[piece];
+  }
+
+  for (int piece = p; piece <= k; piece++)
+  {
+    occupancies[black] |= bitboards[piece];
+  }
+
+  occupancies[both] |= occupancies[white] | occupancies[black];
+
   printf("fen: '%s'\n", fen);
 }
 
