@@ -38,10 +38,10 @@ void show_board()
 
       int piece = -1;
 
-      for (int piece_bitboard = P; piece_bitboard <= k; piece_bitboard++)
+      for (int char_piece = P; char_piece <= k; char_piece++)
       {
-        if (get_bit(bitboards[piece_bitboard], square))
-          piece = piece_bitboard;
+        if (get_bit(piece_bitboards[char_piece], square))
+          piece = char_piece;
       }
 
       printf(" %c", (piece == -1) ? '.' : ascii_pieces[piece]);
@@ -61,9 +61,9 @@ void show_board()
 
 void parse_fen(char *fen)
 {
-  memset(bitboards, 0ULL, sizeof(bitboards));
+  memset(piece_bitboards, 0ULL, sizeof(piece_bitboards));
 
-  memset(occupancies, 0ULL, sizeof(occupancies));
+  memset(side_bitboards, 0ULL, sizeof(side_bitboards));
 
   side = 0;
   enpassant = no_sq;
@@ -75,7 +75,7 @@ void parse_fen(char *fen)
     {
       int piece = char_pieces[*fen];
 
-      set_bit(bitboards[piece], square);
+      set_bit(piece_bitboards[piece], square);
 
       square++;
       fen++;
@@ -138,21 +138,21 @@ void parse_fen(char *fen)
 
   for (int piece = P; piece <= K; piece++)
   {
-    occupancies[white] |= bitboards[piece];
+    side_bitboards[white] |= piece_bitboards[piece];
   }
 
   for (int piece = p; piece <= k; piece++)
   {
-    occupancies[black] |= bitboards[piece];
+    side_bitboards[black] |= piece_bitboards[piece];
   }
 
-  occupancies[both] |= occupancies[white] | occupancies[black];
+  side_bitboards[both] |= side_bitboards[white] | side_bitboards[black];
 
   printf("fen: '%s'\n", fen);
 }
 
-ui64 bitboards[12];
-ui64 occupancies[3];
+ui64 piece_bitboards[12];
+ui64 side_bitboards[3];
 
 int side;
 int enpassant = no_sq;

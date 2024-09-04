@@ -22,10 +22,11 @@ int main()
 
   show_board();
 
-//  show_bitboard(occupancies[white]);
-//  show_bitboard(occupancies[black]);
-//  show_bitboard(occupancies[both]);
+  show_bitboard(side_bitboards[white]);
+  show_bitboard(side_bitboards[black]);
+  show_bitboard(side_bitboards[both]);
 
+  show_bitboard(piece_bitboards[p]);
 
   return 0;
 }

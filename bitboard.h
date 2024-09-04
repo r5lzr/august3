@@ -28,8 +28,8 @@ const enum {white, black, both};
 const enum {wk = 8, wq = 4, bk = 2, bq = 1};
 const enum {P, N, B, R, Q, K, p, n, b, r, q, k};
 
-extern ui64 bitboards[12];
-extern ui64 occupancies[3];
+extern ui64 piece_bitboards[12];
+extern ui64 side_bitboards[3];
 
 extern int side;
 extern int enpassant;
