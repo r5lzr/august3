@@ -18,13 +18,13 @@ int main()
 //  show_bitboard(occupancy);
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
-  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQk g6 0 1 ");
+  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w kq g6 0 1 ");
 
   show_board();
 
-  show_bitboard(occupancies[white]);
-  show_bitboard(occupancies[black]);
-  show_bitboard(occupancies[both]);
+//  show_bitboard(occupancies[white]);
+//  show_bitboard(occupancies[black]);
+//  show_bitboard(occupancies[both]);
 
 
   return 0;

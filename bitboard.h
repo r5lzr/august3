@@ -25,7 +25,7 @@ const enum {
   no_sq
 };
 const enum {white, black, both};
-const enum {wk = 1, wq = 2, bk = 4, bq = 8};
+const enum {wk = 8, wq = 4, bk = 2, bq = 1};
 const enum {P, N, B, R, Q, K, p, n, b, r, q, k};
 
 extern ui64 bitboards[12];
