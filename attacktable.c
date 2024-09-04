@@ -3,13 +3,13 @@
 #include "bitboard.h"
 #include "attacktable.h"
 
-UInt64 pawn_attack_mask(int side, int square)
+ui64 pawn_attack_mask(int side, int square)
 {
 
   // initialised as bitboard, will return attack bit mask
-  UInt64 attack_bitmask = 0ULL;
+  ui64 attack_bitmask = 0ULL;
 
-  UInt64 bitboard = 0ULL;
+  ui64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -30,11 +30,11 @@ UInt64 pawn_attack_mask(int side, int square)
   return attack_bitmask;
 }
 
-UInt64 knight_attack_mask(int square)
+ui64 knight_attack_mask(int square)
 {
-  UInt64 attack_bitmask = 0ULL;
+  ui64 attack_bitmask = 0ULL;
 
-  UInt64 bitboard = 0ULL;
+  ui64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -51,11 +51,11 @@ UInt64 knight_attack_mask(int square)
   return attack_bitmask;
 }
 
-UInt64 king_attack_mask(int square)
+ui64 king_attack_mask(int square)
 {
-  UInt64 attack_bitmask = 0ULL;
+  ui64 attack_bitmask = 0ULL;
 
-  UInt64 bitboard = 0ULL;
+  ui64 bitboard = 0ULL;
 
   set_bit(bitboard, square);
 
@@ -87,12 +87,12 @@ void leaper_attacks_table()
 }
 
 
-const UInt64 overflow_A = 18374403900871474942ULL;
-const UInt64 overflow_H = 9187201950435737471ULL;
-const UInt64 overflow_AB = 18229723555195321596ULL;
-const UInt64 overflow_HG = 4557430888798830399ULL;
+const ui64 overflow_A = 18374403900871474942ULL;
+const ui64 overflow_H = 9187201950435737471ULL;
+const ui64 overflow_AB = 18229723555195321596ULL;
+const ui64 overflow_HG = 4557430888798830399ULL;
 
-UInt64 pawn_attacks_table[2][64];
-UInt64 knight_attacks_table[64];
-UInt64 king_attacks_table[64];
+ui64 pawn_attacks_table[2][64];
+ui64 knight_attacks_table[64];
+ui64 king_attacks_table[64];
 

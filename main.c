@@ -10,21 +10,21 @@ int main()
 
   slider_attacks_table();
 
-  UInt64 occupancy = 0ULL;
-  set_bit(occupancy, e6);
-  set_bit(occupancy, f4);
-  set_bit(occupancy, c4);
-
-  show_bitboard(occupancy);
-  show_bitboard(get_queen_attacks(e4, occupancy));
-
-//  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w Kk  0 1 ");
+//  ui64 occupancy = 0ULL;
+//  set_bit(occupancy, e6);
+//  set_bit(occupancy, f4);
+//  set_bit(occupancy, c4);
 //
-//  show_board();
-//
-//  show_bitboard(occupancies[white]);
-//  show_bitboard(occupancies[black]);
-//  show_bitboard(occupancies[both]);
+//  show_bitboard(occupancy);
+//  show_bitboard(get_queen_attacks(e4, occupancy));
+
+  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQk g6 0 1 ");
+
+  show_board();
+
+  show_bitboard(occupancies[white]);
+  show_bitboard(occupancies[black]);
+  show_bitboard(occupancies[both]);
 
 
   return 0;

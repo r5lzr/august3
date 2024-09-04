@@ -2,7 +2,7 @@
 #define BITBOARD_H
 
 
-#define UInt64 unsigned long long
+typedef unsigned long long ui64;
 
 #define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
 #define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))
@@ -28,8 +28,8 @@ const enum {white, black, both};
 const enum {wk = 1, wq = 2, bk = 4, bq = 8};
 const enum {P, N, B, R, Q, K, p, n, b, r, q, k};
 
-extern UInt64 bitboards[12];
-extern UInt64 occupancies[3];
+extern ui64 bitboards[12];
+extern ui64 occupancies[3];
 
 extern int side;
 extern int enpassant;
@@ -38,7 +38,7 @@ extern char ascii_pieces[12];
 extern int char_pieces[];
 extern const char *square_to_coordinates[];
 
-void show_bitboard(UInt64 bitboard);
+void show_bitboard(ui64 bitboard);
 void show_board();
 
 

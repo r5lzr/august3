@@ -5,9 +5,9 @@
 #include "magicbitboard.h"
 
 // based on relevant occupancy bits
-UInt64 bishop_occupancy_mask(int square)
+ui64 bishop_occupancy_mask(int square)
 {
-  UInt64 occ_bitmask = 0ULL;
+  ui64 occ_bitmask = 0ULL;
 
   int rk = square / 8, fl = square % 8, r, f;
 
@@ -19,9 +19,9 @@ UInt64 bishop_occupancy_mask(int square)
   return occ_bitmask;
 }
 
-UInt64 rook_occupancy_mask(int square)
+ui64 rook_occupancy_mask(int square)
 {
-  UInt64 occ_bitmask = 0ULL;
+  ui64 occ_bitmask = 0ULL;
 
   int rk = square / 8, fl = square % 8, r, f;
 
@@ -34,9 +34,9 @@ UInt64 rook_occupancy_mask(int square)
 }
 
 // attacks indexed from sliding piece lookup table
-UInt64 bishop_attack_mask(int square, UInt64 block)
+ui64 bishop_attack_mask(int square, ui64 block)
 {
-	UInt64 attack_bitmask = 0ULL;
+	ui64 attack_bitmask = 0ULL;
 
 	int rk = square / 8, fl = square % 8, r, f;
 
@@ -67,9 +67,9 @@ UInt64 bishop_attack_mask(int square, UInt64 block)
 	return attack_bitmask;
 }
 
-UInt64 rook_attack_mask(int square, UInt64 block)
+ui64 rook_attack_mask(int square, ui64 block)
 {
-  UInt64 attack_bitmask = 0ULL;
+  ui64 attack_bitmask = 0ULL;
 
   int rk = square / 8, fl = square % 8, r, f;
 
@@ -101,7 +101,7 @@ UInt64 rook_attack_mask(int square, UInt64 block)
 }
 
 // based on number of relevant bits
-int count_bits(UInt64 block)
+int count_bits(ui64 block)
 {
   int count;
   for (count = 0; block; count++, block &= block - 1);
@@ -110,9 +110,9 @@ int count_bits(UInt64 block)
 }
 
 // based on bit mask variations of relevant occupancy bits
-UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask)
+ui64 key_mask(int index, int relevant_bits, ui64 occ_mask)
 {
-	UInt64 key_bitmask = 0ULL;
+	ui64 key_bitmask = 0ULL;
 
 	for (int count = 0; count < relevant_bits; count++)
 	{
@@ -128,26 +128,26 @@ UInt64 key_mask(int index, int relevant_bits, UInt64 occ_mask)
 }
 
 // generate 64-bit pseudo random numbers
-UInt64 random_UInt64()
+ui64 random_ui64()
 {
-  UInt64 n1, n2, n3, n4;
+  ui64 n1, n2, n3, n4;
 
-  n1 = (UInt64)(rand()) & 0xFFFF;
-  n2 = (UInt64)(rand()) & 0xFFFF;
-  n3 = (UInt64)(rand()) & 0xFFFF;
-  n4 = (UInt64)(rand()) & 0xFFFF;
+  n1 = (ui64)(rand()) & 0xFFFF;
+  n2 = (ui64)(rand()) & 0xFFFF;
+  n3 = (ui64)(rand()) & 0xFFFF;
+  n4 = (ui64)(rand()) & 0xFFFF;
 
   return n1 | (n2 << 16) | (n3 << 32) | (n4 << 48);
 }
 
-UInt64 magic_number_candidate()
+ui64 magic_number_candidate()
 {
-  return random_UInt64() & random_UInt64() & random_UInt64();
+  return random_ui64() & random_ui64() & random_ui64();
 }
 
-UInt64 find_magic_number(int square, int relevant_bits, int sliding_piece)
+ui64 find_magic_number(int square, int relevant_bits, int sliding_piece)
 {
-  UInt64 occ_mask = sliding_piece ? bishop_occupancy_mask(square) : rook_occupancy_mask(square);
+  ui64 occ_mask = sliding_piece ? bishop_occupancy_mask(square) : rook_occupancy_mask(square);
 
   int max_occ_index = 1 << relevant_bits;
 
@@ -161,7 +161,7 @@ UInt64 find_magic_number(int square, int relevant_bits, int sliding_piece)
 
   for (int count = 0; count < 100000000; count++)
   {
-    UInt64 magic_number = magic_number_candidate();
+    ui64 magic_number = magic_number_candidate();
 
     if (count_bits((occ_mask * magic_number) & 0xFF00000000000000ULL) < 6) continue;
 
@@ -206,7 +206,7 @@ void init_slider_attacks(int sliding_piece)
     bishop_occupancy_table[square] = bishop_occupancy_mask(square);
     rook_occupancy_table[square] = rook_occupancy_mask(square);
 
-    UInt64 occ_mask = sliding_piece ? bishop_occupancy_table[square] : rook_occupancy_table[square];
+    ui64 occ_mask = sliding_piece ? bishop_occupancy_table[square] : rook_occupancy_table[square];
 
     int relevant_bits = count_bits(occ_mask);
 
@@ -216,7 +216,7 @@ void init_slider_attacks(int sliding_piece)
     {
       if (sliding_piece == bishop)
       {
-        UInt64 occupancy = key_mask(index, relevant_bits, occ_mask);
+        ui64 occupancy = key_mask(index, relevant_bits, occ_mask);
 
         int magic_index = (occupancy * bishop_magic_numbers[square]) >> (64 - bishop_relevant_bits[square]);
 
@@ -225,7 +225,7 @@ void init_slider_attacks(int sliding_piece)
 
       else
       {
-        UInt64 occupancy = key_mask(index, relevant_bits, occ_mask);
+        ui64 occupancy = key_mask(index, relevant_bits, occ_mask);
 
         int magic_index = (occupancy * rook_magic_numbers[square]) >> (64 - rook_relevant_bits[square]);
 
@@ -235,7 +235,7 @@ void init_slider_attacks(int sliding_piece)
   }
 }
 
-UInt64 get_bishop_attacks(int square, UInt64 occupancy)
+ui64 get_bishop_attacks(int square, ui64 occupancy)
 {
   occupancy &= bishop_occupancy_table[square];
   occupancy *= bishop_magic_numbers[square];
@@ -244,7 +244,7 @@ UInt64 get_bishop_attacks(int square, UInt64 occupancy)
   return bishop_attacks_table[square][occupancy];
 }
 
-UInt64 get_rook_attacks(int square, UInt64 occupancy)
+ui64 get_rook_attacks(int square, ui64 occupancy)
 {
   occupancy &= rook_occupancy_table[square];
   occupancy *= rook_magic_numbers[square];
@@ -253,7 +253,7 @@ UInt64 get_rook_attacks(int square, UInt64 occupancy)
   return rook_attacks_table[square][occupancy];
 }
 
-UInt64 get_queen_attacks(int square, UInt64 occupancy)
+ui64 get_queen_attacks(int square, ui64 occupancy)
 {
   return (get_bishop_attacks(square, occupancy)) | (get_rook_attacks(square, occupancy));
 }
@@ -287,11 +287,11 @@ const int rook_relevant_bits[64] = {
   12, 11, 11, 11, 11, 11, 11, 12,
 };
 
-UInt64 key_mask_table[4096];
-UInt64 sliding_attack_table[4096];
-UInt64 used_attacks[4096];
+ui64 key_mask_table[4096];
+ui64 sliding_attack_table[4096];
+ui64 used_attacks[4096];
 
-UInt64 rook_magic_numbers[64] = {
+ui64 rook_magic_numbers[64] = {
  0x80004000976080ULL,
  0x1040400010002000ULL,
  0x4880200210000980ULL,
@@ -358,7 +358,7 @@ UInt64 rook_magic_numbers[64] = {
  0x1001040311802142ULL,
 };
 
-UInt64 bishop_magic_numbers[64] = {
+ui64 bishop_magic_numbers[64] = {
  0x1024b002420160ULL,
  0x1008080140420021ULL,
  0x2012080041080024ULL,
@@ -425,10 +425,10 @@ UInt64 bishop_magic_numbers[64] = {
  0x10140848044010ULL,
 };
 
-UInt64 bishop_occupancy_table[64];
-UInt64 rook_occupancy_table[64];
-UInt64 bishop_attacks_table[64][512];
-UInt64 rook_attacks_table[64][4096];
+ui64 bishop_occupancy_table[64];
+ui64 rook_occupancy_table[64];
+ui64 bishop_attacks_table[64][512];
+ui64 rook_attacks_table[64][4096];
 
 
 

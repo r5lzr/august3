@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "bitboard.h"
 
-void show_bitboard(UInt64 bitboard)
+void show_bitboard(ui64 bitboard)
 {
   printf("\n");
 
@@ -151,8 +151,8 @@ void parse_fen(char *fen)
   printf("fen: '%s'\n", fen);
 }
 
-UInt64 bitboards[12];
-UInt64 occupancies[3];
+ui64 bitboards[12];
+ui64 occupancies[3];
 
 int side;
 int enpassant = no_sq;
