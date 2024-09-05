@@ -3,6 +3,7 @@
 #include "bitboard.h"
 #include "attacktable.h"
 #include "magicbitboard.h"
+#include "movegen.h"
 
 int main()
 {
@@ -22,11 +23,13 @@ int main()
   parse_fen("8/8/8/3p4/8/8/8/8 w - - ", &board);
 
   show_board(board);
-//  show_bitboard(piece_bitboards[p]);
-//  show_bitboard(pawn_attacks_table[white][e4]);
-//  show_bitboard(pawn_attacks_table[white][e4] & piece_bitboards[p]);
-//
-//  printf("is e4 attacked by black pawn? %s\n", (pawn_attacks_table[white][e4] & piece_bitboards[p]) ? "y" : "n");
+//  show_attacked_squares(white);
+
+  show_bitboard(piece_bitboards[p]);
+  show_bitboard(pawn_attacks_table[white][e4]);
+  show_bitboard(pawn_attacks_table[white][e4] & piece_bitboards[p]);
+
+  printf("is d5 attacked by white pawn? %s\n", (pawn_attacks_table[white][e4] & piece_bitboards[p]) ? "y" : "n");
 //
 //  show_bitboard(side_bitboards[white]);
 //  show_bitboard(side_bitboards[black]);

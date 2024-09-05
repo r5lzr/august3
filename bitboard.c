@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bitboard.h"
 
 ui64 piece_bitboards[12];
@@ -45,8 +46,8 @@ void show_bitboard(ui64 bitboard)
 
       printf(" %d", get_bit(bitboard, square) ? 1 : 0);
     }
-
     printf("\n");
+
   }
   printf("\n     a b c d e f g h\n\n");
 
@@ -72,11 +73,11 @@ void show_board(FenBoard board)
         if (get_bit(piece_bitboards[char_piece], square))
           piece = char_piece;
       }
-
       printf(" %c", (piece == -1) ? '.' : ascii_pieces[piece]);
-    }
 
+    }
     printf("\n");
+
   }
 
   printf("\n     a b c d e f g h\n\n");
