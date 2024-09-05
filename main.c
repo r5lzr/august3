@@ -19,10 +19,14 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w Kk g7 0 1 ", &board);
+  parse_fen("8/8/8/3p4/8/8/8/8 w - - ", &board);
 
   show_board(board);
-
+//  show_bitboard(piece_bitboards[p]);
+//  show_bitboard(pawn_attacks_table[white][e4]);
+//  show_bitboard(pawn_attacks_table[white][e4] & piece_bitboards[p]);
+//
+//  printf("is e4 attacked by black pawn? %s\n", (pawn_attacks_table[white][e4] & piece_bitboards[p]) ? "y" : "n");
 //
 //  show_bitboard(side_bitboards[white]);
 //  show_bitboard(side_bitboards[black]);

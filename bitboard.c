@@ -5,10 +5,6 @@
 ui64 piece_bitboards[12];
 ui64 side_bitboards[3];
 
-//int side;
-//int enpassant = no_sq;
-//int castle;
-
 char ascii_pieces[12] = "PNBRQKpnbrqk";
 int char_pieces[] = {
     ['P'] = P,
@@ -185,7 +181,7 @@ void parse_fen(char *fen, FenBoard *board)
 
   side_bitboards[both] |= side_bitboards[white] | side_bitboards[black];
 
-  printf("fen: '%s'\n", fen);
+//  printf("fen: '%s'\n", fen);
 
   return board;
 }
