@@ -31,9 +31,14 @@ const enum {P, N, B, R, Q, K, p, n, b, r, q, k};
 extern ui64 piece_bitboards[12];
 extern ui64 side_bitboards[3];
 
-extern int side;
-extern int enpassant;
-extern int castle;
+typedef struct
+{
+  int side;
+  int enpassant;
+  int castle;
+} FenBoard;
+FenBoard board;
+
 extern char ascii_pieces[12];
 extern int char_pieces[];
 extern const char *square_to_coordinates[];

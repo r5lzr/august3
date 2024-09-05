@@ -5,9 +5,9 @@
 ui64 piece_bitboards[12];
 ui64 side_bitboards[3];
 
-int side;
-int enpassant = no_sq;
-int castle;
+//int side;
+//int enpassant = no_sq;
+//int castle;
 
 char ascii_pieces[12] = "PNBRQKpnbrqk";
 int char_pieces[] = {
@@ -57,7 +57,7 @@ void show_bitboard(ui64 bitboard)
   printf("     Bitboard: %llud\n\n", bitboard);
 }
 
-void show_board()
+void show_board(FenBoard board)
 {
   printf("\n");
 
@@ -85,22 +85,26 @@ void show_board()
 
   printf("\n     a b c d e f g h\n\n");
 
-  printf("  side: %s\n", !side ? "white" : "black");
+  printf("  side: %s\n", !board.side ? "white" : "black");
 
-  printf("  enpass: %s\n", (enpassant != no_sq) ? square_to_coordinates[enpassant] : "none");
+  printf("  enpass: %s\n", (board.enpassant != no_sq) ? square_to_coordinates[board.enpassant] : "none");
 
-  printf("  castling: %c%c%c%c\n\n", (castle & wk) ? 'K' : '-', (castle & wq) ? 'Q' : '-', (castle & bk) ? 'k' : '-', (castle & bq) ? 'q' : '-' );
+  printf("  castling: %c%c%c%c\n\n",
+   (board.castle & wk) ? 'K' : '-',
+   (board.castle & wq) ? 'Q' : '-',
+   (board.castle & bk) ? 'k' : '-',
+   (board.castle & bq) ? 'q' : '-');
 }
 
-void parse_fen(char *fen)
+void parse_fen(char *fen, FenBoard *board)
 {
   memset(piece_bitboards, 0ULL, sizeof(piece_bitboards));
 
   memset(side_bitboards, 0ULL, sizeof(side_bitboards));
 
-  side = 0;
-  enpassant = no_sq;
-  castle = 0;
+  board->side = 0;
+  board->enpassant = no_sq;
+  board->castle = 0;
 
   for (int square = 0; square < 64 && *fen && *fen != ' ';)
   {
@@ -136,7 +140,7 @@ void parse_fen(char *fen)
 
   fen++;
 
-  (*fen == 'w') ? (side = white) : (side = black);
+  (*fen == 'w') ? (board->side = white) : (board->side = black);
 
   fen += 2;
 
@@ -144,10 +148,10 @@ void parse_fen(char *fen)
   {
     switch (*fen)
     {
-      case 'K': castle |= wk; break;
-      case 'Q': castle |= wq; break;
-      case 'k': castle |= bk; break;
-      case 'q': castle |= bq; break;
+      case 'K': board->castle |= wk; break;
+      case 'Q': board->castle |= wq; break;
+      case 'k': board->castle |= bk; break;
+      case 'q': board->castle |= bq; break;
       case '-': break;
     }
 
@@ -161,12 +165,12 @@ void parse_fen(char *fen)
     int file = fen[0] - 'a';
     int rank = 8 - (fen[1] - '0');
 
-    enpassant = rank * 8 + file;
+    board->enpassant = rank * 8 + file;
   }
 
   else
   {
-    enpassant = no_sq;
+    board->enpassant = no_sq;
   }
 
   for (int piece = P; piece <= K; piece++)
@@ -182,5 +186,7 @@ void parse_fen(char *fen)
   side_bitboards[both] |= side_bitboards[white] | side_bitboards[black];
 
   printf("fen: '%s'\n", fen);
+
+  return board;
 }
 
