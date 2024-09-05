@@ -20,16 +20,16 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-  parse_fen("8/8/8/3p4/8/8/8/8 w - - ", &board);
+  parse_fen("8/8/8/3N4/8/8/8/8 w - - ", &board);
 
   show_board(board);
-//  show_attacked_squares(white);
+  show_attacked_squares(white);
 
-  show_bitboard(piece_bitboards[p]);
-  show_bitboard(pawn_attacks_table[white][e4]);
-  show_bitboard(pawn_attacks_table[white][e4] & piece_bitboards[p]);
+//  show_bitboard(piece_bitboards[p]);
+//  show_bitboard(pawn_attacks_table[white][e4]);
+//  show_bitboard(pawn_attacks_table[white][e4] & piece_bitboards[p]);
 
-  printf("is d5 attacked by white pawn? %s\n", (pawn_attacks_table[white][e4] & piece_bitboards[p]) ? "y" : "n");
+//  printf("is d5 attacked by white pawn? %s\n", (pawn_attacks_table[white][e4] & piece_bitboards[p]) ? "y" : "n");
 //
 //  show_bitboard(side_bitboards[white]);
 //  show_bitboard(side_bitboards[black]);

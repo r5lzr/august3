@@ -2,11 +2,18 @@
 #include <stdlib.h>
 #include "bitboard.h"
 #include "movegen.h"
+#include "attacktable.h"
 
 int is_square_attacked(int square, int side)
 {
+  if ((!side) && (pawn_attacks_table[black][square] & piece_bitboards[P]))
+    return 1;
 
+  if ((side) && (pawn_attacks_table[white][square] & piece_bitboards[p]))
+    return 1;
 
+  if (knight_attacks_table[square] & ((!side) ? piece_bitboards[N] : piece_bitboards[n]))
+    return 1;
 
   return 0;
 }
