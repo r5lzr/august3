@@ -64,80 +64,45 @@ void generate_moves(FenBoard board)
   {
     bitboard = piece_bitboards[piece];
 
-    if (!board.side)
+    if ((piece == P && !board.side) || (piece == p && board.side))
     {
-      if (piece == P)
+      // white = -8, black = 8
+      int pawn_direction = (!board.side) ? -8 : 8;
+
+      while (bitboard)
       {
-        while (bitboard)
+        source_square = __builtin_ctzll(bitboard);
+
+        target_square = source_square + pawn_direction;
+
+        // prevents off board movement and if target square blocked
+        if ((target_square >= 0 && target_square <= 63) && !(get_bit(side_bitboards[both], target_square)))
         {
-          source_square = __builtin_ctzll(bitboard);
-
-          target_square = source_square - 8;
-
-          // prevents off board movement and if target square blocked
-          if (!(target_square < 0) && !(get_bit(side_bitboards[both], target_square)))
+          // pawn promo
+          if ((source_square >= a7 && source_square <= h7 && !board.side) || (source_square >= a2 && source_square <= h2 && board.side))
           {
-            // pawn promo
-            if (source_square >= a7 && source_square <= h7)
-            {
-              printf("pawn promo: %s%sq\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sr\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sb\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sn\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-            }
-
-            else
-            {
-              printf("pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-
-              if ((source_square >= a2 && source_square <= h2) && !(get_bit(side_bitboards[both], target_square - 8)))
-                printf("2x pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square - 8]);
-            }
+            printf("pawn promo: %s%sq\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn promo: %s%sr\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn promo: %s%sb\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn promo: %s%sn\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
           }
-          pop_bit(bitboard, source_square);
 
+          else
+          {
+            printf("pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+
+            if (((source_square >= a2 && source_square <= h2 && !board.side) ||
+                 (source_square >= a7 && source_square <= h7 && board.side)) &&
+                !(get_bit(side_bitboards[both], target_square + pawn_direction)))
+              {
+                printf("2x pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square + pawn_direction]);
+              }
+          }
         }
+        pop_bit(bitboard, source_square);
+
       }
     }
-
-    else
-    {
-      if (piece == p)
-      {
-        while (bitboard)
-        {
-          source_square = __builtin_ctzll(bitboard);
-
-          target_square = source_square + 8;
-
-          // prevents off board movement and if target square blocked
-          if (!(target_square > 63) && !(get_bit(side_bitboards[both], target_square)))
-          {
-            // pawn promo
-            if (source_square >= a2 && source_square <= h2)
-            {
-              printf("pawn promo: %s%sq\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sr\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sb\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-              printf("pawn promo: %s%sn\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-            }
-
-            else
-            {
-              printf("pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
-
-              if ((source_square >= a7 && source_square <= h7) && !(get_bit(side_bitboards[both], target_square + 8)))
-                printf("2x pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square + 8]);
-            }
-          }
-          pop_bit(bitboard, source_square);
-
-        }
-      }
-    }
-
-
-
   }
 }
 
