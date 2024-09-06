@@ -54,7 +54,7 @@ int is_square_attacked(int square, int side)
   return 0;
 }
 
-void generate_moves(int side)
+void generate_moves(FenBoard board)
 {
   int source_square, target_square;
 
@@ -64,7 +64,7 @@ void generate_moves(int side)
   {
     bitboard = piece_bitboards[piece];
 
-    if (!side)
+    if (!board.side)
     {
       if (piece == P)
       {
@@ -92,18 +92,48 @@ void generate_moves(int side)
 
               if ((source_square >= a2 && source_square <= h2) && !(get_bit(side_bitboards[both], target_square - 8)))
                 printf("2x pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square - 8]);
-
             }
           }
-
           pop_bit(bitboard, source_square);
+
         }
       }
     }
 
     else
     {
+      if (piece == p)
+      {
+        while (bitboard)
+        {
+          source_square = __builtin_ctzll(bitboard);
 
+          target_square = source_square + 8;
+
+          // prevents off board movement and if target square blocked
+          if (!(target_square > 63) && !(get_bit(side_bitboards[both], target_square)))
+          {
+            // pawn promo
+            if (source_square >= a2 && source_square <= h2)
+            {
+              printf("pawn promo: %s%sq\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+              printf("pawn promo: %s%sr\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+              printf("pawn promo: %s%sb\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+              printf("pawn promo: %s%sn\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            }
+
+            else
+            {
+              printf("pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+
+              if ((source_square >= a7 && source_square <= h7) && !(get_bit(side_bitboards[both], target_square + 8)))
+                printf("2x pawn push: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square + 8]);
+            }
+          }
+          pop_bit(bitboard, source_square);
+
+        }
+      }
     }
 
 
