@@ -20,7 +20,7 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-  parse_fen("8/8/8/3N4/8/8/8/8 w - - ", &board);
+  parse_fen("8/8/2p1Q3/8/8/8/8/8 w - - ", &board);
 
   show_board(board);
   show_attacked_squares(white);

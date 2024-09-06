@@ -3,9 +3,11 @@
 #include "bitboard.h"
 #include "movegen.h"
 #include "attacktable.h"
+#include "magicbitboard.h"
 
 int is_square_attacked(int square, int side)
 {
+  // leaper
   if ((!side) && (pawn_attacks_table[black][square] & piece_bitboards[P]))
     return 1;
 
@@ -13,6 +15,19 @@ int is_square_attacked(int square, int side)
     return 1;
 
   if (knight_attacks_table[square] & ((!side) ? piece_bitboards[N] : piece_bitboards[n]))
+    return 1;
+
+  if (king_attacks_table[square] & ((!side) ? piece_bitboards[K] : piece_bitboards[k]))
+    return 1;
+
+  // slider
+  if (get_bishop_attacks(square, side_bitboards[both]) & ((!side) ? piece_bitboards[B] : piece_bitboards[b]))
+    return 1;
+
+  if (get_rook_attacks(square, side_bitboards[both]) & ((!side) ? piece_bitboards[R] : piece_bitboards[r]))
+    return 1;
+
+  if (get_queen_attacks(square, side_bitboards[both]) & ((!side) ? piece_bitboards[Q] : piece_bitboards[q]))
     return 1;
 
   return 0;
