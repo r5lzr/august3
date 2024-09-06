@@ -20,10 +20,12 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-  parse_fen("8/8/2p1Q3/8/8/8/8/8 w - - ", &board);
+  parse_fen(tricky_position, &board);
 
   show_board(board);
-  show_attacked_squares(white);
+
+  generate_moves(white);
+
 
 //  show_bitboard(piece_bitboards[p]);
 //  show_bitboard(pawn_attacks_table[white][e4]);
