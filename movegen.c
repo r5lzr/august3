@@ -139,23 +139,39 @@ void generate_moves(FenBoard board)
 
     if ((piece == K && !board.side) || (piece == k && board.side))
     {
-      if (board.castle & wk)
+      if ((board.castle & wk) && !board.side)
       {
         if (!get_bit(side_bitboards[both], f1) && !get_bit(side_bitboards[both], g1))
         {
           if (!is_square_attacked(e1, black) && !is_square_attacked(f1, black))
             printf("castling move e1g1\n");
-
         }
       }
 
-      if (board.castle & wq)
+      if ((board.castle & wq) && !board.side)
       {
         if (!get_bit(side_bitboards[both], d1) && !get_bit(side_bitboards[both], c1) && !get_bit(side_bitboards[both], b1))
         {
           if (!is_square_attacked(e1, black) && !is_square_attacked(d1, black))
             printf("castling move e1c1\n");
+        }
+      }
 
+      if ((board.castle & bk) && board.side)
+      {
+        if (!get_bit(side_bitboards[both], f8) && !get_bit(side_bitboards[both], g8))
+        {
+          if (!is_square_attacked(e8, white) && !is_square_attacked(f8, white))
+            printf("castling move e8g8\n");
+        }
+      }
+
+      if ((board.castle & bq) && board.side)
+      {
+        if (!get_bit(side_bitboards[both], d8) && !get_bit(side_bitboards[both], c8) && !get_bit(side_bitboards[both], b8))
+        {
+          if (!is_square_attacked(e8, white) && !is_square_attacked(d8, white))
+            printf("castling move e8c8\n");
         }
       }
     }
