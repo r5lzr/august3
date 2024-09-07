@@ -99,8 +99,41 @@ void generate_moves(FenBoard board)
               }
           }
         }
-        pop_bit(bitboard, source_square);
 
+        attacks = pawn_attacks_table[!board.side ? white : black][source_square] & side_bitboards[board.side ? white : black];
+
+        while (attacks)
+        {
+          target_square = __builtin_ctzll(attacks);
+
+          if ((source_square >= a7 && source_square <= h7 && !board.side) || (source_square >= a2 && source_square <= h2 && board.side))
+          {
+            printf("pawn capture promo: %s%sq\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn capture promo: %s%sr\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn capture promo: %s%sb\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            printf("pawn capture promo: %s%sn\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+          }
+
+          else
+          {
+            printf("pawn capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+          }
+
+          pop_bit(attacks, target_square);
+        }
+
+        if (board.enpassant != no_sq)
+        {
+          ui64 enpassant_attack = pawn_attacks_table[!board.side ? white : black][source_square] & (1ULL << board.enpassant);
+
+          if (enpassant_attack)
+          {
+            int target_enpassant = __builtin_ctzll(enpassant_attack);
+            printf("pawn capture enpassant: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_enpassant]);
+          }
+        }
+
+        pop_bit(bitboard, source_square);
       }
     }
   }

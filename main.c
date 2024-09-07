@@ -20,7 +20,7 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-  parse_fen("r3k2r/pPppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPpP/R3K2R w KQkq - 0 1 ", &board);
+  parse_fen("r3k2r/pP1pqpb1/bn2pnp1/2pPN3/Pp2P3/2N4p/1PPBBPpP/R3K2R w KQkq c6 0 1 ", &board);
 
   show_board(board);
 
