@@ -136,6 +136,29 @@ void generate_moves(FenBoard board)
         pop_bit(bitboard, source_square);
       }
     }
+
+    if ((piece == K && !board.side) || (piece == k && board.side))
+    {
+      if (board.castle & wk)
+      {
+        if (!get_bit(side_bitboards[both], f1) && !get_bit(side_bitboards[both], g1))
+        {
+          if (!is_square_attacked(e1, black) && !is_square_attacked(f1, black))
+            printf("castling move e1g1\n");
+
+        }
+      }
+
+      if (board.castle & wq)
+      {
+        if (!get_bit(side_bitboards[both], d1) && !get_bit(side_bitboards[both], c1) && !get_bit(side_bitboards[both], b1))
+        {
+          if (!is_square_attacked(e1, black) && !is_square_attacked(d1, black))
+            printf("castling move e1c1\n");
+
+        }
+      }
+    }
   }
 }
 
