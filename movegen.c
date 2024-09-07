@@ -262,6 +262,35 @@ void generate_moves(FenBoard board)
         pop_bit(bitboard, source_square);
       }
     }
+
+    if ((piece == Q && !board.side) || (piece == q && board.side))
+    {
+      while (bitboard)
+      {
+        source_square = __builtin_ctzll(bitboard);
+
+        attacks = get_queen_attacks(source_square, side_bitboards[both]) & ~side_bitboards[!board.side ? white : black];
+
+        while (attacks)
+        {
+          target_square = __builtin_ctzll(attacks);
+
+          if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
+          {
+            printf("queen move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+          }
+
+          else
+          {
+            printf("queen capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+          }
+
+          pop_bit(attacks, target_square);
+        }
+
+        pop_bit(bitboard, source_square);
+      }
+    }
   }
 }
 
