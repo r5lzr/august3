@@ -5,6 +5,8 @@
 #include "attacktable.h"
 #include "magicbitboard.h"
 
+/* UCI protocol needs to return lower case
+regardless of side for encoding moves */
 char promoted_pieces[] = {
   [Q] = 'q',
   [R] = 'r',
@@ -341,6 +343,30 @@ void show_move(int move)
           promoted_pieces[get_move_promoted(move)]);
 }
 
+void show_move_list(moves *move_list)
+{
+  for (int move_count = 0; move_count < move_list->count; move_count++)
+  {
+    int move = move_list->moves[move_count];
 
+    printf("move: %s%s%c   piece: %c   capture: %d   double: %d   enpassant: %d   castling: %d\n",
+            square_to_coordinates[get_move_source(move)],
+            square_to_coordinates[get_move_target(move)],
+            promoted_pieces[get_move_promoted(move)],
+            ascii_pieces[get_move_piece(move)],
+            get_move_capture(move),
+            get_move_double(move),
+            get_move_enpassant(move),
+            get_move_castling(move)
+          );
+  }
+}
+
+void add_move(moves *move_list, int move)
+{
+  move_list->moves[move_list->count] = move;
+
+  move_list->count++;
+}
 
 

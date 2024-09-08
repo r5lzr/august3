@@ -26,6 +26,8 @@ void show_attacked_squares(int side);
 int is_square_attacked(int square, int side);
 void generate_moves();
 void show_move(int move);
+void show_move_list(moves *move_list);
+void add_move(moves *move_list, int move);
 
 
 #endif

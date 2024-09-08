@@ -24,9 +24,12 @@ int main()
 //
 //  show_board(board);
 
-  int move = encode_move(d7, e8, P, Q, 1, 0, 1, 0);
+  moves move_list[1];
+  move_list->count = 0;
 
-  show_move(move);
+  add_move(move_list, encode_move(d7, e8, P, Q, 0, 0, 0, 0));
+
+  show_move_list(move_list);
 
 
 //  generate_moves(board);
