@@ -20,19 +20,15 @@ int main()
 //  show_bitboard(get_queen_attacks(e4, occupancy));
 
 
-//  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 ", &board);
-//
-//  show_board(board);
+  parse_fen("r3k2r/pPppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq c6 0 1 ", &board);
+
+  show_board(board);
 
   moves move_list[1];
-  move_list->count = 0;
 
-  add_move(move_list, encode_move(d7, e8, P, Q, 0, 0, 0, 0));
+  generate_moves(board, move_list);
 
   show_move_list(move_list);
-
-
-//  generate_moves(board);
 
 //  show_bitboard(piece_bitboards[p]);
 //  show_bitboard(pawn_attacks_table[white][e4]);
