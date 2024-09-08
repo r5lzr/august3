@@ -14,9 +14,18 @@
 #define get_move_enpassant(move) ((move & 0x400000) >> 22)
 #define get_move_castling(move) ((move & 0x800000) >> 23)
 
+typedef struct {
+  int moves[256];
+  int count;
+} moves;
+moves move_list;
+
+char promoted_pieces[];
+
 void show_attacked_squares(int side);
 int is_square_attacked(int square, int side);
 void generate_moves();
+void show_move(int move);
 
 
 #endif
