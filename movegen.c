@@ -173,12 +173,14 @@ void generate_moves(FenBoard board, moves *move_list)
 
           if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
           {
-            printf("king move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // king move
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 0, 0, 0, 0));
           }
 
           else
           {
-            printf("king capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // king capture
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 1, 0, 0, 0));
           }
 
           pop_bit(attacks, target_square);
@@ -194,7 +196,8 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], f1) && !get_bit(side_bitboards[both], g1))
           {
             if (!is_square_attacked(e1, black) && !is_square_attacked(f1, black))
-              printf("castling move e1g1\n");
+              // castle white king side
+              add_move(move_list, encode_move(e1, g1, piece, 0, 0, 0, 0, 1));
           }
         }
 
@@ -203,7 +206,8 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], d1) && !get_bit(side_bitboards[both], c1) && !get_bit(side_bitboards[both], b1))
           {
             if (!is_square_attacked(e1, black) && !is_square_attacked(d1, black))
-              printf("castling move e1c1\n");
+              // castle white queen side
+              add_move(move_list, encode_move(e1, c1, piece, 0, 0, 0, 0, 1));
           }
         }
 
@@ -212,7 +216,8 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], f8) && !get_bit(side_bitboards[both], g8))
           {
             if (!is_square_attacked(e8, white) && !is_square_attacked(f8, white))
-              printf("castling move e8g8\n");
+              // castle black king side
+              add_move(move_list, encode_move(e8, g8, piece, 0, 0, 0, 0, 1));
           }
         }
 
@@ -221,7 +226,8 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], d8) && !get_bit(side_bitboards[both], c8) && !get_bit(side_bitboards[both], b8))
           {
             if (!is_square_attacked(e8, white) && !is_square_attacked(d8, white))
-              printf("castling move e8c8\n");
+              // castle black queen side
+              add_move(move_list, encode_move(e8, c8, piece, 0, 0, 0, 0, 1));
           }
         }
       }
