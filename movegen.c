@@ -278,12 +278,14 @@ void generate_moves(FenBoard board, moves *move_list)
 
           if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
           {
-            printf("bishop move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // bishop move
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 0, 0, 0, 0));
           }
 
           else
           {
-            printf("bishop capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // bishop capture
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 1, 0, 0, 0));
           }
 
           pop_bit(attacks, target_square);
@@ -307,12 +309,14 @@ void generate_moves(FenBoard board, moves *move_list)
 
           if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
           {
-            printf("rook move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // rook move
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 0, 0, 0, 0));
           }
 
           else
           {
-            printf("rook capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // rook capture
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 1, 0, 0, 0));
           }
 
           pop_bit(attacks, target_square);
@@ -336,12 +340,14 @@ void generate_moves(FenBoard board, moves *move_list)
 
           if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
           {
-            printf("queen move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // queen move
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 0, 0, 0, 0));
           }
 
           else
           {
-            printf("queen capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            //  queen capture
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 1, 0, 0, 0));
           }
 
           pop_bit(attacks, target_square);
