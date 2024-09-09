@@ -247,12 +247,14 @@ void generate_moves(FenBoard board, moves *move_list)
 
           if (!get_bit(side_bitboards[!board.side ? black : white], target_square))
           {
-            printf("knight move: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // knight move
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 0, 0, 0, 0));
           }
 
           else
           {
-            printf("knight capture: %s%s\n", square_to_coordinates[source_square], square_to_coordinates[target_square]);
+            // knight capture
+            add_move(move_list, encode_move(source_square, target_square, piece, 0, 1, 0, 0, 0));
           }
 
           pop_bit(attacks, target_square);
