@@ -196,8 +196,10 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], f1) && !get_bit(side_bitboards[both], g1))
           {
             if (!is_square_attacked(e1, black) && !is_square_attacked(f1, black))
+            {
               // castle white king side
               add_move(move_list, encode_move(e1, g1, piece, 0, 0, 0, 0, 1));
+            }
           }
         }
 
@@ -206,8 +208,10 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], d1) && !get_bit(side_bitboards[both], c1) && !get_bit(side_bitboards[both], b1))
           {
             if (!is_square_attacked(e1, black) && !is_square_attacked(d1, black))
+            {
               // castle white queen side
               add_move(move_list, encode_move(e1, c1, piece, 0, 0, 0, 0, 1));
+            }
           }
         }
 
@@ -216,8 +220,10 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], f8) && !get_bit(side_bitboards[both], g8))
           {
             if (!is_square_attacked(e8, white) && !is_square_attacked(f8, white))
+            {
               // castle black king side
               add_move(move_list, encode_move(e8, g8, piece, 0, 0, 0, 0, 1));
+            }
           }
         }
 
@@ -226,8 +232,10 @@ void generate_moves(FenBoard board, moves *move_list)
           if (!get_bit(side_bitboards[both], d8) && !get_bit(side_bitboards[both], c8) && !get_bit(side_bitboards[both], b8))
           {
             if (!is_square_attacked(e8, white) && !is_square_attacked(d8, white))
+            {
               // castle black queen side
               add_move(move_list, encode_move(e8, c8, piece, 0, 0, 0, 0, 1));
+            }
           }
         }
       }
