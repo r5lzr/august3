@@ -426,6 +426,32 @@ int make_move(int move, int move_flag)
 
     pop_bit(piece_bitboards[piece], source_square);
     set_bit(piece_bitboards[piece], target_square);
+
+    if (get_move_capture(move))
+    {
+      int start_piece, end_piece;
+
+      if (!board.side)
+      {
+        start_piece = p;
+        end_piece = k;
+      }
+
+      else
+      {
+        start_piece = P;
+        end_piece = K;
+      }
+
+      for (int piece = start_piece; piece <= end_piece; piece++)
+      {
+        if (get_bit(piece_bitboards[piece], target_square))
+        {
+          pop_bit(piece_bitboards[piece], target_square);
+          break;
+        }
+      }
+    }
   }
 
   else

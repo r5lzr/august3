@@ -24,10 +24,12 @@ int main()
     copy_board();
 
     make_move(move, all_moves);
+    printf("Initial make move: %d\n", move_count);
     show_board(board);
     getchar();
 
     restore_board();
+    printf("Restore board from: %d\n", move_count);
     show_board(board);
     getchar();
   }
