@@ -10,17 +10,27 @@ int main()
   leaper_attacks_table();
   slider_attacks_table();
 
-  parse_fen("r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq c6 0 1 ", &board);
+  parse_fen(tricky_position, &board);
   show_board(board);
 
-  copy_board();
+  moves move_list[1];
 
-  parse_fen(empty_board, &board);
-  show_board(board);
+  generate_moves(board, move_list);
 
-  restore_board();
+  for (int move_count = 0; move_count < move_list->count; move_count++)
+  {
+    int move = move_list->moves[move_count];
 
-  show_board(board);
+    copy_board();
+
+    make_move(move, all_moves);
+    show_board(board);
+    getchar();
+
+    restore_board();
+    show_board(board);
+    getchar();
+  }
 
   return 0;
 }
