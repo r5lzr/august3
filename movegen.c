@@ -418,7 +418,7 @@ int make_move(int move, int move_flag)
     int source_square = get_move_source(move);
     int target_square = get_move_target(move);
     int piece = get_move_piece(move);
-    int promopted = get_move_promoted(move);
+    int promoted_piece = get_move_promoted(move);
     int capture = get_move_capture(move);
     int double_push = get_move_double(move);
     int enpassant = get_move_enpassant(move);
@@ -427,7 +427,7 @@ int make_move(int move, int move_flag)
     pop_bit(piece_bitboards[piece], source_square);
     set_bit(piece_bitboards[piece], target_square);
 
-    if (get_move_capture(move))
+    if (capture)
     {
       int start_piece, end_piece;
 
@@ -451,6 +451,13 @@ int make_move(int move, int move_flag)
           break;
         }
       }
+    }
+
+    if (promoted_piece)
+    {
+      pop_bit(piece_bitboards[!board.side ? P : p], target_square);
+
+      set_bit(piece_bitboards[promoted_piece], target_square);
     }
   }
 
