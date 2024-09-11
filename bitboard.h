@@ -44,7 +44,7 @@ extern int char_pieces[];
 extern const char *square_to_coordinates[];
 
 void show_bitboard(ui64 bitboard);
-void show_board(FenBoard board);
+void show_board();
 void parse_fen(char *fen, FenBoard *board);
 
 #endif

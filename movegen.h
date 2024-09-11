@@ -26,22 +26,24 @@
   memcpy(side_bitboards, side_bitboards_copy, sizeof(side_bitboards)); \
   board.side = side_copy, board.enpassant = enpassant_copy, board.castle = castle_copy; \
 
+const enum {all_moves, only_captures};
+
 typedef struct {
   int moves[256];
   int count;
 } moves;
 moves move_list;
 
-char promoted_pieces[];
-
-const enum {all_moves, only_captures};
+extern char promoted_pieces[];
+extern const int castling_rights[64];
 
 void show_attacked_squares(int side);
 int is_square_attacked(int square, int side);
-void generate_moves();
+void generate_moves(moves *move_list);
 void show_move(int move);
 void show_move_list(moves *move_list);
 void add_move(moves *move_list, int move);
 int make_move(int move, int move_flag);
+
 
 #endif

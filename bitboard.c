@@ -54,7 +54,7 @@ void show_bitboard(ui64 bitboard)
   printf("     Bitboard: %llud\n\n", bitboard);
 }
 
-void show_board(FenBoard board)
+void show_board()
 {
   printf("\n");
 

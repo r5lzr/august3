@@ -18,6 +18,33 @@ char promoted_pieces[] = {
   [n] = 'n',
 };
 
+/*
+                           castling   move     in      in
+                              right update     binary  decimal
+
+ king & rooks didn't move:     1111 & 1111  =  1111    15
+
+         white king moved:     1111 & 0011  =  0011    3
+  white king's rook moved:     1111 & 0111  =  0111    7
+ white queen's rook moved:     1111 & 1011  =  1011    11
+
+         black king moved:     1111 & 1100  =  1100    12
+  black king's rook moved:     1111 & 1101  =  1101    13
+ black queen's rook moved:     1111 & 1110  =  1110    14
+
+*/
+
+const int castling_rights[64] = {
+  14, 15, 15, 15, 12, 15, 15, 13,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  15, 15, 15, 15, 15, 15, 15, 15,
+  11, 15, 15, 15, 3, 15, 15, 7
+};
+
 void show_attacked_squares(int side)
 {
   printf("\n");
@@ -67,7 +94,7 @@ int is_square_attacked(int square, int side)
   return 0;
 }
 
-void generate_moves(FenBoard board, moves *move_list)
+void generate_moves(moves *move_list)
 {
   move_list->count = 0;
 
@@ -459,6 +486,52 @@ int make_move(int move, int move_flag)
 
       set_bit(piece_bitboards[promoted_piece], target_square);
     }
+
+    if (enpassant)
+    {
+      (!board.side) ? pop_bit(piece_bitboards[p], target_square + 8) : pop_bit(piece_bitboards[P], target_square - 8);
+    }
+
+    board.enpassant = no_sq;
+
+    if (double_push)
+    {
+      (!board.side) ? (board.enpassant = target_square + 8) : (board.enpassant = target_square - 8);
+    }
+
+    if (castling)
+    {
+      switch (target_square)
+      {
+        // wk
+        case (g1):
+          pop_bit(piece_bitboards[R], h1);
+          set_bit(piece_bitboards[R], f1);
+          break;
+
+        // wq
+        case (c1):
+          pop_bit(piece_bitboards[R], a1);
+          set_bit(piece_bitboards[R], d1);
+          break;
+
+        // bk
+        case (g8):
+          pop_bit(piece_bitboards[r], h8);
+          set_bit(piece_bitboards[r], f8);
+          break;
+
+        // bq
+        case (c8):
+          pop_bit(piece_bitboards[r], a8);
+          set_bit(piece_bitboards[r], d8);
+          break;
+      }
+    }
+
+    board.castle &= castling_rights[source_square];
+    board.castle &= castling_rights[target_square];
+    printf("%d\n", board.castle);
   }
 
   else

@@ -11,11 +11,11 @@ int main()
   slider_attacks_table();
 
   parse_fen("r3k2r/pPppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 ", &board);
-  show_board(board);
+  show_board();
 
   moves move_list[1];
 
-  generate_moves(board, move_list);
+  generate_moves(&move_list);
 
   for (int move_count = 0; move_count < move_list->count; move_count++)
   {
@@ -25,12 +25,12 @@ int main()
 
     make_move(move, all_moves);
     printf("Initial make move: %d\n", move_count);
-    show_board(board);
+    show_board();
     getchar();
 
     restore_board();
     printf("Restore board from: %d\n", move_count);
-    show_board(board);
+    show_board();
     getchar();
   }
 
