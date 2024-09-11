@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1726062986 source:c:\codeblocks\august3\main.c
+1726078406 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -7,30 +7,30 @@
 	"magicbitboard.h"
 	"movegen.h"
 
-1726004371 source:c:\codeblocks\august3\bitboard.c
+1726074523 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 
-1726041994 c:\codeblocks\august3\bitboard.h
+1726074523 c:\codeblocks\august3\bitboard.h
 
-1725445597 source:c:\codeblocks\august3\attacktable.c
+1726074523 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 
-1725450663 c:\codeblocks\august3\attacktable.h
+1726074523 c:\codeblocks\august3\attacktable.h
 
-1725621106 source:c:\codeblocks\august3\magicbitboard.c
+1726074523 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 	"magicbitboard.h"
 
-1725451675 c:\codeblocks\august3\magicbitboard.h
+1726074523 c:\codeblocks\august3\magicbitboard.h
 
 1725297650 source:/home/r/codeblocks/august3/attacktable.c
 	<stdio.h>
@@ -65,7 +65,7 @@
 
 1725441252 source:c:\codeblocks\august3\board.c
 
-1726063154 source:c:\codeblocks\august3\movegen.c
+1726078739 source:c:\codeblocks\august3\movegen.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -73,5 +73,5 @@
 	"attacktable.h"
 	"magicbitboard.h"
 
-1726041379 c:\codeblocks\august3\movegen.h
+1726074523 c:\codeblocks\august3\movegen.h
 

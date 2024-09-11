@@ -547,6 +547,22 @@ int make_move(int move, int move_flag)
 
     side_bitboards[both] |= side_bitboards[white];
     side_bitboards[both] |= side_bitboards[black];
+
+    // swap side after move
+    board.side ^= 1;
+
+    // if king is in check
+    if (is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[k]) : __builtin_ctzll(piece_bitboards[K]), board.side))
+    {
+      restore_board();
+
+      return 0;
+    }
+
+    else
+    {
+      return 1;
+    }
   }
 
   else
