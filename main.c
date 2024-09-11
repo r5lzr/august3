@@ -10,7 +10,7 @@ int main()
   leaper_attacks_table();
   slider_attacks_table();
 
-  parse_fen("r3k2r/pPppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1 ", &board);
+  parse_fen("r3k2r/pPppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R b KQkq - 0 1 ", &board);
   show_board();
 
   moves move_list[1];
@@ -26,11 +26,13 @@ int main()
     make_move(move, all_moves);
     printf("Initial make move: %d\n", move_count);
     show_board();
+    show_bitboard(side_bitboards[black]);
     getchar();
 
     restore_board();
     printf("Restore board from: %d\n", move_count);
     show_board();
+    show_bitboard(side_bitboards[black]);
     getchar();
   }
 

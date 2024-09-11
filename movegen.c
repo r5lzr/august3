@@ -531,7 +531,22 @@ int make_move(int move, int move_flag)
 
     board.castle &= castling_rights[source_square];
     board.castle &= castling_rights[target_square];
-    printf("%d\n", board.castle);
+
+    // update side_bitboards
+    memset(side_bitboards, 0ULL, sizeof(side_bitboards));
+
+    for (int piece = P; piece <= K; piece++)
+    {
+      side_bitboards[white] |= piece_bitboards[piece];
+    }
+
+    for (int piece = p; piece <= k; piece++)
+    {
+      side_bitboards[black] |= piece_bitboards[piece];
+    }
+
+    side_bitboards[both] |= side_bitboards[white];
+    side_bitboards[both] |= side_bitboards[black];
   }
 
   else
