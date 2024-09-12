@@ -4,6 +4,8 @@
 #include "attacktable.h"
 #include "magicbitboard.h"
 #include "movegen.h"
+#include "perft.h"
+#include "util.h"
 
 int main()
 {
@@ -16,6 +18,8 @@ int main()
   moves move_list[1];
 
   generate_moves(&move_list);
+
+  int start = get_time_ms();
 
   for (int move_count = 0; move_count < move_list->count; move_count++)
   {
@@ -32,14 +36,16 @@ int main()
     printf("Initial make move from %s: board %d\n>>%s to move\n", board.side ? "white" : "black", move_count, !board.side ? "white" : "black");
     show_board();
 //    show_bitboard(side_bitboards[black]);
-    getchar();
+//    getchar();
 
     restore_board();
     printf("Restore board from: board %d\n>>%s to move\n", move_count, !board.side ? "white" : "black");
     show_board();
 //    show_bitboard(side_bitboards[black]);
-    getchar();
+//    getchar();
   }
+
+  printf("time taken to execute: %d ms\n", get_time_ms() - start);
 
   return 0;
 }

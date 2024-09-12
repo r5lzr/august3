@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bitboard.h"
 #include "movegen.h"
 #include "attacktable.h"
@@ -551,7 +552,7 @@ int make_move(int move, int move_flag)
     // swap side after move
     board.side ^= 1;
 
-    // if king is in check
+    // verify if king is in check
     if (is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[k]) : __builtin_ctzll(piece_bitboards[K]), board.side))
     {
       restore_board();

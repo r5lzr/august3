@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1726078406 source:c:\codeblocks\august3\main.c
+1726164860 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 	"magicbitboard.h"
 	"movegen.h"
+	"perft.h"
+	"util.h"
 
 1726074523 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
@@ -13,7 +15,7 @@
 	<string.h>
 	"bitboard.h"
 
-1726074523 c:\codeblocks\august3\bitboard.h
+1726164468 c:\codeblocks\august3\bitboard.h
 
 1726074523 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
@@ -65,13 +67,30 @@
 
 1725441252 source:c:\codeblocks\august3\board.c
 
-1726078739 source:c:\codeblocks\august3\movegen.c
+1726164775 source:c:\codeblocks\august3\movegen.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"bitboard.h"
 	"movegen.h"
 	"attacktable.h"
 	"magicbitboard.h"
 
 1726074523 c:\codeblocks\august3\movegen.h
+
+1726164807 source:c:\codeblocks\august3\perft.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bitboard.h"
+	"util.h"
+
+1726164590 c:\codeblocks\august3\perft.h
+
+1726164703 c:\codeblocks\august3\util.h
+
+1726164694 source:c:\codeblocks\august3\util.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
 
