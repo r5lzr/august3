@@ -50,6 +50,14 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="movegen.h" />
+		<Unit filename="perft.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="perft.h" />
+		<Unit filename="util.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="util.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
