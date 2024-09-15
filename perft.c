@@ -39,7 +39,9 @@ void perft_driver(int depth)
 
 void perft_test(int depth)
 {
-  printf("performance test:\n");
+  printf("\nPERFORMANCE TEST:\n\n");
+
+  printf("MOVES  NODES\n\n");
 
   moves move_list[1];
 
@@ -76,10 +78,24 @@ void perft_test(int depth)
 //    show_board();
 //    show_bitboard(side_bitboards[white]);
 
-    printf("move: %s%s%c node: %ld\n", square_to_coordinates[get_move_source(move)],
-        square_to_coordinates[get_move_target(move)],
-        promoted_pieces[get_move_promoted(move)],
-        old_nodes);
+    char promotion = promoted_pieces[get_move_promoted(move)];
+
+    if (promotion)
+    {
+      printf("%s%s%c: %ld\n",
+             square_to_coordinates[get_move_source(move)],
+             square_to_coordinates[get_move_target(move)],
+             promotion,
+             old_nodes);
+    }
+
+    else
+    {
+      printf("%s%s: %ld\n",
+           square_to_coordinates[get_move_source(move)],
+           square_to_coordinates[get_move_target(move)],
+           old_nodes);
+    }
 
   }
 
