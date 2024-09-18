@@ -67,6 +67,41 @@ void show_attacked_squares(int side)
 
 }
 
+void show_move(int move)
+{
+  printf("%s%s%c\n", square_to_coordinates[get_move_source(move)],
+          square_to_coordinates[get_move_target(move)],
+          promoted_pieces[get_move_promoted(move)]);
+}
+
+void show_move_list(moves *move_list)
+{
+  if (!move_list->count)
+  {
+    printf("\n*No moves in move list*\n");
+
+    return;
+  }
+
+  for (int move_count = 0; move_count < move_list->count; move_count++)
+  {
+    int move = move_list->moves[move_count];
+
+    printf("\nmove: %s%s%c   piece: %c   capture: %d   double: %d   enpassant: %d   castling: %d\n",
+            square_to_coordinates[get_move_source(move)],
+            square_to_coordinates[get_move_target(move)],
+            promoted_pieces[get_move_promoted(move)],
+            ascii_pieces[get_move_piece(move)],
+            get_move_capture(move),
+            get_move_double(move),
+            get_move_enpassant(move),
+            get_move_castling(move)
+          );
+  }
+  printf("\nTotal number of moves %d\n", move_list->count);
+
+}
+
 int is_square_attacked(int square, int side)
 {
   // leaper
@@ -93,6 +128,13 @@ int is_square_attacked(int square, int side)
     return 1;
 
   return 0;
+}
+
+void add_move(moves *move_list, int move)
+{
+  move_list->moves[move_list->count] = move;
+
+  move_list->count++;
 }
 
 void generate_moves(moves *move_list)
@@ -411,48 +453,6 @@ void generate_moves(moves *move_list)
       }
     }
   }
-}
-
-void show_move(int move)
-{
-  printf("%s%s%c\n", square_to_coordinates[get_move_source(move)],
-          square_to_coordinates[get_move_target(move)],
-          promoted_pieces[get_move_promoted(move)]);
-}
-
-void show_move_list(moves *move_list)
-{
-  if (!move_list->count)
-  {
-    printf("\n*No moves in move list*\n");
-
-    return;
-  }
-
-  for (int move_count = 0; move_count < move_list->count; move_count++)
-  {
-    int move = move_list->moves[move_count];
-
-    printf("\nmove: %s%s%c   piece: %c   capture: %d   double: %d   enpassant: %d   castling: %d\n",
-            square_to_coordinates[get_move_source(move)],
-            square_to_coordinates[get_move_target(move)],
-            promoted_pieces[get_move_promoted(move)],
-            ascii_pieces[get_move_piece(move)],
-            get_move_capture(move),
-            get_move_double(move),
-            get_move_enpassant(move),
-            get_move_castling(move)
-          );
-  }
-  printf("\nTotal number of moves %d\n", move_list->count);
-
-}
-
-void add_move(moves *move_list, int move)
-{
-  move_list->moves[move_list->count] = move;
-
-  move_list->count++;
 }
 
 int make_move(int move, int move_flag)

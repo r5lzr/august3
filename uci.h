@@ -3,6 +3,6 @@
 
 
 
-
+int parse_move(char *move_string);
 
 #endif
