@@ -6,6 +6,7 @@
 #include "movegen.h"
 #include "perft.h"
 #include "util.h"
+#include "uci.h"
 
 int main()
 {
