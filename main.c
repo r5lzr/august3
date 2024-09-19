@@ -13,13 +13,7 @@ int main()
   leaper_attacks_table();
   slider_attacks_table();
 
-  parse_fen(initial_position, &board);
-  show_board();
-
-  parse_position("position initpos moves e2e4 e7e6");
-  show_board();
-
-  parse_go("go depth 1");
+  uci_loop();
 
   return 0;
 }

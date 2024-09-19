@@ -63,7 +63,7 @@ void parse_position(char *command)
 
   char *current_char = command;
 
-  if (strncmp(command, "initpos", 7) == 0)
+  if (strncmp(command, "startpos", 8) == 0)
   {
     parse_fen(initial_position, &board);
   }
@@ -110,6 +110,8 @@ void parse_position(char *command)
       current_char++;
     }
   }
+
+  show_board();
 }
 
 void parse_go(char *command)
@@ -128,7 +130,72 @@ void parse_go(char *command)
   printf("depth: %d\n", depth);
 }
 
+void get_uci_id()
+{
+  printf("id name august3\n");
+  printf("id author r5lzr\n");
+  printf("uciok\n");
+}
 
+void uci_loop()
+{
+  char input[2000];
+
+  setbuf(stdin, NULL);
+  setbuf(stdout, NULL);
+
+  get_uci_id();
+
+  fflush(stdout);
+
+  while (1)
+  {
+    memset(input, 0, sizeof(input));
+
+    if (!fgets(input, sizeof(input), stdin))
+    {
+      continue;
+    }
+
+    if (input[0] == '\n')
+    {
+      continue;
+    }
+
+    if (strncmp(input, "isready", 7) == 0)
+    {
+      printf("readyok\n");
+      continue;
+    }
+
+    else if (strncmp(input, "position", 8) == 0)
+    {
+      parse_position(input);
+    }
+
+    else if (strncmp(input, "ucinewgame", 10) == 0)
+    {
+      parse_position("position startpos");
+    }
+
+    else if (strncmp(input, "go", 2) == 0)
+    {
+      parse_go(input);
+    }
+
+    else if (strncmp(input, "quit", 4) == 0)
+    {
+      break;
+    }
+
+    else if (strncmp(input, "uci", 3) == 0)
+    {
+      get_uci_id();
+    }
+
+    fflush(stdout);
+  }
+}
 
 
 
