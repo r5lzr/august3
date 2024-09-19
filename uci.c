@@ -56,3 +56,82 @@ int parse_move(char *move_string)
 
   return 0;
 }
+
+void parse_position(char *command)
+{
+  command += 9;
+
+  char *current_char = command;
+//  printf("%c\n", *current_char);
+
+  if (strncmp(command, "initpos", 7) == 0)
+  {
+    parse_fen(initial_position, &board);
+  }
+
+  else
+  {
+//    printf("%s\n", current_char);
+
+    current_char = strstr(command, "fen");
+//    printf("%s\n", current_char);
+
+    if (current_char == NULL)
+    {
+      parse_fen(initial_position, &board);
+    }
+
+    else
+    {
+      current_char += 4;
+
+      parse_fen(current_char, &board);
+    }
+  }
+
+  current_char = strstr(command, "moves");
+
+  if (current_char != NULL)
+  {
+    current_char += 6;
+
+    while (*current_char)
+    {
+      printf("%s\n", current_char);
+
+      int move = parse_move(current_char);
+      printf("%d\n", move);
+
+      if (move == 0)
+      {
+        break;
+      }
+
+      make_move(move, all_moves);
+
+      while (*current_char && *current_char != ' ')
+      {
+        current_char++;
+        printf("%s\n", current_char);
+      }
+
+      current_char++;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

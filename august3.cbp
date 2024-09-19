@@ -54,6 +54,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="perft.h" />
+		<Unit filename="uci.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="uci.h" />
 		<Unit filename="util.c">
 			<Option compilerVar="CC" />
 		</Unit>
