@@ -62,7 +62,6 @@ void parse_position(char *command)
   command += 9;
 
   char *current_char = command;
-//  printf("%c\n", *current_char);
 
   if (strncmp(command, "initpos", 7) == 0)
   {
@@ -71,10 +70,7 @@ void parse_position(char *command)
 
   else
   {
-//    printf("%s\n", current_char);
-
     current_char = strstr(command, "fen");
-//    printf("%s\n", current_char);
 
     if (current_char == NULL)
     {
@@ -97,10 +93,7 @@ void parse_position(char *command)
 
     while (*current_char)
     {
-      printf("%s\n", current_char);
-
       int move = parse_move(current_char);
-      printf("%d\n", move);
 
       if (move == 0)
       {
@@ -112,7 +105,6 @@ void parse_position(char *command)
       while (*current_char && *current_char != ' ')
       {
         current_char++;
-        printf("%s\n", current_char);
       }
 
       current_char++;
@@ -120,9 +112,21 @@ void parse_position(char *command)
   }
 }
 
+void parse_go(char *command)
+{
+  int depth = -1;
 
+  char *current_depth = strstr(command, "depth");
 
+  if (current_depth != NULL)
+  {
+    current_depth += 6;
 
+    depth = atoi(current_depth);
+  }
+
+  printf("depth: %d\n", depth);
+}
 
 
 

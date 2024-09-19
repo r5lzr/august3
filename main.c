@@ -19,6 +19,7 @@ int main()
   parse_position("position initpos moves e2e4 e7e6");
   show_board();
 
+  parse_go("go depth 1");
 
   return 0;
 }
