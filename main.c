@@ -7,6 +7,7 @@
 #include "perft.h"
 #include "util.h"
 #include "uci.h"
+#include "evaluation.h"
 
 int main()
 {

@@ -127,6 +127,7 @@ void parse_go(char *command)
     depth = atoi(current_depth);
   }
 
+  // TODO: need to add search position based on depth
   printf("depth: %d\n", depth);
 }
 
