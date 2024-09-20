@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1726766748 source:c:\codeblocks\august3\main.c
+1726842456 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -9,6 +9,7 @@
 	"perft.h"
 	"util.h"
 	"uci.h"
+	"evaluation.h"
 
 1726074523 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
@@ -97,7 +98,7 @@
 	<windows.h>
 	"util.h"
 
-1726770891 source:c:\codeblocks\august3\uci.c
+1726772058 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -107,5 +108,17 @@
 	"movegen.h"
 	"util.h"
 
-1726770640 c:\codeblocks\august3\uci.h
+1726771628 c:\codeblocks\august3\uci.h
+
+1726842445 source:c:\codeblocks\august3\evaluation.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"evaluation.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+
+1726842449 c:\codeblocks\august3\evaluation.h
 
