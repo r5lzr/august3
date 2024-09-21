@@ -16,7 +16,7 @@ int main()
 
 //  uci_loop();
 
-  parse_fen("1nbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1 ", &board);
+  parse_fen("rnbqkbnr/pppppppp/8/8/4PP2/8/PPPPQ1PP/RNB1KBNR w KQkq - 0 1 ", &board);
   show_board();
   printf("score: %d\n", evaluate_pieces());
 
