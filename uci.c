@@ -6,6 +6,8 @@
 #include "magicbitboard.h"
 #include "movegen.h"
 #include "util.h"
+#include "evaluation.h"
+#include "search.h"
 
 int parse_move(char *move_string)
 {
@@ -127,8 +129,7 @@ void parse_go(char *command)
     depth = atoi(current_depth);
   }
 
-  // TODO: need to add search position based on depth
-  printf("depth: %d\n", depth);
+  search_position(depth);
 }
 
 void get_uci_id()

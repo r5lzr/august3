@@ -8,17 +8,18 @@
 #include "util.h"
 #include "uci.h"
 #include "evaluation.h"
+#include "search.h"
 
 int main()
 {
   leaper_attacks_table();
   slider_attacks_table();
 
-//  uci_loop();
+  uci_loop();
 
-  parse_fen("rnbqkbnr/pppppppp/8/8/4PP2/8/PPPPQ1PP/RNB1KBNR w KQkq - 0 1 ", &board);
-  show_board();
-  printf("score: %d\n", evaluate_pieces());
+//  parse_fen(initial_position, &board);
+//  show_board();
+//  search_position(2);
 
   return 0;
 }

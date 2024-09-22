@@ -2,13 +2,13 @@
 #define EVALUATION_H
 
 
-const int material_score[12];
-const int pawn_score[64];
-const int knight_score[64];
-const int bishop_score[64];
-const int rook_score[64];
-const int king_score[64];
-const int mirror_score[128];
+extern const int material_score[12];
+extern const int pawn_score[64];
+extern const int knight_score[64];
+extern const int bishop_score[64];
+extern const int rook_score[64];
+extern const int king_score[64];
+extern const int mirror_score[128];
 
 int evaluate_pieces();
 
