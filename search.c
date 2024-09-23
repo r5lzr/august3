@@ -22,6 +22,10 @@ int negamax(int alpha, int beta, int depth)
 
   nodes++;
 
+  int in_check = is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[K]) : __builtin_ctzll(piece_bitboards[k]), board.side ^ 1);
+
+  int legal_moves = 0;
+
   int best_move_currently;
 
   int old_alpha = alpha;
@@ -42,6 +46,8 @@ int negamax(int alpha, int beta, int depth)
 
       continue;
     }
+
+    legal_moves++;
 
     int score = -negamax(-beta, -alpha, depth - 1);
 
@@ -65,6 +71,19 @@ int negamax(int alpha, int beta, int depth)
     }
   }
 
+  if (legal_moves == 0)
+  {
+    if (in_check)
+    {
+      return -49000 + ply;
+    }
+
+    else
+    {
+      return 0;
+    }
+  }
+
   if (old_alpha != alpha)
   {
     best_move = best_move_currently;
@@ -77,6 +96,7 @@ void search_position(int depth)
 {
   int score = negamax(-50000, 50000, depth);
 
+  printf("info score cp %d depth %d nodes %ld\n", score, depth, nodes);
   printf("bestmove ");
   show_move(best_move);
 }
