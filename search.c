@@ -13,11 +13,62 @@ int ply;
 
 int best_move;
 
+int quiescence(int alpha, int beta)
+{
+  int evaluation = evaluate_pieces();
+
+  if (evaluation >= beta)
+  {
+    return beta;
+  }
+
+  if (evaluation > alpha)
+  {
+    alpha = evaluation;
+  }
+
+  moves move_list[1];
+
+  generate_moves(move_list);
+
+  for (int count = 0; count < move_list->count; count++)
+  {
+    copy_board();
+
+    ply++;
+
+    if (make_move(move_list->moves[count], only_captures) == 0)
+    {
+      ply--;
+
+      continue;
+    }
+
+    int score = -quiescence(-beta, -alpha);
+
+    ply--;
+
+    restore_board();
+
+    if (score >= beta)
+    {
+      return beta;
+    }
+
+    if (score > alpha)
+    {
+      alpha = score;
+    }
+  }
+
+  return alpha;
+}
+
 int negamax(int alpha, int beta, int depth)
 {
   if (depth == 0)
   {
-    return evaluate_pieces();
+    return quiescence(alpha, beta);
   }
 
   nodes++;
