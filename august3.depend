@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1727282878 source:c:\codeblocks\august3\main.c
+1727303495 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -12,30 +12,30 @@
 	"evaluation.h"
 	"search.h"
 
-1726074523 source:c:\codeblocks\august3\bitboard.c
+1727285665 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 
-1726551991 c:\codeblocks\august3\bitboard.h
+1727285665 c:\codeblocks\august3\bitboard.h
 
-1726074523 source:c:\codeblocks\august3\attacktable.c
+1727285665 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 
-1726074523 c:\codeblocks\august3\attacktable.h
+1727285665 c:\codeblocks\august3\attacktable.h
 
-1726074523 source:c:\codeblocks\august3\magicbitboard.c
+1727285665 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 	"magicbitboard.h"
 
-1726074523 c:\codeblocks\august3\magicbitboard.h
+1727285665 c:\codeblocks\august3\magicbitboard.h
 
 1725297650 source:/home/r/codeblocks/august3/attacktable.c
 	<stdio.h>
@@ -70,7 +70,7 @@
 
 1725441252 source:c:\codeblocks\august3\board.c
 
-1727277517 source:c:\codeblocks\august3\movegen.c
+1727285665 source:c:\codeblocks\august3\movegen.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -79,9 +79,9 @@
 	"attacktable.h"
 	"magicbitboard.h"
 
-1726313279 c:\codeblocks\august3\movegen.h
+1727285665 c:\codeblocks\august3\movegen.h
 
-1726551991 source:c:\codeblocks\august3\perft.c
+1727285665 source:c:\codeblocks\august3\perft.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -89,17 +89,17 @@
 	"perft.h"
 	"movegen.h"
 
-1726949520 c:\codeblocks\august3\perft.h
+1727285665 c:\codeblocks\august3\perft.h
 
-1726949531 c:\codeblocks\august3\util.h
+1727285665 c:\codeblocks\august3\util.h
 
-1726244769 source:c:\codeblocks\august3\util.c
+1727285665 source:c:\codeblocks\august3\util.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
 	"util.h"
 
-1727022828 source:c:\codeblocks\august3\uci.c
+1727285665 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -111,9 +111,9 @@
 	"evaluation.h"
 	"search.h"
 
-1726949452 c:\codeblocks\august3\uci.h
+1727285665 c:\codeblocks\august3\uci.h
 
-1727013179 source:c:\codeblocks\august3\evaluation.c
+1727285665 source:c:\codeblocks\august3\evaluation.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -123,9 +123,9 @@
 	"movegen.h"
 	"util.h"
 
-1726949510 c:\codeblocks\august3\evaluation.h
+1727285665 c:\codeblocks\august3\evaluation.h
 
-1727283731 source:c:\codeblocks\august3\search.c
+1727303931 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -137,6 +137,6 @@
 	"util.h"
 	"evaluation.h"
 
-1727282794 c:\codeblocks\august3\search.h
+1727285665 c:\codeblocks\august3\search.h
 	"movegen.h"
 

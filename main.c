@@ -19,17 +19,17 @@ int main()
 
   parse_fen(kiwipete_position, &board);
   show_board();
-//  search_position(3);
+  search_position(5);
 
-  moves move_list[1];
+//  moves move_list[1];
 
-  generate_moves(move_list);
+//  generate_moves(move_list);
 
 //  show_move_scores(move_list);
 
-  sort_move(move_list);
-
-  show_move_scores(move_list);
+//  sort_move(move_list);
+//
+//  show_move_scores(move_list);
 
 
   return 0;

@@ -122,6 +122,8 @@ int quiescence(int alpha, int beta)
 
   generate_moves(move_list);
 
+  sort_move(move_list);
+
   for (int count = 0; count < move_list->count; count++)
   {
     copy_board();
@@ -166,6 +168,11 @@ int negamax(int alpha, int beta, int depth)
 
   int in_check = is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[K]) : __builtin_ctzll(piece_bitboards[k]), board.side ^ 1);
 
+  if (in_check)
+  {
+    depth++;
+  }
+
   int legal_moves = 0;
 
   int best_move_currently;
@@ -175,6 +182,8 @@ int negamax(int alpha, int beta, int depth)
   moves move_list[1];
 
   generate_moves(move_list);
+
+  sort_move(move_list);
 
   for (int count = 0; count < move_list->count; count++)
   {
