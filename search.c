@@ -41,6 +41,52 @@ int mvv_lva[12][12] = {
   100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600
 };
 
+void show_move_scores(moves *move_list)
+{
+  for (int count = 0; count < move_list->count; count++)
+  {
+    printf("move: ");
+    show_move(move_list->moves[count]);
+    printf("score: %d\n", score_move(move_list->moves[count]));
+
+  }
+}
+
+int score_move(int move)
+{
+  if (get_move_capture(move))
+  {
+    int target_piece = P;
+
+    int start_piece, end_piece;
+
+    if (!board.side)
+    {
+      start_piece = p;
+      end_piece = k;
+    }
+
+    else
+    {
+      start_piece = P;
+      end_piece = K;
+    }
+
+    for (int piece = start_piece; piece <= end_piece; piece++)
+    {
+      if (get_bit(piece_bitboards[piece], get_move_target(move)))
+      {
+        target_piece = piece;
+        break;
+      }
+    }
+
+    return mvv_lva[get_move_piece(move)][target_piece];
+  }
+
+  return 0;
+}
+
 int quiescence(int alpha, int beta)
 {
   nodes++;

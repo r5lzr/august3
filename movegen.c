@@ -69,7 +69,7 @@ void show_attacked_squares(int side)
 
 void show_move(int move)
 {
-  printf("%s%s%c\n", square_to_coordinates[get_move_source(move)],
+  printf("%s%s%c", square_to_coordinates[get_move_source(move)],
           square_to_coordinates[get_move_target(move)],
           promoted_pieces[get_move_promoted(move)]);
 }

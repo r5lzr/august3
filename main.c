@@ -17,11 +17,16 @@ int main()
 
 //  uci_loop();
 
-  parse_fen("r2q1rk1/ppp2ppp/2n1bn2/2b1p3/3pP3/3P1NPP/PPP1NPB1/R1BQ1RK1 b - - 0 9 ", &board);
+  parse_fen(kiwipete_position, &board);
+  board.enpassant = c6;
   show_board();
 //  search_position(3);
 
-  printf("move score: %d\n", mvv_lva[k][P]);
+  moves move_list[1];
+
+  generate_moves(move_list);
+
+  show_move_scores(move_list);
 
   return 0;
 }
