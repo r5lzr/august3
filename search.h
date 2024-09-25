@@ -9,6 +9,8 @@ extern int best_move;
 extern int mvv_lva[12][12];
 
 void show_move_scores(moves *move_list);
+int compare_scores(const void *x_void, const void *y_void);
+void sort_move(moves *move_list);
 int score_move(int move);
 int quiescence(int alpha, int beta);
 int negamax(int alpha, int beta, int depth);

@@ -18,7 +18,6 @@ int main()
 //  uci_loop();
 
   parse_fen(kiwipete_position, &board);
-  board.enpassant = c6;
   show_board();
 //  search_position(3);
 
@@ -26,7 +25,12 @@ int main()
 
   generate_moves(move_list);
 
+//  show_move_scores(move_list);
+
+  sort_move(move_list);
+
   show_move_scores(move_list);
+
 
   return 0;
 }

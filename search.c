@@ -43,6 +43,8 @@ int mvv_lva[12][12] = {
 
 void show_move_scores(moves *move_list)
 {
+  printf("\n");
+
   for (int count = 0; count < move_list->count; count++)
   {
     printf("move: ");
@@ -50,6 +52,19 @@ void show_move_scores(moves *move_list)
     printf("score: %d\n", score_move(move_list->moves[count]));
 
   }
+}
+
+int compare_scores(const void *x_void, const void *y_void)
+{
+  int score_x = score_move(*(int*)x_void);
+  int score_y = score_move(*(int*)y_void);
+
+  return score_y - score_x;
+}
+
+void sort_move(moves *move_list)
+{
+  qsort(move_list->moves, move_list->count, sizeof(int), compare_scores);
 }
 
 int score_move(int move)
