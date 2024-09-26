@@ -41,6 +41,10 @@ int mvv_lva[12][12] = {
   100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600
 };
 
+int killer_moves[2][64];
+
+int history_moves[12][64];
+
 void show_move_scores(moves *move_list)
 {
   printf("\n");
@@ -96,7 +100,25 @@ int score_move(int move)
       }
     }
 
-    return mvv_lva[get_move_piece(move)][target_piece];
+    return mvv_lva[get_move_piece(move)][target_piece] + 10000;
+  }
+
+  else
+  {
+    if (killer_moves[0][ply] == move)
+    {
+      return 9000;
+    }
+
+    else if (killer_moves[1][ply] == move)
+    {
+      return 8000;
+    }
+
+    else
+    {
+      return history_moves[get_move_piece(move)][get_move_target(move)];
+    }
   }
 
   return 0;
@@ -208,11 +230,22 @@ int negamax(int alpha, int beta, int depth)
 
     if (score >= beta)
     {
+      if (get_move_capture(move_list->moves[count]) == 0)
+      {
+        killer_moves[1][ply] = killer_moves[0][ply];
+        killer_moves[0][ply] = move_list->moves[count];
+      }
+
       return beta;
     }
 
     if (score > alpha)
     {
+      if (get_move_capture(move_list->moves[count]) == 0)
+      {
+        history_moves[get_move_piece(move_list->moves[count])][get_move_target(move_list->moves[count])] += depth;
+      }
+
       alpha = score;
 
       if (ply == 0)
