@@ -11,11 +11,10 @@
 
 int ply;
 
-int best_move;
-
 /*
-    (Victims) Pawn Knight Bishop   Rook  Queen   King
-  (Attackers)
+                            (Target)
+              Pawn Knight Bishop   Rook  Queen   King
+  (Attacker)
         Pawn   105    205    305    405    505    605
       Knight   104    204    304    404    504    604
       Bishop   103    203    303    403    503    603
@@ -24,26 +23,30 @@ int best_move;
         King   100    200    300    400    500    600
 */
 
-// most viable victim, less valuable attacker [attacker][victim]
-int mvv_lva[12][12] = {
-  105, 205, 305, 405, 505, 605,  105, 205, 305, 405, 505, 605,
-  104, 204, 304, 404, 504, 604,  104, 204, 304, 404, 504, 604,
-  103, 203, 303, 403, 503, 603,  103, 203, 303, 403, 503, 603,
-  102, 202, 302, 402, 502, 602,  102, 202, 302, 402, 502, 602,
-  101, 201, 301, 401, 501, 601,  101, 201, 301, 401, 501, 601,
-  100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600,
-
-  105, 205, 305, 405, 505, 605,  105, 205, 305, 405, 505, 605,
-  104, 204, 304, 404, 504, 604,  104, 204, 304, 404, 504, 604,
-  103, 203, 303, 403, 503, 603,  103, 203, 303, 403, 503, 603,
-  102, 202, 302, 402, 502, 602,  102, 202, 302, 402, 502, 602,
-  101, 201, 301, 401, 501, 601,  101, 201, 301, 401, 501, 601,
-  100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600
+// most valuable (target), least valuable (attacker) [attacker][target]
+int mv_lv[12][12] = {
+  {105, 205, 305, 405, 505, 605, 105, 205, 305, 405, 505, 605},
+  {104, 204, 304, 404, 504, 604, 104, 204, 304, 404, 504, 604},
+  {103, 203, 303, 403, 503, 603, 103, 203, 303, 403, 503, 603},
+  {102, 202, 302, 402, 502, 602, 102, 202, 302, 402, 502, 602},
+  {101, 201, 301, 401, 501, 601, 101, 201, 301, 401, 501, 601},
+  {100, 200, 300, 400, 500, 600, 100, 200, 300, 400, 500, 600},
+  {105, 205, 305, 405, 505, 605, 105, 205, 305, 405, 505, 605},
+  {104, 204, 304, 404, 504, 604, 104, 204, 304, 404, 504, 604},
+  {103, 203, 303, 403, 503, 603, 103, 203, 303, 403, 503, 603},
+  {102, 202, 302, 402, 502, 602, 102, 202, 302, 402, 502, 602},
+  {101, 201, 301, 401, 501, 601, 101, 201, 301, 401, 501, 601},
+  {100, 200, 300, 400, 500, 600, 100, 200, 300, 400, 500, 600}
 };
 
 int killer_moves[2][64];
 
 int history_moves[12][64];
+
+// principle variation
+int pvar_length[64];
+
+int pvar_table[64][64];
 
 void show_move_scores(moves *move_list)
 {
@@ -100,7 +103,7 @@ int score_move(int move)
       }
     }
 
-    return mvv_lva[get_move_piece(move)][target_piece] + 10000;
+    return mv_lv[get_move_piece(move)][target_piece] + 10000;
   }
 
   else
@@ -181,6 +184,8 @@ int quiescence(int alpha, int beta)
 
 int negamax(int alpha, int beta, int depth)
 {
+  pvar_length[ply] = ply;
+
   if (depth == 0)
   {
     return quiescence(alpha, beta);
@@ -196,10 +201,6 @@ int negamax(int alpha, int beta, int depth)
   }
 
   int legal_moves = 0;
-
-  int best_move_currently;
-
-  int old_alpha = alpha;
 
   moves move_list[1];
 
@@ -248,10 +249,14 @@ int negamax(int alpha, int beta, int depth)
 
       alpha = score;
 
-      if (ply == 0)
+      pvar_table[ply][ply] = move_list->moves[count];
+
+      for (int next_ply = ply + 1; next_ply < pvar_length[ply + 1]; next_ply++)
       {
-        best_move_currently = move_list->moves[count];
+        pvar_table[ply][next_ply] = pvar_table[ply + 1][next_ply];
       }
+
+      pvar_length[ply] = pvar_length[ply + 1];
     }
   }
 
@@ -268,11 +273,6 @@ int negamax(int alpha, int beta, int depth)
     }
   }
 
-  if (old_alpha != alpha)
-  {
-    best_move = best_move_currently;
-  }
-
   return alpha;
 }
 
@@ -280,9 +280,19 @@ void search_position(int depth)
 {
   int score = negamax(-50000, 50000, depth);
 
-  printf("info score cp %d depth %d nodes %ld\n", score, depth, nodes);
+  printf("info score cp %d depth %d nodes %ld pv ", score, depth, nodes);
+
+
+  for (int count = 0; count < pvar_length[0]; count++)
+  {
+    show_move(pvar_table[0][count]);
+  }
+
+  printf("\n");
+
   printf("bestmove ");
-  show_move(best_move);
+  show_move(pvar_table[0][0]);
+  printf("\n");
 }
 
 
