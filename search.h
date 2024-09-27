@@ -4,6 +4,8 @@
 
 #include "movegen.h"
 
+#define max_ply 64
+
 extern int ply;
 extern int mv_lv[12][12];
 extern int killer_moves[2][64];

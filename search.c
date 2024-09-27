@@ -39,14 +39,16 @@ int mv_lv[12][12] = {
   {100, 200, 300, 400, 500, 600, 100, 200, 300, 400, 500, 600}
 };
 
-int killer_moves[2][64];
+// [id][max_ply]
+int killer_moves[2][max_ply];
 
+// [piece][square]
 int history_moves[12][64];
 
 // principle variation
-int pvar_length[64];
+int pvar_length[max_ply];
 
-int pvar_table[64][64];
+int pvar_table[max_ply][max_ply];
 
 void show_move_scores(moves *move_list)
 {
