@@ -286,6 +286,7 @@ void search_position(int depth)
   for (int count = 0; count < pvar_length[0]; count++)
   {
     show_move(pvar_table[0][count]);
+    printf(" ");
   }
 
   printf("\n");

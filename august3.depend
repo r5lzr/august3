@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1727376927 source:c:\codeblocks\august3\main.c
+1727406789 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -125,7 +125,7 @@
 
 1727285665 c:\codeblocks\august3\evaluation.h
 
-1727391251 source:c:\codeblocks\august3\search.c
+1727406950 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -137,6 +137,6 @@
 	"util.h"
 	"evaluation.h"
 
-1727376927 c:\codeblocks\august3\search.h
+1727406863 c:\codeblocks\august3\search.h
 	"movegen.h"
 
