@@ -285,6 +285,13 @@ int negamax(int alpha, int beta, int depth)
 
 void search_position(int depth)
 {
+  nodes = 0;
+
+  memset(killer_moves, 0, sizeof(killer_moves));
+  memset(history_moves, 0, sizeof(history_moves));
+  memset(pvar_table, 0, sizeof(pvar_table));
+  memset(pvar_length, 0, sizeof(pvar_length));
+
   int score = negamax(-50000, 50000, depth);
 
   printf("info score cp %d depth %d nodes %ld pv ", score, depth, nodes);
