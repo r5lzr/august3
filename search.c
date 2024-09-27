@@ -193,6 +193,11 @@ int negamax(int alpha, int beta, int depth)
     return quiescence(alpha, beta);
   }
 
+  if (ply > max_ply - 1)
+  {
+    return evaluate_pieces();
+  }
+
   nodes++;
 
   int in_check = is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[K]) : __builtin_ctzll(piece_bitboards[k]), board.side ^ 1);
