@@ -50,6 +50,25 @@ int pvar_length[max_ply];
 
 int pvar_table[max_ply][max_ply];
 
+int follow_pvar;
+
+int score_pvar;
+
+void pvar_scoring(moves *move_list)
+{
+  follow_pvar = 0;
+
+  for (int count = 0; count < move_list->count; count++)
+  {
+    if (pvar_table[0][ply] == move_list->moves[count])
+    {
+      score_pvar = 1;
+
+      follow_pvar = 1;
+    }
+  }
+}
+
 void show_move_scores(moves *move_list)
 {
   printf("\n");
@@ -61,14 +80,6 @@ void show_move_scores(moves *move_list)
     printf("score: %d\n", score_move(move_list->moves[count]));
 
   }
-}
-
-int compare_scores(const void *x_void, const void *y_void)
-{
-  int score_x = score_move(*(int*)x_void);
-  int score_y = score_move(*(int*)y_void);
-
-  return score_y - score_x;
 }
 
 void sort_move(moves *move_list)
@@ -100,6 +111,20 @@ void sort_move(moves *move_list)
 
 int score_move(int move)
 {
+  if (score_pvar)
+  {
+    if (pvar_table[0][ply] == move)
+    {
+      score_pvar = 0;
+
+      printf("current PV move: ");
+      show_move(move);
+      printf(" ply: %d\n", ply);
+
+      return 20000;
+    }
+  }
+
   if (get_move_capture(move))
   {
     int target_piece = P;
@@ -235,6 +260,11 @@ int negamax(int alpha, int beta, int depth)
 
   generate_moves(move_list);
 
+  if (follow_pvar)
+  {
+    pvar_scoring(move_list);
+  }
+
   sort_move(move_list);
 
   for (int count = 0; count < move_list->count; count++)
@@ -307,6 +337,9 @@ int negamax(int alpha, int beta, int depth)
 
 void search_position(int depth)
 {
+  follow_pvar = 0;
+  score_pvar = 0;
+
   memset(killer_moves, 0, sizeof(killer_moves));
   memset(history_moves, 0, sizeof(history_moves));
   memset(pvar_table, 0, sizeof(pvar_table));
@@ -315,6 +348,8 @@ void search_position(int depth)
   for (int current_depth = 1; current_depth <= depth; current_depth++)
   {
     nodes = 0;
+
+    follow_pvar = 1;
 
     int score = negamax(-50000, 50000, current_depth);
 
