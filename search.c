@@ -73,7 +73,29 @@ int compare_scores(const void *x_void, const void *y_void)
 
 void sort_move(moves *move_list)
 {
-  qsort(move_list->moves, move_list->count, sizeof(int), compare_scores);
+  int move_scores[move_list->count];
+
+  for (int count = 0; count < move_list->count; count++)
+  {
+    move_scores[count] = score_move(move_list->moves[count]);
+  }
+
+  for (int current_move = 0; current_move < move_list->count; current_move++)
+  {
+    for (int next_move = current_move + 1; next_move < move_list->count; next_move++)
+    {
+      if (move_scores[current_move] < move_scores[next_move])
+      {
+        int temp_score = move_scores[current_move];
+        move_scores[current_move] = move_scores[next_move];
+        move_scores[next_move] = temp_score;
+
+        int temp_move = move_list->moves[current_move];
+        move_list->moves[current_move] = move_list->moves[next_move];
+        move_list->moves[next_move] = temp_move;
+      }
+    }
+  }
 }
 
 int score_move(int move)
