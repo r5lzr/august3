@@ -117,10 +117,6 @@ int score_move(int move)
     {
       score_pvar = 0;
 
-      printf("current PV move: ");
-      show_move(move);
-      printf(" ply: %d\n", ply);
-
       return 20000;
     }
   }
@@ -233,6 +229,8 @@ int quiescence(int alpha, int beta)
 
 int negamax(int alpha, int beta, int depth)
 {
+  int found_pvar = 0;
+
   pvar_length[ply] = ply;
 
   if (depth == 0)
@@ -282,7 +280,22 @@ int negamax(int alpha, int beta, int depth)
 
     legal_moves++;
 
-    int score = -negamax(-beta, -alpha, depth - 1);
+    int score;
+
+    if (found_pvar)
+    {
+      score = -negamax(-alpha - 1, -alpha, depth - 1);
+
+      if ((score > alpha) && (score < beta))
+      {
+        score = -negamax(-beta, -alpha, depth - 1);
+      }
+    }
+
+    else
+    {
+      score = -negamax(-beta, -alpha, depth - 1);
+    }
 
     ply--;
 
@@ -307,6 +320,8 @@ int negamax(int alpha, int beta, int depth)
       }
 
       alpha = score;
+
+      found_pvar = 1;
 
       pvar_table[ply][ply] = move_list->moves[count];
 
@@ -337,6 +352,8 @@ int negamax(int alpha, int beta, int depth)
 
 void search_position(int depth)
 {
+  nodes = 0;
+
   follow_pvar = 0;
   score_pvar = 0;
 
@@ -347,8 +364,6 @@ void search_position(int depth)
 
   for (int current_depth = 1; current_depth <= depth; current_depth++)
   {
-    nodes = 0;
-
     follow_pvar = 1;
 
     int score = negamax(-50000, 50000, current_depth);
