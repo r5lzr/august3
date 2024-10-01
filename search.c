@@ -54,6 +54,10 @@ int follow_pvar;
 
 int score_pvar;
 
+const int full_depth_moves = 4;
+
+const int reduction_limit = 3;
+
 void pvar_scoring(moves *move_list)
 {
   follow_pvar = 0;
@@ -229,8 +233,6 @@ int quiescence(int alpha, int beta)
 
 int negamax(int alpha, int beta, int depth)
 {
-  int found_pvar = 0;
-
   pvar_length[ply] = ply;
 
   if (depth == 0)
@@ -265,6 +267,8 @@ int negamax(int alpha, int beta, int depth)
 
   sort_move(move_list);
 
+  int moves_searched = 0;
+
   for (int count = 0; count < move_list->count; count++)
   {
     copy_board();
@@ -282,24 +286,39 @@ int negamax(int alpha, int beta, int depth)
 
     int score;
 
-    if (found_pvar)
+    if (moves_searched == 0)
     {
-      score = -negamax(-alpha - 1, -alpha, depth - 1);
-
-      if ((score > alpha) && (score < beta))
-      {
-        score = -negamax(-beta, -alpha, depth - 1);
-      }
+      score = -negamax(-beta, -alpha, depth - 1);
     }
 
     else
     {
-      score = -negamax(-beta, -alpha, depth - 1);
+      if ((moves_searched >= full_depth_moves) && (depth >= reduction_limit && in_check == 0))
+      {
+        score = -negamax(-alpha - 1, -alpha, depth - 2);
+      }
+
+      else
+      {
+        score = alpha + 1;
+      }
+
+      if (score > alpha)
+      {
+        score = -negamax(-alpha - 1, -alpha, depth - 1);
+
+        if ((score > alpha) && (score < beta))
+        {
+          score = -negamax(-beta, -alpha, depth - 1);
+        }
+      }
     }
 
     ply--;
 
     restore_board();
+
+    moves_searched++;
 
     if (score >= beta)
     {
@@ -320,8 +339,6 @@ int negamax(int alpha, int beta, int depth)
       }
 
       alpha = score;
-
-      found_pvar = 1;
 
       pvar_table[ply][ply] = move_list->moves[count];
 

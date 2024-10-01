@@ -14,6 +14,8 @@ extern int pvar_length[max_ply];
 extern int pvar_table[max_ply][max_ply];
 extern int follow_pvar;
 extern int score_pvar;
+extern const int full_depth_moves;
+extern const int reduction_limit;
 
 void pvar_scoring(moves *move_list);
 void show_move_scores(moves *move_list);

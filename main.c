@@ -19,7 +19,7 @@ int main()
 
   parse_fen(kiwipete_position, &board);
   show_board();
-  search_position(6);
+  search_position(7);
 
   return 0;
 }
