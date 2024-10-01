@@ -56,7 +56,9 @@ int score_pvar;
 
 const int full_depth_moves = 4;
 
-const int reduction_limit = 3;
+const int lmr_reduction_limit = 3;
+
+const int null_reduction_limit = 2;
 
 void pvar_scoring(moves *move_list)
 {
@@ -256,6 +258,24 @@ int negamax(int alpha, int beta, int depth)
 
   int legal_moves = 0;
 
+  if (depth >= 3 && in_check == 0 && ply)
+  {
+    copy_board();
+
+    board.side ^= 1;
+
+    board.enpassant = no_sq;
+
+    int score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
+
+    restore_board();
+
+    if (score >= beta)
+    {
+      return beta;
+    }
+  }
+
   moves move_list[1];
 
   generate_moves(move_list);
@@ -293,7 +313,7 @@ int negamax(int alpha, int beta, int depth)
 
     else
     {
-      if ((moves_searched >= full_depth_moves) && (depth >= reduction_limit && in_check == 0))
+      if (moves_searched >= full_depth_moves && depth >= lmr_reduction_limit && in_check == 0)
       {
         score = -negamax(-alpha - 1, -alpha, depth - 2);
       }
