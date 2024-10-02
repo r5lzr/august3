@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1727857062 source:c:\codeblocks\august3\main.c
+1727901252 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -117,12 +117,13 @@
 
 1727461607 c:\codeblocks\august3\perft.h
 
-1727461607 c:\codeblocks\august3\util.h
+1727901527 c:\codeblocks\august3\util.h
 
-1727461607 source:c:\codeblocks\august3\util.c
+1727902857 source:c:\codeblocks\august3\util.c
 	<stdio.h>
 	<stdlib.h>
 	<windows.h>
+	<unistd.h>
 	"util.h"
 
 1727461607 source:c:\codeblocks\august3\uci.c
@@ -137,7 +138,7 @@
 	"evaluation.h"
 	"search.h"
 
-1727461607 c:\codeblocks\august3\uci.h
+1727900633 c:\codeblocks\august3\uci.h
 
 1727461607 source:c:\codeblocks\august3\evaluation.c
 	<stdio.h>
