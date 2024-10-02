@@ -15,11 +15,11 @@ int main()
   leaper_attacks_table();
   slider_attacks_table();
 
-//  uci_loop();
+  uci_loop();
 
-  parse_fen(kiwipete_position, &board);
-  show_board();
-  search_position(10);
+//  parse_fen(kiwipete_position, &board);
+//  show_board();
+//  search_position(10);
 
   return 0;
 }

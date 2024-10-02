@@ -399,11 +399,24 @@ void search_position(int depth)
   memset(pvar_table, 0, sizeof(pvar_table));
   memset(pvar_length, 0, sizeof(pvar_length));
 
+  int alpha = -50000;
+  int beta = 50000;
+
   for (int current_depth = 1; current_depth <= depth; current_depth++)
   {
     follow_pvar = 1;
 
-    int score = negamax(-50000, 50000, current_depth);
+    int score = negamax(alpha, beta, current_depth);
+
+    if ((score <= alpha) || (score >= beta))
+    {
+      alpha = -50000;
+      beta = 50000;
+      continue;
+    }
+
+    alpha = score - score_window;
+    beta = score + score_window;
 
     printf("info score cp %d depth %d nodes %ld pv ", score, current_depth, nodes);
 

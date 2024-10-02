@@ -5,6 +5,7 @@
 #include "movegen.h"
 
 #define max_ply 64
+#define score_window 60
 
 extern int ply;
 extern int mv_lv[12][12];
