@@ -54,3 +54,52 @@ int input_waiting()
     return dw <= 1 ? 0 : dw;
   }
 }
+
+void read_input()
+{
+  int bytes;
+
+  char input[256] = "", *endc;
+
+  if (input_waiting())
+  {
+    stopped = 1;
+
+    do
+    {
+      bytes=read(fileno(stdin), input, 256);
+    }
+
+    while (bytes < 0);
+
+    endc = strchr(input,'\n');
+
+    if (endc)
+    {
+      *endc=0;
+    }
+
+    if (strlen(input) > 0)
+    {
+      if (!strncmp(input, "quit", 4))
+      {
+        quit = 1;
+      }
+
+      else if (!strncmp(input, "stop", 4))
+      {
+        quit = 1;
+      }
+    }
+  }
+}
+
+void check_up()
+{
+  if (time_set == 1 && get_time_ms() > stop_time)
+  {
+		stopped = 1;
+	}
+
+	read_input();
+}

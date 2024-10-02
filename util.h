@@ -14,6 +14,8 @@ extern int stopped;
 
 int get_time_ms();
 int input_waiting();
+void read_input();
+void check_up();
 
 
 #endif
