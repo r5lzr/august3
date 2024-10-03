@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1727951469 source:c:\codeblocks\august3\main.c
+1727952018 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -107,7 +107,7 @@
 
 1727461607 c:\codeblocks\august3\movegen.h
 
-1727461607 source:c:\codeblocks\august3\perft.c
+1727951936 source:c:\codeblocks\august3\perft.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

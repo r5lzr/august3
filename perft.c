@@ -39,6 +39,8 @@ void perft_driver(int depth)
 
 void perft_test(int depth)
 {
+  nodes = 0ULL;
+
   printf("\nPERFORMANCE TEST:\n\n");
 
   printf("MOVES  NODES\n\n");
