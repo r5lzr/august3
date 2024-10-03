@@ -13,6 +13,7 @@ extern int time_set;
 extern int stopped;
 
 int get_time_ms();
+void reset_tc();
 int input_waiting();
 void read_input();
 void check_up();

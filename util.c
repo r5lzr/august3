@@ -19,6 +19,19 @@ int get_time_ms()
   return GetTickCount();
 }
 
+void reset_tc()
+{
+  quit = 0;
+  moves_to_go = 30;
+  move_time = -1;
+  time = -1;
+  inc_time = 0;
+  start_time = 0;
+  stop_time = 0;
+  time_set = 0;
+  stopped = 0;
+}
+
 int input_waiting()
 {
   static int init = 0, pipe;

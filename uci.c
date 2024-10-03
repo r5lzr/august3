@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bitboard.h"
 #include "uci.h"
 #include "attacktable.h"
@@ -118,16 +119,84 @@ void parse_position(char *command)
 
 void parse_go(char *command)
 {
+  reset_tc();
+
   int depth = -1;
 
-  char *current_depth = strstr(command, "depth");
+  char *input_go = NULL;
 
-  if (current_depth != NULL)
+  if ((input_go = strstr(command,"infinite"))) {}
+
+  if ((input_go = strstr(command,"binc")) && board.side == black)
   {
-    current_depth += 6;
-
-    depth = atoi(current_depth);
+    inc_time = atoi(input_go + 5);
   }
+
+  if ((input_go = strstr(command,"winc")) && board.side == white)
+  {
+    inc_time = atoi(input_go + 5);
+  }
+
+  if ((input_go = strstr(command,"wtime")) && board.side == white)
+  {
+    time = atoi(input_go + 6);
+  }
+
+  if ((input_go = strstr(command,"btime")) && board.side == black)
+  {
+    time = atoi(input_go + 6);
+  }
+
+  if ((input_go = strstr(command,"movestogo")))
+  {
+    moves_to_go = atoi(input_go + 10);
+  }
+
+  if ((input_go = strstr(command,"movetime")))
+  {
+    move_time = atoi(input_go + 9);
+  }
+
+  if ((input_go = strstr(command,"depth")))
+  {
+    depth = atoi(input_go + 6);
+  }
+
+  if ((input_go = strstr(command,"perft")))
+  {
+    depth = atoi(input_go + 6);
+
+    perft_test(depth);
+
+    return;
+  }
+
+  if (move_time != -1)
+  {
+    time = move_time;
+
+    moves_to_go = 1;
+  }
+
+  start_time = get_time_ms();
+
+  depth = depth;
+
+  if (time != -1)
+  {
+    time_set = 1;
+
+    time /= moves_to_go;
+
+    stop_time = start_time + time + inc_time;
+  }
+
+  if (depth == -1)
+  {
+    depth = 64;
+  }
+
+  printf("time:%d start:%d stop:%d depth:%d timeset:%d\n", time, start_time, stop_time, depth, time_set);
 
   search_position(depth);
 }
