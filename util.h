@@ -1,5 +1,5 @@
-#ifndef PERFT_H
-#define PERFT_H
+#ifndef UTIL_H
+#define UTIL_H
 
 
 extern int quit;
