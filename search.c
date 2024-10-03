@@ -180,6 +180,11 @@ int score_move(int move)
 
 int quiescence(int alpha, int beta)
 {
+  if ((nodes & 2047) == 0)
+  {
+    check_up();
+  }
+
   nodes++;
 
   int evaluation = evaluate_pieces();
@@ -219,6 +224,11 @@ int quiescence(int alpha, int beta)
 
     restore_board();
 
+    if (stopped == 1)
+    {
+      return 0;
+    }
+
     if (score >= beta)
     {
       return beta;
@@ -236,6 +246,11 @@ int quiescence(int alpha, int beta)
 int negamax(int alpha, int beta, int depth)
 {
   pvar_length[ply] = ply;
+
+  if ((nodes & 2047) == 0)
+  {
+    check_up();
+  }
 
   if (depth == 0)
   {
@@ -269,6 +284,11 @@ int negamax(int alpha, int beta, int depth)
     int score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
 
     restore_board();
+
+    if (stopped == 1)
+    {
+      return 0;
+    }
 
     if (score >= beta)
     {
@@ -338,6 +358,11 @@ int negamax(int alpha, int beta, int depth)
 
     restore_board();
 
+    if (stopped == 1)
+    {
+      return 0;
+    }
+
     moves_searched++;
 
     if (score >= beta)
@@ -391,6 +416,8 @@ void search_position(int depth)
 {
   nodes = 0;
 
+  stopped = 0;
+
   follow_pvar = 0;
   score_pvar = 0;
 
@@ -404,6 +431,11 @@ void search_position(int depth)
 
   for (int current_depth = 1; current_depth <= depth; current_depth++)
   {
+    if (stopped == 1)
+    {
+      break;
+    }
+
     follow_pvar = 1;
 
     int score = negamax(alpha, beta, current_depth);
