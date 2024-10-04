@@ -63,36 +63,43 @@
 
 1727461607 c:\codeblocks\august3\magicbitboard.h
 
-1725297650 source:/home/r/codeblocks/august3/attacktable.c
+1728073060 source:/home/r/codeblocks/august3/attacktable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 
-1725298562 /home/r/codeblocks/august3/bitboard.h
+1728074196 /home/r/codeblocks/august3/bitboard.h
 
-1725297650 /home/r/codeblocks/august3/attacktable.h
+1728073060 /home/r/codeblocks/august3/attacktable.h
 
-1725297933 source:/home/r/codeblocks/august3/bitboard.c
+1728074210 source:/home/r/codeblocks/august3/bitboard.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"bitboard.h"
 
-1725298562 source:/home/r/codeblocks/august3/magicbitboard.c
+1728073060 source:/home/r/codeblocks/august3/magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 	"magicbitboard.h"
 
-1725298562 /home/r/codeblocks/august3/magicbitboard.h
+1728073060 /home/r/codeblocks/august3/magicbitboard.h
 
-1725299066 source:/home/r/codeblocks/august3/main.c
+1728074337 source:/home/r/codeblocks/august3/main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 	"magicbitboard.h"
+	"movegen.h"
+	"perft.h"
+	"util.h"
+	"uci.h"
+	"evaluation.h"
+	"search.h"
 
 1725441252 source:c:\codeblocks\august3\board.c
 
@@ -169,4 +176,77 @@
 
 1727924170 c:\codeblocks\august3\search.h
 	"movegen.h"
+
+1728073060 source:/home/r/codeblocks/august3/evaluation.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"evaluation.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+
+1728073060 /home/r/codeblocks/august3/evaluation.h
+
+1728073060 /home/r/codeblocks/august3/movegen.h
+
+1728073060 /home/r/codeblocks/august3/util.h
+
+1728073060 /home/r/codeblocks/august3/perft.h
+
+1728073060 /home/r/codeblocks/august3/uci.h
+
+1728073060 /home/r/codeblocks/august3/search.h
+	"movegen.h"
+
+1728073060 source:/home/r/codeblocks/august3/movegen.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bitboard.h"
+	"movegen.h"
+	"attacktable.h"
+	"magicbitboard.h"
+
+1728073060 source:/home/r/codeblocks/august3/perft.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bitboard.h"
+	"perft.h"
+	"movegen.h"
+
+1728073060 source:/home/r/codeblocks/august3/search.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"search.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"perft.h"
+	"util.h"
+	"evaluation.h"
+
+1728073060 source:/home/r/codeblocks/august3/uci.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"bitboard.h"
+	"uci.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+	"evaluation.h"
+	"search.h"
+
+1728078116 source:/home/r/codeblocks/august3/util.c
+	<stdio.h>
+	<stdlib.h>
+	<unistd.h>
+	"util.h"
+	<windows.h>
+	<sys/time.h>
 

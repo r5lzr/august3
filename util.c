@@ -1,8 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
 #include <unistd.h>
 #include "util.h"
+#ifdef WIN64
+  #include <windows.h>
+#else
+  #include <sys/time.h>
+#endif
 
 int quit = 0;
 int moves_to_go = 30;
@@ -16,7 +20,13 @@ int stopped = 0;
 
 int get_time_ms()
 {
-  return GetTickCount();
+  #ifdef WIN64
+    return GetTickCount();
+  #else
+    struct timeval time_value;
+    gettimeofday(&time_value, NULL);
+    return time_value.tv_sec * 1000 + time_value.tv_usec / 1000;
+  #endif
 }
 
 void reset_tc()
@@ -34,38 +44,49 @@ void reset_tc()
 
 int input_waiting()
 {
-  static int init = 0, pipe;
-  static HANDLE inh;
-  DWORD dw;
+  #ifdef WIN64
+    static int init = 0, pipe;
+    static HANDLE inh;
+    DWORD dw;
 
-  if (!init)
-  {
-    init = 1;
-    inh = GetStdHandle(STD_INPUT_HANDLE);
-    pipe = !GetConsoleMode(inh, &dw);
-
-    if (!pipe)
+    if (!init)
     {
-      SetConsoleMode(inh, dw & ~(ENABLE_MOUSE_INPUT|ENABLE_WINDOW_INPUT));
-      FlushConsoleInputBuffer(inh);
-    }
-  }
+      init = 1;
+      inh = GetStdHandle(STD_INPUT_HANDLE);
+      pipe = !GetConsoleMode(inh, &dw);
 
-  if (pipe)
-  {
-    if (!PeekNamedPipe(inh, NULL, 0, NULL, &dw, NULL))
-    {
-      return 1;
+      if (!pipe)
+      {
+        SetConsoleMode(inh, dw & ~(ENABLE_MOUSE_INPUT|ENABLE_WINDOW_INPUT));
+        FlushConsoleInputBuffer(inh);
+      }
     }
 
-    return dw;
-  }
+    if (pipe)
+    {
+      if (!PeekNamedPipe(inh, NULL, 0, NULL, &dw, NULL))
+      {
+        return 1;
+      }
 
-  else
-  {
-    GetNumberOfConsoleInputEvents(inh, &dw);
-    return dw <= 1 ? 0 : dw;
-  }
+      return dw;
+    }
+
+    else
+    {
+      GetNumberOfConsoleInputEvents(inh, &dw);
+      return dw <= 1 ? 0 : dw;
+    }
+  #else
+    fd_set readfds;
+    struct timeval tv;
+    FD_ZERO (&readfds);
+    FD_SET (fileno(stdin), &readfds);
+    tv.tv_sec=0; tv.tv_usec=0;
+    select(16, &readfds, 0, 0, &tv);
+
+    return (FD_ISSET(fileno(stdin), &readfds));
+  #endif
 }
 
 void read_input()
