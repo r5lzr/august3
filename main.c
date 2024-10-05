@@ -9,17 +9,18 @@
 #include "uci.h"
 #include "evaluation.h"
 #include "search.h"
+#include "zobrist.h"
 
 int main()
 {
   leaper_attacks_table();
   slider_attacks_table();
 
-  uci_loop();
+//  uci_loop();
 
-//  parse_fen(kiwipete_position, &board);
-//  show_board();
-//  search_position(7);
+  parse_fen(kiwipete_position, &board);
+  show_board();
+  search_position(7);
 
   return 0;
 }

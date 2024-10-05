@@ -88,7 +88,7 @@
 
 1728073060 /home/r/codeblocks/august3/magicbitboard.h
 
-1728074337 source:/home/r/codeblocks/august3/main.c
+1728106350 source:/home/r/codeblocks/august3/main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -249,4 +249,6 @@
 	"util.h"
 	<windows.h>
 	<sys/time.h>
+
+1728106234 source:/home/r/codeblocks/august3/zobrist.c
 
