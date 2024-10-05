@@ -88,7 +88,7 @@
 
 1728073060 /home/r/codeblocks/august3/magicbitboard.h
 
-1728106350 source:/home/r/codeblocks/august3/main.c
+1728111986 source:/home/r/codeblocks/august3/main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -100,6 +100,7 @@
 	"uci.h"
 	"evaluation.h"
 	"search.h"
+	"zobrist.h"
 
 1725441252 source:c:\codeblocks\august3\board.c
 
@@ -250,5 +251,17 @@
 	<windows.h>
 	<sys/time.h>
 
-1728106234 source:/home/r/codeblocks/august3/zobrist.c
+1728111976 source:/home/r/codeblocks/august3/zobrist.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"zobrist.h"
+	"search.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+	"evaluation.h"
+
+1728111993 /home/r/codeblocks/august3/zobrist.h
 
