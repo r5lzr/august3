@@ -70,6 +70,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="util.h" />
+		<Unit filename="zobrist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="zobrist.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

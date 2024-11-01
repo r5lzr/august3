@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1727952018 source:c:\codeblocks\august3\main.c
+1730461071 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -13,6 +13,7 @@
 	"uci.h"
 	"evaluation.h"
 	"search.h"
+	"zobrist.h"
 
 1727481762 shed changes
 	<stdio.h>
@@ -38,30 +39,31 @@
 	"evaluation.h"
 	"movegen.h"
 
-1727461607 source:c:\codeblocks\august3\bitboard.c
+1730460984 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
+	"zobrist.h"
 
-1727949518 c:\codeblocks\august3\bitboard.h
+1730459805 c:\codeblocks\august3\bitboard.h
 
-1727461607 source:c:\codeblocks\august3\attacktable.c
+1730373971 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
 	"attacktable.h"
 
-1727461607 c:\codeblocks\august3\attacktable.h
+1730372990 c:\codeblocks\august3\attacktable.h
 
-1727461607 source:c:\codeblocks\august3\magicbitboard.c
+1730373880 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"bitboard.h"
 	"magicbitboard.h"
 
-1727461607 c:\codeblocks\august3\magicbitboard.h
+1730372990 c:\codeblocks\august3\magicbitboard.h
 
 1728073060 source:/home/r/codeblocks/august3/attacktable.c
 	<stdio.h>
@@ -104,7 +106,7 @@
 
 1725441252 source:c:\codeblocks\august3\board.c
 
-1727461607 source:c:\codeblocks\august3\movegen.c
+1730373958 source:c:\codeblocks\august3\movegen.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -113,9 +115,9 @@
 	"attacktable.h"
 	"magicbitboard.h"
 
-1727461607 c:\codeblocks\august3\movegen.h
+1730372990 c:\codeblocks\august3\movegen.h
 
-1727951936 source:c:\codeblocks\august3\perft.c
+1730373892 source:c:\codeblocks\august3\perft.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -123,18 +125,19 @@
 	"perft.h"
 	"movegen.h"
 
-1727461607 c:\codeblocks\august3\perft.h
+1730372990 c:\codeblocks\august3\perft.h
 
-1727951086 c:\codeblocks\august3\util.h
+1730372990 c:\codeblocks\august3\util.h
 
-1727951194 source:c:\codeblocks\august3\util.c
+1730373937 source:c:\codeblocks\august3\util.c
 	<stdio.h>
 	<stdlib.h>
-	<windows.h>
 	<unistd.h>
 	"util.h"
+	<windows.h>
+	<sys/time.h>
 
-1727951649 source:c:\codeblocks\august3\uci.c
+1730373919 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -147,9 +150,9 @@
 	"evaluation.h"
 	"search.h"
 
-1727900633 c:\codeblocks\august3\uci.h
+1730372990 c:\codeblocks\august3\uci.h
 
-1727461607 source:c:\codeblocks\august3\evaluation.c
+1730373996 source:c:\codeblocks\august3\evaluation.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -159,11 +162,11 @@
 	"movegen.h"
 	"util.h"
 
-1727461607 c:\codeblocks\august3\evaluation.h
+1730372990 c:\codeblocks\august3\evaluation.h
 
 1727489562 ated upstream
 
-1727949646 source:c:\codeblocks\august3\search.c
+1730373901 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -175,7 +178,7 @@
 	"util.h"
 	"evaluation.h"
 
-1727924170 c:\codeblocks\august3\search.h
+1730372990 c:\codeblocks\august3\search.h
 	"movegen.h"
 
 1728073060 source:/home/r/codeblocks/august3/evaluation.c
@@ -264,4 +267,18 @@
 	"evaluation.h"
 
 1728111993 /home/r/codeblocks/august3/zobrist.h
+
+1730459900 c:\codeblocks\august3\zobrist.h
+
+1730461098 source:c:\codeblocks\august3\zobrist.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"zobrist.h"
+	"search.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+	"evaluation.h"
 

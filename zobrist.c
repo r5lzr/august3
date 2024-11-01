@@ -21,7 +21,6 @@ void init_zobrist_hash()
     for (int square = 0; square < 64; square++)
     {
       piece_keys[piece][square] = random_ui64();
-      printf("%llx\n", piece_keys[piece][square]);
     }
   }
 
@@ -36,4 +35,39 @@ void init_zobrist_hash()
   }
 
   side_key = random_ui64();
+}
+
+ui64 generate_zobrist_key()
+{
+  ui64 hash_key = 0ULL;
+
+  ui64 bitboard;
+
+  for (int piece = P; piece <= k; piece++)
+  {
+    bitboard = piece_bitboards[piece];
+
+    while (bitboard)
+    {
+      int square = __builtin_ctzll(bitboard);
+
+      hash_key ^= piece_keys[piece][square];
+
+      pop_bit(bitboard, square);
+    }
+  }
+
+  if (board.enpassant != no_sq)
+  {
+    hash_key ^= enpassant_keys[board.enpassant];
+  }
+
+  hash_key ^= castle_keys[board.castle];
+
+  if (board.side == black)
+  {
+    hash_key ^= side_key;
+  }
+
+  return hash_key;
 }

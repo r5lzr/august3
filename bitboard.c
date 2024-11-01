@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "bitboard.h"
+#include "zobrist.h"
 
 ui64 piece_bitboards[12];
 ui64 side_bitboards[3];
@@ -31,6 +32,8 @@ const char *square_to_coordinates[] = {
     "a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2",
     "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1",
 };
+
+ui64 zobrist_key;
 
 void show_bitboard(ui64 bitboard)
 {
@@ -91,6 +94,8 @@ void show_board()
    (board.castle & wq) ? 'Q' : '-',
    (board.castle & bk) ? 'k' : '-',
    (board.castle & bq) ? 'q' : '-');
+
+  printf("  zobrist key: %llx\n\n", zobrist_key);
 }
 
 void parse_fen(char *fen, FenBoard *board)
@@ -182,7 +187,7 @@ void parse_fen(char *fen, FenBoard *board)
 
   side_bitboards[both] |= side_bitboards[white] | side_bitboards[black];
 
-//  printf("fen: '%s'\n", fen);
+  zobrist_key = generate_zobrist_key();
 
   return board;
 }
