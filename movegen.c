@@ -642,18 +642,6 @@ int make_move(int move, int move_flag)
 
     zobrist_key ^= side_key;
 
-//    ui64 initial_zobrist_key = generate_zobrist_key();
-
-//    if (zobrist_key != initial_zobrist_key)
-//    {
-//      printf("\n\nmake move\n");
-//      printf("move: ");
-//      show_move(move);
-//      show_board();
-//      printf("zobrist key should be: %llx\n", initial_zobrist_key);
-//      getchar();
-//    }
-
     // verify if king is in check
     if (is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[k]) : __builtin_ctzll(piece_bitboards[K]), board.side))
     {

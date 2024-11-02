@@ -10,6 +10,7 @@
 #include "evaluation.h"
 #include "search.h"
 #include "zobrist.h"
+#include "ttable.h"
 
 int main()
 {
@@ -21,8 +22,6 @@ int main()
 
   parse_fen(kiwipete_position, &board);
   show_board();
-
-//  perft_driver(4);
 
   return 0;
 }
