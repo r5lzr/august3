@@ -5,6 +5,7 @@
 #include "movegen.h"
 #include "attacktable.h"
 #include "magicbitboard.h"
+#include "zobrist.h"
 
 /* UCI protocol needs to return lower case
 regardless of side for encoding moves */
@@ -473,6 +474,9 @@ int make_move(int move, int move_flag)
     pop_bit(piece_bitboards[piece], source_square);
     set_bit(piece_bitboards[piece], target_square);
 
+    zobrist_key ^= piece_keys[piece][source_square];
+    zobrist_key ^= piece_keys[piece][target_square];
+
     if (capture)
     {
       int start_piece, end_piece;
@@ -494,6 +498,9 @@ int make_move(int move, int move_flag)
         if (get_bit(piece_bitboards[piece], target_square))
         {
           pop_bit(piece_bitboards[piece], target_square);
+
+          zobrist_key ^= piece_keys[piece][target_square];
+
           break;
         }
       }
@@ -501,21 +508,64 @@ int make_move(int move, int move_flag)
 
     if (promoted_piece)
     {
-      pop_bit(piece_bitboards[!board.side ? P : p], target_square);
+      if (!board.side)
+      {
+        pop_bit(piece_bitboards[P], target_square);
+
+        zobrist_key ^= piece_keys[P][target_square];
+      }
+
+      else
+      {
+        pop_bit(piece_bitboards[p], target_square);
+
+        zobrist_key ^= piece_keys[p][target_square];
+      }
 
       set_bit(piece_bitboards[promoted_piece], target_square);
+
+      zobrist_key ^= piece_keys[promoted_piece][target_square];
     }
 
     if (enpassant)
     {
-      (!board.side) ? pop_bit(piece_bitboards[p], target_square + 8) : pop_bit(piece_bitboards[P], target_square - 8);
+      if (!board.side)
+      {
+        pop_bit(piece_bitboards[p], target_square + 8);
+
+        zobrist_key ^= piece_keys[p][target_square + 8];
+      }
+
+      else
+      {
+        pop_bit(piece_bitboards[P], target_square - 8);
+
+        zobrist_key ^= piece_keys[P][target_square - 8];
+      }
+    }
+
+    if (board.enpassant != no_sq)
+    {
+      zobrist_key ^= enpassant_keys[board.enpassant];
     }
 
     board.enpassant = no_sq;
 
     if (double_push)
     {
-      (!board.side) ? (board.enpassant = target_square + 8) : (board.enpassant = target_square - 8);
+      if (!board.side)
+      {
+        board.enpassant = target_square + 8;
+
+        zobrist_key ^= enpassant_keys[target_square + 8];
+      }
+
+      else
+      {
+        board.enpassant = target_square - 8;
+
+        zobrist_key ^= enpassant_keys[target_square - 8];
+      }
     }
 
     if (castling)
@@ -526,30 +576,50 @@ int make_move(int move, int move_flag)
         case (g1):
           pop_bit(piece_bitboards[R], h1);
           set_bit(piece_bitboards[R], f1);
+
+          zobrist_key ^= piece_keys[R][h1];
+          zobrist_key ^= piece_keys[R][f1];
+
           break;
 
         // wq
         case (c1):
           pop_bit(piece_bitboards[R], a1);
           set_bit(piece_bitboards[R], d1);
+
+          zobrist_key ^= piece_keys[R][a1];
+          zobrist_key ^= piece_keys[R][d1];
+
           break;
 
         // bk
         case (g8):
           pop_bit(piece_bitboards[r], h8);
           set_bit(piece_bitboards[r], f8);
+
+          zobrist_key ^= piece_keys[r][h8];
+          zobrist_key ^= piece_keys[r][f8];
+
           break;
 
         // bq
         case (c8):
           pop_bit(piece_bitboards[r], a8);
           set_bit(piece_bitboards[r], d8);
+
+          zobrist_key ^= piece_keys[r][a8];
+          zobrist_key ^= piece_keys[r][d8];
+
           break;
       }
     }
 
+    zobrist_key ^= castle_keys[board.castle];
+
     board.castle &= castling_rights[source_square];
     board.castle &= castling_rights[target_square];
+
+    zobrist_key ^= castle_keys[board.castle];
 
     // update side_bitboards
     memset(side_bitboards, 0ULL, sizeof(side_bitboards));
@@ -569,6 +639,20 @@ int make_move(int move, int move_flag)
 
     // swap side after move
     board.side ^= 1;
+
+    zobrist_key ^= side_key;
+
+//    ui64 initial_zobrist_key = generate_zobrist_key();
+
+//    if (zobrist_key != initial_zobrist_key)
+//    {
+//      printf("\n\nmake move\n");
+//      printf("move: ");
+//      show_move(move);
+//      show_board();
+//      printf("zobrist key should be: %llx\n", initial_zobrist_key);
+//      getchar();
+//    }
 
     // verify if king is in check
     if (is_square_attacked((!board.side) ? __builtin_ctzll(piece_bitboards[k]) : __builtin_ctzll(piece_bitboards[K]), board.side))

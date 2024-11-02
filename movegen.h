@@ -2,6 +2,8 @@
 #define MOVE_GEN_H
 
 
+#include "zobrist.h"
+
 #define encode_move(source, target, piece, promoted, capture, double, enpassant, castling) \
   (source) | (target << 6) | (piece << 12) | (promoted << 16) | (capture << 20) | (double << 21) | (enpassant << 22) | (castling << 23) \
 
@@ -20,11 +22,13 @@
   memcpy(piece_bitboards_copy, piece_bitboards, sizeof(piece_bitboards)); \
   memcpy(side_bitboards_copy, side_bitboards, sizeof(side_bitboards)); \
   side_copy = board.side, enpassant_copy = board.enpassant, castle_copy = board.castle; \
+  ui64 zobrist_key_copy = zobrist_key; \
 
 #define restore_board() \
   memcpy(piece_bitboards, piece_bitboards_copy, sizeof(piece_bitboards)); \
   memcpy(side_bitboards, side_bitboards_copy, sizeof(side_bitboards)); \
   board.side = side_copy, board.enpassant = enpassant_copy, board.castle = castle_copy; \
+  zobrist_key = zobrist_key_copy; \
 
 const enum {all_moves, only_captures};
 

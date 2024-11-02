@@ -22,5 +22,7 @@ int main()
   parse_fen(kiwipete_position, &board);
   show_board();
 
+//  perft_driver(4);
+
   return 0;
 }

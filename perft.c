@@ -4,6 +4,7 @@
 #include "bitboard.h"
 #include "perft.h"
 #include "movegen.h"
+#include "zobrist.h"
 
 ui64 nodes;
 
@@ -34,6 +35,18 @@ void perft_driver(int depth)
     perft_driver(depth - 1);
 
     restore_board();
+
+//    ui64 initial_zobrist_key = generate_zobrist_key();
+
+//    if (zobrist_key != initial_zobrist_key)
+//    {
+//      printf("\n\ntake back\n");
+//      printf("move: ");
+//      show_move(move_list->moves[move_count]);
+//      show_board();
+//      printf("zobrist key should be: %llx\n", initial_zobrist_key);
+//      getchar();
+//    }
   }
 }
 
