@@ -9,3 +9,14 @@
 #include "movegen.h"
 #include "util.h"
 #include "evaluation.h"
+
+void restore_ttable()
+{
+  for (int index = 0; index < ttable_size; index++)
+  {
+    ttable[index].zobrist_key = 0;
+    ttable[index].depth = 0;
+    ttable[index].flag = 0;
+    ttable[index].score = 0;
+  }
+}

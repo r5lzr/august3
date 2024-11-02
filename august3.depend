@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1730540741 source:c:\codeblocks\august3\main.c
+1730581740 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -14,6 +14,7 @@
 	"evaluation.h"
 	"search.h"
 	"zobrist.h"
+	"ttable.h"
 
 1727481762 shed changes
 	<stdio.h>
@@ -277,6 +278,21 @@
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
+	"zobrist.h"
+	"search.h"
+	"attacktable.h"
+	"magicbitboard.h"
+	"movegen.h"
+	"util.h"
+	"evaluation.h"
+
+1730581747 c:\codeblocks\august3\ttable.h
+
+1730581779 source:c:\codeblocks\august3\ttable.c
+	<stdio.h>
+	<stdlib.h>
+	"bitboard.h"
+	"ttable.h"
 	"zobrist.h"
 	"search.h"
 	"attacktable.h"

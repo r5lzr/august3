@@ -62,6 +62,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="search.h" />
+		<Unit filename="ttable.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ttable.h" />
 		<Unit filename="uci.c">
 			<Option compilerVar="CC" />
 		</Unit>

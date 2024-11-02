@@ -23,5 +23,7 @@ int main()
   parse_fen(kiwipete_position, &board);
   show_board();
 
+  restore_ttable();
+
   return 0;
 }
