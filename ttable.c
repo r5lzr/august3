@@ -31,16 +31,19 @@ int probe_ttable(int alpha, int beta, int depth)
     {
       if (hash_entry->flag == hash_flag_exact)
       {
+        printf("exact score: ");
         return hash_entry->score;
       }
 
       if ((hash_entry->flag == hash_flag_alpha) && (hash_entry->score <= alpha))
       {
+        printf("alpha score: ");
         return alpha;
       }
 
       if ((hash_entry->flag == hash_flag_beta) && (hash_entry->score >= beta))
       {
+        printf("beta score: ");
         return beta;
       }
     }
@@ -48,3 +51,26 @@ int probe_ttable(int alpha, int beta, int depth)
 
   return no_hash_entry;
 }
+
+void record_ttable(int score, int depth, int flag)
+{
+  transposition_table *hash_entry = &ttable[zobrist_key % ttable_size];
+
+  hash_entry->zobrist_key = zobrist_key;
+  hash_entry->depth = depth;
+  hash_entry->flag = flag;
+  hash_entry->score = score;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -20,5 +20,6 @@ transposition_table ttable[ttable_size];
 
 void restore_ttable();
 int probe_ttable(int alpha, int beta, int depth);
+void record_ttable(int score, int depth, int flag);
 
 #endif
