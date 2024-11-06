@@ -23,12 +23,7 @@ int main()
   parse_fen(kiwipete_position, &board);
   show_board();
 
-  restore_ttable();
-
-  record_ttable(26, 1, hash_flag_beta);
-  int score = probe_ttable(20, 25, 1);
-
-  printf("%d\n", score);
+  search_position(7);
 
   return 0;
 }

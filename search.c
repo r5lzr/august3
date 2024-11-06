@@ -8,6 +8,8 @@
 #include "perft.h"
 #include "util.h"
 #include "evaluation.h"
+#include "zobrist.h"
+#include "ttable.h"
 
 int ply;
 
@@ -245,6 +247,15 @@ int quiescence(int alpha, int beta)
 
 int negamax(int alpha, int beta, int depth)
 {
+  int score;
+
+  int hash_flag = hash_flag_alpha;
+
+  if ((score = probe_ttable(alpha, beta, depth)) != no_hash_entry)
+  {
+    return score;
+  }
+
   pvar_length[ply] = ply;
 
   if ((nodes & 2047) == 0)
@@ -277,11 +288,11 @@ int negamax(int alpha, int beta, int depth)
   {
     copy_board();
 
-    board.side ^= 1;
-
     board.enpassant = no_sq;
 
-    int score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
+    board.side ^= 1;
+
+    score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
 
     restore_board();
 
@@ -324,8 +335,6 @@ int negamax(int alpha, int beta, int depth)
 
     legal_moves++;
 
-    int score;
-
     if (moves_searched == 0)
     {
       score = -negamax(-beta, -alpha, depth - 1);
@@ -367,6 +376,8 @@ int negamax(int alpha, int beta, int depth)
 
     if (score >= beta)
     {
+      record_ttable(beta, depth, hash_flag_beta);
+
       if (get_move_capture(move_list->moves[count]) == 0)
       {
         killer_moves[1][ply] = killer_moves[0][ply];
@@ -378,6 +389,8 @@ int negamax(int alpha, int beta, int depth)
 
     if (score > alpha)
     {
+      hash_flag = hash_flag_exact;
+
       if (get_move_capture(move_list->moves[count]) == 0)
       {
         history_moves[get_move_piece(move_list->moves[count])][get_move_target(move_list->moves[count])] += depth;
@@ -408,6 +421,8 @@ int negamax(int alpha, int beta, int depth)
       return 0;
     }
   }
+
+  record_ttable(alpha, depth, hash_flag);
 
   return alpha;
 }

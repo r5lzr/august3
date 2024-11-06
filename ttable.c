@@ -31,19 +31,16 @@ int probe_ttable(int alpha, int beta, int depth)
     {
       if (hash_entry->flag == hash_flag_exact)
       {
-        printf("exact score: ");
         return hash_entry->score;
       }
 
       if ((hash_entry->flag == hash_flag_alpha) && (hash_entry->score <= alpha))
       {
-        printf("alpha score: ");
         return alpha;
       }
 
       if ((hash_entry->flag == hash_flag_beta) && (hash_entry->score >= beta))
       {
-        printf("beta score: ");
         return beta;
       }
     }

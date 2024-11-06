@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1730741497 source:c:\codeblocks\august3\main.c
+1730924811 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -141,7 +141,7 @@
 	<windows.h>
 	<sys/time.h>
 
-1730373919 source:c:\codeblocks\august3\uci.c
+1730921543 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -170,7 +170,7 @@
 
 1727489562 ated upstream
 
-1730373901 source:c:\codeblocks\august3\search.c
+1730924835 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -181,6 +181,8 @@
 	"perft.h"
 	"util.h"
 	"evaluation.h"
+	"zobrist.h"
+	"ttable.h"
 
 1730372990 c:\codeblocks\august3\search.h
 	"movegen.h"
@@ -288,7 +290,7 @@
 
 1730741332 c:\codeblocks\august3\ttable.h
 
-1730741268 source:c:\codeblocks\august3\ttable.c
+1730904238 source:c:\codeblocks\august3\ttable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
