@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1731007168 source:c:\codeblocks\august3\main.c
+1731008249 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -170,7 +170,7 @@
 
 1727489562 ated upstream
 
-1731007320 source:c:\codeblocks\august3\search.c
+1731007926 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"

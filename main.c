@@ -17,6 +17,7 @@ int main()
   leaper_attacks_table();
   slider_attacks_table();
   init_zobrist_hash();
+  restore_ttable();
 
 //  uci_loop();
 
