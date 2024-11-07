@@ -189,6 +189,11 @@ int quiescence(int alpha, int beta)
 
   nodes++;
 
+  if (ply > max_ply - 1)
+  {
+    return evaluate_pieces();
+  }
+
   int evaluation = evaluate_pieces();
 
   if (evaluation >= beta)
@@ -231,14 +236,14 @@ int quiescence(int alpha, int beta)
       return 0;
     }
 
-    if (score >= beta)
-    {
-      return beta;
-    }
-
     if (score > alpha)
     {
       alpha = score;
+
+      if (score >= beta)
+      {
+        return beta;
+      }
     }
   }
 
@@ -251,7 +256,7 @@ int negamax(int alpha, int beta, int depth)
 
   int hash_flag = hash_flag_alpha;
 
-  if ((score = probe_ttable(alpha, beta, depth)) != no_hash_entry)
+  if (ply && (score = probe_ttable(alpha, beta, depth)) != no_hash_entry)
   {
     return score;
   }
@@ -385,19 +390,6 @@ int negamax(int alpha, int beta, int depth)
 
     moves_searched++;
 
-    if (score >= beta)
-    {
-      record_ttable(beta, depth, hash_flag_beta);
-
-      if (get_move_capture(move_list->moves[count]) == 0)
-      {
-        killer_moves[1][ply] = killer_moves[0][ply];
-        killer_moves[0][ply] = move_list->moves[count];
-      }
-
-      return beta;
-    }
-
     if (score > alpha)
     {
       hash_flag = hash_flag_exact;
@@ -417,6 +409,19 @@ int negamax(int alpha, int beta, int depth)
       }
 
       pvar_length[ply] = pvar_length[ply + 1];
+
+      if (score >= beta)
+      {
+        record_ttable(beta, depth, hash_flag_beta);
+
+        if (get_move_capture(move_list->moves[count]) == 0)
+        {
+          killer_moves[1][ply] = killer_moves[0][ply];
+          killer_moves[0][ply] = move_list->moves[count];
+        }
+
+        return beta;
+      }
     }
   }
 
