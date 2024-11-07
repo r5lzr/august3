@@ -20,10 +20,10 @@ int main()
 
 //  uci_loop();
 
-  parse_fen(kiwipete_position, &board);
+  parse_fen(initial_position, &board);
   show_board();
 
-  search_position(7);
+  search_position(10);
 
   return 0;
 }

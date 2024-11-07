@@ -288,11 +288,22 @@ int negamax(int alpha, int beta, int depth)
   {
     copy_board();
 
+    ply++;
+
+    if (board.enpassant != no_sq)
+    {
+      zobrist_key ^= enpassant_keys[board.enpassant];
+    }
+
     board.enpassant = no_sq;
 
     board.side ^= 1;
 
+    zobrist_key ^= side_key;
+
     score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
+
+    ply--;
 
     restore_board();
 
