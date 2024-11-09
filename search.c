@@ -256,7 +256,9 @@ int negamax(int alpha, int beta, int depth)
 
   int hash_flag = hash_flag_alpha;
 
-  if (ply && (score = probe_ttable(alpha, beta, depth)) != no_hash_entry)
+  int pvar_node = beta - alpha > 1;
+
+  if (ply && (score = probe_ttable(alpha, beta, depth)) != no_hash_entry && !pvar_node)
   {
     return score;
   }
