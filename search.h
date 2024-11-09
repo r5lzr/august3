@@ -7,6 +7,10 @@
 #define max_ply 64
 #define score_window 60
 
+#define infinity 50000
+#define mate_value 49000
+#define mate_score 48000
+
 extern int ply;
 extern int mv_lv[12][12];
 extern int killer_moves[2][max_ply];

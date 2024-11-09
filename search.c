@@ -429,7 +429,7 @@ int negamax(int alpha, int beta, int depth)
   {
     if (in_check)
     {
-      return -49000 + ply;
+      return -mate_value + ply;
     }
 
     else
@@ -457,8 +457,8 @@ void search_position(int depth)
   memset(pvar_table, 0, sizeof(pvar_table));
   memset(pvar_length, 0, sizeof(pvar_length));
 
-  int alpha = -50000;
-  int beta = 50000;
+  int alpha = -infinity;
+  int beta = infinity;
 
   for (int current_depth = 1; current_depth <= depth; current_depth++)
   {
@@ -473,8 +473,8 @@ void search_position(int depth)
 
     if ((score <= alpha) || (score >= beta))
     {
-      alpha = -50000;
-      beta = 50000;
+      alpha = -infinity;
+      beta = infinity;
       continue;
     }
 
