@@ -49,18 +49,29 @@ int history_moves[12][64];
 
 // principle variation
 int pvar_length[max_ply];
-
 int pvar_table[max_ply][max_ply];
-
 int follow_pvar;
-
 int score_pvar;
 
 const int full_depth_moves = 4;
-
 const int lmr_reduction_limit = 3;
-
 const int null_reduction_limit = 2;
+
+ui64 repetition_table[1000];
+int repetition_index;
+
+int repetition_detection()
+{
+  for (int index = 0; index < repetition_index; index++)
+  {
+    if (repetition_table[index] == zobrist_key)
+    {
+      return 1;
+    }
+  }
+
+  return 0;
+}
 
 void pvar_scoring(moves *move_list)
 {
@@ -218,9 +229,15 @@ int quiescence(int alpha, int beta)
 
     ply++;
 
+    repetition_index++;
+
+    repetition_table[repetition_index] = zobrist_key;
+
     if (make_move(move_list->moves[count], only_captures) == 0)
     {
       ply--;
+
+      repetition_index--;
 
       continue;
     }
@@ -228,6 +245,8 @@ int quiescence(int alpha, int beta)
     int score = -quiescence(-beta, -alpha);
 
     ply--;
+
+    repetition_index--;
 
     restore_board();
 
@@ -255,6 +274,11 @@ int negamax(int alpha, int beta, int depth)
   int score;
 
   int hash_flag = hash_flag_alpha;
+
+  if (ply && repetition_detection())
+  {
+    return 0;
+  }
 
   int pvar_node = beta - alpha > 1;
 
@@ -297,6 +321,10 @@ int negamax(int alpha, int beta, int depth)
 
     ply++;
 
+    repetition_index++;
+
+    repetition_table[repetition_index] = zobrist_key;
+
     if (board.enpassant != no_sq)
     {
       zobrist_key ^= enpassant_keys[board.enpassant];
@@ -311,6 +339,8 @@ int negamax(int alpha, int beta, int depth)
     score = -negamax(-beta, -beta + 1, depth - 1 - null_reduction_limit);
 
     ply--;
+
+    repetition_index--;
 
     restore_board();
 
@@ -344,9 +374,15 @@ int negamax(int alpha, int beta, int depth)
 
     ply++;
 
+    repetition_index++;
+
+    repetition_table[repetition_index] = zobrist_key;
+
     if (make_move(move_list->moves[count], all_moves) == 0)
     {
       ply--;
+
+      repetition_index--;
 
       continue;
     }
@@ -382,6 +418,8 @@ int negamax(int alpha, int beta, int depth)
     }
 
     ply--;
+
+    repetition_index--;
 
     restore_board();
 

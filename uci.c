@@ -6,9 +6,12 @@
 #include "attacktable.h"
 #include "magicbitboard.h"
 #include "movegen.h"
+#include "perft.h"
 #include "util.h"
 #include "evaluation.h"
 #include "search.h"
+#include "zobrist.h"
+#include "ttable.h"
 
 int parse_move(char *move_string)
 {
@@ -102,6 +105,10 @@ void parse_position(char *command)
       {
         break;
       }
+
+      repetition_index++;
+
+      repetition_table[repetition_index] = zobrist_key;
 
       make_move(move, all_moves);
 

@@ -3,6 +3,15 @@
 #include <string.h>
 #include "bitboard.h"
 #include "zobrist.h"
+#include "uci.h"
+#include "attacktable.h"
+#include "magicbitboard.h"
+#include "movegen.h"
+#include "perft.h"
+#include "util.h"
+#include "evaluation.h"
+#include "search.h"
+#include "ttable.h"
 
 ui64 piece_bitboards[12];
 ui64 side_bitboards[3];
@@ -107,6 +116,10 @@ void parse_fen(char *fen, FenBoard *board)
   board->side = 0;
   board->enpassant = no_sq;
   board->castle = 0;
+
+  repetition_index = 0;
+
+  memset(repetition_table, 0ULL, sizeof(repetition_table));
 
   for (int square = 0; square < 64 && *fen && *fen != ' ';)
   {

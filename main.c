@@ -19,14 +19,14 @@ int main()
   init_zobrist_hash();
   restore_ttable();
 
-//  uci_loop();
+  uci_loop();
 
-  parse_fen(initial_position, &board);
-  show_board();
-
-  search_position(10);
-  make_move(pvar_table[0][0], all_moves);
-  search_position(10);
+//  parse_fen("2r3k1/R7/8/1R6/8/8/P4KPP/8 w - - 0 40 ", &board);
+//  show_board();
+//
+//  search_position(10);
+//  make_move(pvar_table[0][0], all_moves);
+//  search_position(10);
 
   return 0;
 }

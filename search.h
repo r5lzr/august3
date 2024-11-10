@@ -23,6 +23,10 @@ extern const int full_depth_moves;
 extern const int lmr_reduction_limit;
 extern const int null_reduction_limit;
 
+extern ui64 repetition_table[1000];
+extern int repetition_index;
+
+int repetition_detection();
 void pvar_scoring(moves *move_list);
 void show_move_scores(moves *move_list);
 void sort_move(moves *move_list);
