@@ -22,6 +22,7 @@ int main()
   uci_loop();
 
 //  parse_fen("2r3k1/R7/8/1R6/8/8/P4KPP/8 w - - 0 40 ", &board);
+//  parse_fen("1r3rk1/R2PR3/1nB2p2/5P2/8/PP5P/2K5/8 w - - 3 55 ", &board);
 //  show_board();
 //
 //  search_position(10);
