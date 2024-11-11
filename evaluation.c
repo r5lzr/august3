@@ -94,6 +94,70 @@ const int mirror_score[128] =
   a8, b8, c8, d8, e8, f8, g8, h8
 };
 
+ui64 file_mask_table[64];
+ui64 rank_mask_table[64];
+ui64 isolated_mask_table[64];
+ui64 white_passed_mask_table[64];
+ui64 black_passed_mask_table[64];
+
+void init_evaluation_masks()
+{
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      file_mask_table[square] |= file_rank_mask(file, -1);
+//      printf("%s\n", square_to_coordinates[square]);
+//      show_bitboard(file_mask_table[square]);
+    }
+  }
+
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      rank_mask_table[square] |= file_rank_mask(-1, rank);
+      printf("%s\n", square_to_coordinates[square]);
+      show_bitboard(rank_mask_table[square]);
+    }
+  }
+}
+
+ui64 file_rank_mask(int file_number, int rank_number)
+{
+  ui64 bitmask = 0ULL;
+
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      if (file_number != -1)
+      {
+        if (file == file_number)
+        {
+          bitmask |= set_bit(bitmask, square);
+        }
+      }
+
+      else if (rank_number != -1)
+      {
+        if (rank == rank_number)
+        {
+          bitmask |= set_bit(bitmask, square);
+        }
+      }
+    }
+  }
+
+  return bitmask;
+}
+
 int evaluate_pieces()
 {
   int score = 0;

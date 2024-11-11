@@ -10,6 +10,14 @@ extern const int rook_score[64];
 extern const int king_score[64];
 extern const int mirror_score[128];
 
+extern ui64 file_mask_table[64];
+extern ui64 rank_mask_table[64];
+extern ui64 isolated_mask_table[64];
+extern ui64 white_passed_mask_table[64];
+extern ui64 black_passed_mask_table[64];
+
+void init_evaluation_masks();
+ui64 file_rank_mask(int file_number, int rank_number);
 int evaluate_pieces();
 
 
