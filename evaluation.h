@@ -16,6 +16,11 @@ extern ui64 isolated_mask_table[64];
 extern ui64 white_passed_mask_table[64];
 extern ui64 black_passed_mask_table[64];
 
+extern const int passed_pawn_rank[64];
+extern const int doubled_pawn_negative;
+extern const int isolated_pawn_negative;
+extern const int passed_pawn_positive[8];
+
 void init_evaluation_masks();
 ui64 file_rank_mask(int file_number, int rank_number);
 int evaluate_pieces();

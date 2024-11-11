@@ -100,6 +100,22 @@ ui64 isolated_mask_table[64];
 ui64 white_passed_mask_table[64];
 ui64 black_passed_mask_table[64];
 
+const int passed_pawn_rank[64] =
+{
+  7, 7, 7, 7, 7, 7, 7, 7,
+  6, 6, 6, 6, 6, 6, 6, 6,
+  5, 5, 5, 5, 5, 5, 5, 5,
+  4, 4, 4, 4, 4, 4, 4, 4,
+  3, 3, 3, 3, 3, 3, 3, 3,
+  2, 2, 2, 2, 2, 2, 2, 2,
+  1, 1, 1, 1, 1, 1, 1, 1,
+	0, 0, 0, 0, 0, 0, 0, 0
+};
+
+const int doubled_pawn_negative = -10;
+const int isolated_pawn_negative = -10;
+const int passed_pawn_positive[8] = {0, 10, 30, 50, 75, 100, 150, 200};
+
 void init_evaluation_masks()
 {
   for (int rank = 0; rank < 8; rank++)
@@ -174,8 +190,8 @@ void init_evaluation_masks()
         black_passed_mask_table[square] &= ~rank_mask_table[i * 8 + file];
       }
 
-      printf("%s\n", square_to_coordinates[square]);
-      show_bitboard(black_passed_mask_table[square]);
+//      printf("%s\n", square_to_coordinates[square]);
+//      show_bitboard(black_passed_mask_table[square]);
     }
   }
 }
@@ -219,6 +235,8 @@ int evaluate_pieces()
 
   int square, relative_score;
 
+  int doubled_pawns;
+
   for (int piece = P; piece <= k; piece++)
   {
     bitboard = piece_bitboards[piece];
@@ -233,6 +251,24 @@ int evaluate_pieces()
       {
         case P:
           score += pawn_score[square];
+
+          doubled_pawns = count_bits(piece_bitboards[P] & file_mask_table[square]);
+
+          if (doubled_pawns > 1)
+          {
+            score += doubled_pawns * doubled_pawn_negative;
+          }
+
+          if ((piece_bitboards[P] & isolated_mask_table[square]) == 0)
+          {
+            score += isolated_pawn_negative;
+          }
+
+          if ((white_passed_mask_table[square] & piece_bitboards[p]) == 0)
+          {
+            score += passed_pawn_positive[passed_pawn_rank[square]];
+          }
+
           break;
         case N:
           score += knight_score[square];
@@ -252,6 +288,24 @@ int evaluate_pieces()
 
         case p:
           score -= pawn_score[mirror_score[square]];
+
+          doubled_pawns = count_bits(piece_bitboards[p] & file_mask_table[square]);
+
+          if (doubled_pawns > 1)
+          {
+            score -= doubled_pawns * doubled_pawn_negative;
+          }
+
+          if ((piece_bitboards[p] & isolated_mask_table[square]) == 0)
+          {
+            score -= isolated_pawn_negative;
+          }
+
+          if ((black_passed_mask_table[square] & piece_bitboards[P]) == 0)
+          {
+            score -= passed_pawn_positive[passed_pawn_rank[mirror_score[square]]];
+          }
+
           break;
         case n:
           score -= knight_score[mirror_score[square]];
