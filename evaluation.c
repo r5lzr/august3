@@ -121,8 +121,61 @@ void init_evaluation_masks()
       int square = rank * 8 + file;
 
       rank_mask_table[square] |= file_rank_mask(-1, rank);
+//      printf("%s\n", square_to_coordinates[square]);
+//      show_bitboard(rank_mask_table[square]);
+    }
+  }
+
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      isolated_mask_table[square] |= file_rank_mask(file - 1, -1);
+      isolated_mask_table[square] |= file_rank_mask(file + 1, -1);
+//      printf("%s\n", square_to_coordinates[square]);
+//      show_bitboard(isolated_mask_table[square]);
+    }
+  }
+
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      white_passed_mask_table[square] |= file_rank_mask(file - 1, -1);
+      white_passed_mask_table[square] |= file_rank_mask(file, -1);
+      white_passed_mask_table[square] |= file_rank_mask(file + 1, -1);
+
+      for (int i = 0; i < (8 - rank); i++)
+      {
+        white_passed_mask_table[square] &= ~rank_mask_table[(7 - i) * 8 + file];
+      }
+
+//      printf("%s\n", square_to_coordinates[square]);
+//      show_bitboard(white_passed_mask_table[square]);
+    }
+  }
+
+  for (int rank = 0; rank < 8; rank++)
+  {
+    for (int file = 0; file < 8; file++)
+    {
+      int square = rank * 8 + file;
+
+      black_passed_mask_table[square] |= file_rank_mask(file - 1, -1);
+      black_passed_mask_table[square] |= file_rank_mask(file, -1);
+      black_passed_mask_table[square] |= file_rank_mask(file + 1, -1);
+
+      for (int i = 0; i < (rank + 1); i++)
+      {
+        black_passed_mask_table[square] &= ~rank_mask_table[i * 8 + file];
+      }
+
       printf("%s\n", square_to_coordinates[square]);
-      show_bitboard(rank_mask_table[square]);
+      show_bitboard(black_passed_mask_table[square]);
     }
   }
 }
