@@ -119,6 +119,8 @@ const int passed_pawn_positive[8] = {0, 10, 30, 50, 75, 100, 150, 200};
 const int semi_file_score = 10;
 const int open_file_score = 15;
 
+const int king_shield_positive = 5;
+
 void init_evaluation_masks()
 {
   for (int rank = 0; rank < 8; rank++)
@@ -275,9 +277,13 @@ int evaluate_pieces()
           break;
         case N:
           score += knight_score[square];
+
           break;
         case B:
           score += bishop_score[square];
+
+          score += count_bits(get_bishop_attacks(square, side_bitboards[both]));
+
           break;
         case R:
           score += rook_score[square];
@@ -293,9 +299,10 @@ int evaluate_pieces()
           }
 
           break;
-//        case Q:
-//          score += queen_score[square];
-//          break;
+        case Q:
+          score += count_bits(get_queen_attacks(square, side_bitboards[both]));
+
+          break;
         case K:
           score += king_score[square];
 
@@ -308,6 +315,8 @@ int evaluate_pieces()
           {
             score -= open_file_score;
           }
+
+          score += count_bits(king_attacks_table[square] & side_bitboards[white]) * king_shield_positive;
 
           break;
 
@@ -334,9 +343,13 @@ int evaluate_pieces()
           break;
         case n:
           score -= knight_score[mirror_score[square]];
+
           break;
         case b:
           score -= bishop_score[mirror_score[square]];
+
+          score -= count_bits(get_bishop_attacks(square, side_bitboards[both]));
+
           break;
         case r:
           score -= rook_score[mirror_score[square]];
@@ -352,9 +365,10 @@ int evaluate_pieces()
           }
 
           break;
-//        case q:
-//          score -= queen_score[mirror_score[square]];
-//          break;
+        case q:
+          score -= count_bits(get_queen_attacks(square, side_bitboards[both]));
+
+          break;
         case k:
           score -= king_score[mirror_score[square]];
 
@@ -367,6 +381,8 @@ int evaluate_pieces()
           {
             score += open_file_score;
           }
+
+          score -= count_bits(king_attacks_table[square] & side_bitboards[black]) * king_shield_positive;
 
           break;
       }

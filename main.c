@@ -22,7 +22,7 @@ int main()
 
 //  uci_loop();
 
-  parse_fen("6k1/5p1p/8/8/8/8/5P1P/6K1 w - - 0 1 ", &board);
+  parse_fen("6k1/ppppprbp/8/8/8/8/PPPPPRBP/6K1 w - - 0 1 ", &board);
   show_board();
   printf("score: %d\n", evaluate_pieces());
 
