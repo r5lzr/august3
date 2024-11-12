@@ -116,6 +116,9 @@ const int doubled_pawn_negative = -10;
 const int isolated_pawn_negative = -10;
 const int passed_pawn_positive[8] = {0, 10, 30, 50, 75, 100, 150, 200};
 
+const int semi_file_score = 10;
+const int open_file_score = 15;
+
 void init_evaluation_masks()
 {
   for (int rank = 0; rank < 8; rank++)
@@ -278,12 +281,34 @@ int evaluate_pieces()
           break;
         case R:
           score += rook_score[square];
+
+          if ((piece_bitboards[P] & file_mask_table[square]) == 0)
+          {
+            score += semi_file_score;
+          }
+
+          if (((piece_bitboards[P] | piece_bitboards[p]) & file_mask_table[square]) == 0)
+          {
+            score += open_file_score;
+          }
+
           break;
 //        case Q:
 //          score += queen_score[square];
 //          break;
         case K:
           score += king_score[square];
+
+          if ((piece_bitboards[P] & file_mask_table[square]) == 0)
+          {
+            score -= semi_file_score;
+          }
+
+          if (((piece_bitboards[P] | piece_bitboards[p]) & file_mask_table[square]) == 0)
+          {
+            score -= open_file_score;
+          }
+
           break;
 
         case p:
@@ -315,12 +340,34 @@ int evaluate_pieces()
           break;
         case r:
           score -= rook_score[mirror_score[square]];
+
+          if ((piece_bitboards[p] & file_mask_table[square]) == 0)
+          {
+            score -= semi_file_score;
+          }
+
+          if (((piece_bitboards[P] | piece_bitboards[p]) & file_mask_table[square]) == 0)
+          {
+            score -= open_file_score;
+          }
+
           break;
 //        case q:
 //          score -= queen_score[mirror_score[square]];
 //          break;
         case k:
           score -= king_score[mirror_score[square]];
+
+          if ((piece_bitboards[p] & file_mask_table[square]) == 0)
+          {
+            score += semi_file_score;
+          }
+
+          if (((piece_bitboards[P] | piece_bitboards[p]) & file_mask_table[square]) == 0)
+          {
+            score += open_file_score;
+          }
+
           break;
       }
 

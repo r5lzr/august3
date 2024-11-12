@@ -21,6 +21,9 @@ extern const int doubled_pawn_negative;
 extern const int isolated_pawn_negative;
 extern const int passed_pawn_positive[8];
 
+extern const int semi_file_score;
+extern const int open_file_score;
+
 void init_evaluation_masks();
 ui64 file_rank_mask(int file_number, int rank_number);
 int evaluate_pieces();
