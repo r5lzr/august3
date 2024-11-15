@@ -20,11 +20,11 @@ int main()
   restore_ttable();
   init_evaluation_masks();
 
-//  uci_loop();
+  uci_loop();
 
-  parse_fen("6k1/ppppprbp/8/8/8/8/PPPPPRBP/6K1 w - - 0 1 ", &board);
-  show_board();
-  printf("score: %d\n", evaluate_pieces());
+//  parse_fen("6k1/ppppprbp/8/8/8/8/PPPPPRBP/6K1 w - - 0 1 ", &board);
+//  show_board();
+//  printf("score: %d\n", evaluate_pieces());
 
   return 0;
 }

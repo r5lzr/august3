@@ -195,6 +195,11 @@ void parse_go(char *command)
 
     time /= moves_to_go;
 
+    if (time > 1500)
+    {
+      time -= 50;
+    }
+
     stop_time = start_time + time + inc_time;
   }
 
@@ -203,7 +208,7 @@ void parse_go(char *command)
     depth = 64;
   }
 
-  printf("time:%d start:%d stop:%d depth:%d timeset:%d\n", time, start_time, stop_time, depth, time_set);
+  printf("time: %d start: %u stop: %u depth: %d timeset:%d\n", time, start_time, stop_time, depth, time_set);
 
   search_position(depth);
 }
