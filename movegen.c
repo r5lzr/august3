@@ -70,9 +70,18 @@ void show_attacked_squares(int side)
 
 void show_move(int move)
 {
-  printf("%s%s%c", square_to_coordinates[get_move_source(move)],
-          square_to_coordinates[get_move_target(move)],
-          promoted_pieces[get_move_promoted(move)]);
+  if (get_move_promoted(move))
+  {
+    printf("%s%s%c", square_to_coordinates[get_move_source(move)],
+            square_to_coordinates[get_move_target(move)],
+            promoted_pieces[get_move_promoted(move)]);
+  }
+
+  else
+  {
+    printf("%s%s", square_to_coordinates[get_move_source(move)],
+            square_to_coordinates[get_move_target(move)]);
+  }
 }
 
 void show_move_list(moves *move_list)

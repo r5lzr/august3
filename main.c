@@ -22,9 +22,12 @@ int main()
 
   uci_loop();
 
-//  parse_fen("6k1/ppppprbp/8/8/8/8/PPPPPRBP/6K1 w - - 0 1 ", &board);
+//  parse_fen(initial_position, &board);
 //  show_board();
-//  printf("score: %d\n", evaluate_pieces());
+//
+//  search_position(10);
+//  make_move(pvar_table[0][0], all_moves);
+//  search_position(10);
 
   return 0;
 }
