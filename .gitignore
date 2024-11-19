@@ -1,0 +1,2 @@
+# Ignore bin files created during developing
+bin/Debug/
