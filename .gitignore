@@ -1,2 +1,3 @@
 # Ignore bin files created during developing
 bin/Debug/
+bin/Debug/*.exe
