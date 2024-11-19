@@ -1,0 +1,151 @@
+WORKDIR = %cd%
+
+CC = gcc.exe
+CXX = g++.exe
+AR = ar.exe
+LD = g++.exe
+WINDRES = windres.exe
+
+INC = 
+CFLAGS = -Wall
+RESINC = 
+LIBDIR = 
+LIB = 
+LDFLAGS = -lws2_32
+
+INC_DEBUG = $(INC)
+CFLAGS_DEBUG = $(CFLAGS) -g
+RESINC_DEBUG = $(RESINC)
+RCFLAGS_DEBUG = $(RCFLAGS)
+LIBDIR_DEBUG = $(LIBDIR)
+LIB_DEBUG = $(LIB)
+LDFLAGS_DEBUG = $(LDFLAGS)
+OBJDIR_DEBUG = obj\\Windows\\Debug
+DEP_DEBUG = 
+OUT_DEBUG = bin\\Windows\\Debug\\august3.exe
+
+INC_RELEASE = $(INC)
+CFLAGS_RELEASE = $(CFLAGS) -Ofast
+RESINC_RELEASE = $(RESINC)
+RCFLAGS_RELEASE = $(RCFLAGS)
+LIBDIR_RELEASE = $(LIBDIR)
+LIB_RELEASE = $(LIB)
+LDFLAGS_RELEASE = $(LDFLAGS) -s
+OBJDIR_RELEASE = obj\\Windows\\Release
+DEP_RELEASE = 
+OUT_RELEASE = bin\\Windows\\Release\\august3.exe
+
+OBJ_DEBUG = $(OBJDIR_DEBUG)\\perft.o $(OBJDIR_DEBUG)\\zobrist.o $(OBJDIR_DEBUG)\\util.o $(OBJDIR_DEBUG)\\uci.o $(OBJDIR_DEBUG)\\ttable.o $(OBJDIR_DEBUG)\\search.o $(OBJDIR_DEBUG)\\attacktable.o $(OBJDIR_DEBUG)\\movegen.o $(OBJDIR_DEBUG)\\main.o $(OBJDIR_DEBUG)\\magicbitboard.o $(OBJDIR_DEBUG)\\evaluation.o $(OBJDIR_DEBUG)\\bitboard.o
+
+OBJ_RELEASE = $(OBJDIR_RELEASE)\\perft.o $(OBJDIR_RELEASE)\\zobrist.o $(OBJDIR_RELEASE)\\util.o $(OBJDIR_RELEASE)\\uci.o $(OBJDIR_RELEASE)\\ttable.o $(OBJDIR_RELEASE)\\search.o $(OBJDIR_RELEASE)\\attacktable.o $(OBJDIR_RELEASE)\\movegen.o $(OBJDIR_RELEASE)\\main.o $(OBJDIR_RELEASE)\\magicbitboard.o $(OBJDIR_RELEASE)\\evaluation.o $(OBJDIR_RELEASE)\\bitboard.o
+
+all: debug release
+
+clean: clean_debug clean_release
+
+before_debug: 
+	cmd /c if not exist bin\\Windows\\Debug md bin\\Windows\\Debug
+	cmd /c if not exist $(OBJDIR_DEBUG) md $(OBJDIR_DEBUG)
+
+after_debug: 
+
+debug: before_debug out_debug after_debug
+
+out_debug: before_debug $(OBJ_DEBUG) $(DEP_DEBUG)
+	$(LD) $(LIBDIR_DEBUG) -o $(OUT_DEBUG) $(OBJ_DEBUG)  $(LDFLAGS_DEBUG) $(LIB_DEBUG)
+
+$(OBJDIR_DEBUG)\\perft.o: perft.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c perft.c -o $(OBJDIR_DEBUG)\\perft.o
+
+$(OBJDIR_DEBUG)\\zobrist.o: zobrist.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c zobrist.c -o $(OBJDIR_DEBUG)\\zobrist.o
+
+$(OBJDIR_DEBUG)\\util.o: util.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c util.c -o $(OBJDIR_DEBUG)\\util.o
+
+$(OBJDIR_DEBUG)\\uci.o: uci.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c uci.c -o $(OBJDIR_DEBUG)\\uci.o
+
+$(OBJDIR_DEBUG)\\ttable.o: ttable.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c ttable.c -o $(OBJDIR_DEBUG)\\ttable.o
+
+$(OBJDIR_DEBUG)\\search.o: search.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c search.c -o $(OBJDIR_DEBUG)\\search.o
+
+$(OBJDIR_DEBUG)\\attacktable.o: attacktable.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c attacktable.c -o $(OBJDIR_DEBUG)\\attacktable.o
+
+$(OBJDIR_DEBUG)\\movegen.o: movegen.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c movegen.c -o $(OBJDIR_DEBUG)\\movegen.o
+
+$(OBJDIR_DEBUG)\\main.o: main.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c main.c -o $(OBJDIR_DEBUG)\\main.o
+
+$(OBJDIR_DEBUG)\\magicbitboard.o: magicbitboard.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c magicbitboard.c -o $(OBJDIR_DEBUG)\\magicbitboard.o
+
+$(OBJDIR_DEBUG)\\evaluation.o: evaluation.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c evaluation.c -o $(OBJDIR_DEBUG)\\evaluation.o
+
+$(OBJDIR_DEBUG)\\bitboard.o: bitboard.c
+	$(CC) $(CFLAGS_DEBUG) $(INC_DEBUG) -c bitboard.c -o $(OBJDIR_DEBUG)\\bitboard.o
+
+clean_debug: 
+	cmd /c del /f $(OBJ_DEBUG) $(OUT_DEBUG)
+	cmd /c rd bin\\Windows\\Debug
+	cmd /c rd $(OBJDIR_DEBUG)
+
+before_release: 
+	cmd /c if not exist bin\\Windows\\Release md bin\\Windows\\Release
+	cmd /c if not exist $(OBJDIR_RELEASE) md $(OBJDIR_RELEASE)
+
+after_release: 
+
+release: before_release out_release after_release
+
+out_release: before_release $(OBJ_RELEASE) $(DEP_RELEASE)
+	$(LD) $(LIBDIR_RELEASE) -o $(OUT_RELEASE) $(OBJ_RELEASE)  $(LDFLAGS_RELEASE) $(LIB_RELEASE)
+
+$(OBJDIR_RELEASE)\\perft.o: perft.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c perft.c -o $(OBJDIR_RELEASE)\\perft.o
+
+$(OBJDIR_RELEASE)\\zobrist.o: zobrist.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c zobrist.c -o $(OBJDIR_RELEASE)\\zobrist.o
+
+$(OBJDIR_RELEASE)\\util.o: util.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c util.c -o $(OBJDIR_RELEASE)\\util.o
+
+$(OBJDIR_RELEASE)\\uci.o: uci.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c uci.c -o $(OBJDIR_RELEASE)\\uci.o
+
+$(OBJDIR_RELEASE)\\ttable.o: ttable.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c ttable.c -o $(OBJDIR_RELEASE)\\ttable.o
+
+$(OBJDIR_RELEASE)\\search.o: search.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c search.c -o $(OBJDIR_RELEASE)\\search.o
+
+$(OBJDIR_RELEASE)\\attacktable.o: attacktable.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c attacktable.c -o $(OBJDIR_RELEASE)\\attacktable.o
+
+$(OBJDIR_RELEASE)\\movegen.o: movegen.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c movegen.c -o $(OBJDIR_RELEASE)\\movegen.o
+
+$(OBJDIR_RELEASE)\\main.o: main.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c main.c -o $(OBJDIR_RELEASE)\\main.o
+
+$(OBJDIR_RELEASE)\\magicbitboard.o: magicbitboard.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c magicbitboard.c -o $(OBJDIR_RELEASE)\\magicbitboard.o
+
+$(OBJDIR_RELEASE)\\evaluation.o: evaluation.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c evaluation.c -o $(OBJDIR_RELEASE)\\evaluation.o
+
+$(OBJDIR_RELEASE)\\bitboard.o: bitboard.c
+	$(CC) $(CFLAGS_RELEASE) $(INC_RELEASE) -c bitboard.c -o $(OBJDIR_RELEASE)\\bitboard.o
+
+clean_release: 
+	cmd /c del /f $(OBJ_RELEASE) $(OUT_RELEASE)
+	cmd /c rd bin\\Windows\\Release
+	cmd /c rd $(OBJDIR_RELEASE)
+
+.PHONY: before_debug after_debug clean_debug before_release after_release clean_release
+

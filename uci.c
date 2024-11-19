@@ -146,12 +146,12 @@ void parse_go(char *command)
 
   if ((input_go = strstr(command,"wtime")) && board.side == white)
   {
-    time = atoi(input_go + 6);
+    current_time = atoi(input_go + 6);
   }
 
   if ((input_go = strstr(command,"btime")) && board.side == black)
   {
-    time = atoi(input_go + 6);
+    current_time = atoi(input_go + 6);
   }
 
   if ((input_go = strstr(command,"movestogo")))
@@ -180,7 +180,7 @@ void parse_go(char *command)
 
   if (move_time != -1)
   {
-    time = move_time;
+    current_time = move_time;
 
     moves_to_go = 1;
   }
@@ -189,18 +189,18 @@ void parse_go(char *command)
 
   depth = depth;
 
-  if (time != -1)
+  if (current_time != -1)
   {
     time_set = 1;
 
-    time /= moves_to_go;
+    current_time /= moves_to_go;
 
-    if (time > 1500)
+    if (current_time > 1500)
     {
-      time -= 50;
+      current_time -= 50;
     }
 
-    stop_time = start_time + time + inc_time;
+    stop_time = start_time + current_time + inc_time;
   }
 
   if (depth == -1)
@@ -208,7 +208,7 @@ void parse_go(char *command)
     depth = 64;
   }
 
-  printf("time: %d start: %u stop: %u depth: %d timeset:%d\n", time, start_time, stop_time, depth, time_set);
+  printf("time: %d start: %u stop: %u depth: %d timeset:%d\n", current_time, start_time, stop_time, depth, time_set);
 
   search_position(depth);
 }

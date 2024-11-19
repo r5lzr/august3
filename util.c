@@ -1,17 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "util.h"
 #ifdef WIN64
   #include <windows.h>
 #else
   #include <sys/time.h>
 #endif
+#ifdef _WIN32
+  #include <winsock2.h>
+#else
+  #include <sys/select.h>
+#endif
 
 int quit = 0;
 int moves_to_go = 30;
 int move_time = -1;
-int time = -1;
+int current_time = -1;
 int inc_time = 0;
 int start_time = 0;
 int stop_time = 0;
@@ -34,7 +40,7 @@ void reset_tc()
   quit = 0;
   moves_to_go = 30;
   move_time = -1;
-  time = -1;
+  current_time = -1;
   inc_time = 0;
   start_time = 0;
   stop_time = 0;
