@@ -30,7 +30,7 @@
   board.side = side_copy, board.enpassant = enpassant_copy, board.castle = castle_copy; \
   zobrist_key = zobrist_key_copy; \
 
-const enum {all_moves, only_captures};
+enum {all_moves, only_captures};
 
 typedef struct {
   int moves[256];

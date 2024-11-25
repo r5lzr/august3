@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1732008647 source:c:\codeblocks\august3\main.c
+1732555351 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -40,7 +40,7 @@
 	"evaluation.h"
 	"movegen.h"
 
-1732008647 source:c:\codeblocks\august3\bitboard.c
+1732555351 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -56,9 +56,9 @@
 	"search.h"
 	"ttable.h"
 
-1732008647 c:\codeblocks\august3\bitboard.h
+1732555382 c:\codeblocks\august3\bitboard.h
 
-1732008647 source:c:\codeblocks\august3\attacktable.c
+1732555351 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -73,7 +73,7 @@
 	"bitboard.h"
 	"magicbitboard.h"
 
-1732008647 c:\codeblocks\august3\magicbitboard.h
+1732555395 c:\codeblocks\august3\magicbitboard.h
 
 1728073060 source:/home/r/codeblocks/august3/attacktable.c
 	<stdio.h>
@@ -126,7 +126,7 @@
 	"magicbitboard.h"
 	"zobrist.h"
 
-1732008647 c:\codeblocks\august3\movegen.h
+1732555399 c:\codeblocks\august3\movegen.h
 	"zobrist.h"
 
 1732008647 source:c:\codeblocks\august3\perft.c

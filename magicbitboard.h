@@ -2,7 +2,7 @@
 #define MAGIC_BITBOARD_H
 
 
-const enum {rook, bishop};
+enum {rook, bishop};
 
 // shows relevant occupancy bits relative to board position, reduces bit count calls
 extern const int bishop_relevant_bits[64];
