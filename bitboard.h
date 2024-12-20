@@ -1,8 +1,9 @@
 #ifndef BITBOARD_H
 #define BITBOARD_H
 
+#include <inttypes.h>
 
-typedef unsigned long long ui64;
+typedef uint64_t ui64; // unsigned long long
 
 #define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
 #define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))

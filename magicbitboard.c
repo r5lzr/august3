@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include "bitboard.h"
 #include "magicbitboard.h"
 
@@ -355,12 +356,12 @@ ui64 find_magic_number(int square, int relevant_bits, int sliding_piece)
 void init_magic_numbers()
 {
   for (int square = 0; square < 64; square++)
-    printf(" 0x%llxULL,\n", find_magic_number(square, rook_relevant_bits[square], rook));
+    printf(" 0x%" PRIx64 "ULL,\n", find_magic_number(square, rook_relevant_bits[square], rook));
 
   printf("\n\n");
 
   for (int square = 0; square < 64; square++)
-    printf(" 0x%llxULL,\n", find_magic_number(square, bishop_relevant_bits[square], bishop));
+    printf(" 0x%" PRIx64 "ULL,\n", find_magic_number(square, bishop_relevant_bits[square], bishop));
 }
 
 void init_slider_attacks(int sliding_piece)

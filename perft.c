@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include "bitboard.h"
 #include "perft.h"
 #include "movegen.h"
 #include "zobrist.h"
+#include "util.h"
 
 ui64 nodes;
 
@@ -18,7 +20,7 @@ void perft_driver(int depth)
 
   moves move_list[1];
 
-  generate_moves(&move_list);
+  generate_moves(move_list);
 
   for (int move_count = 0; move_count < move_list->count; move_count++)
   {
@@ -48,7 +50,7 @@ void perft_test(int depth)
 
   moves move_list[1];
 
-  generate_moves(&move_list);
+  generate_moves(move_list);
 
   long start = get_time_ms();
 
@@ -103,7 +105,7 @@ void perft_test(int depth)
   }
 
   printf("\nDepth: %d\n", depth);
-  printf("Nodes: %lld\n", nodes);
+  printf("Nodes: %" PRId64 "\n", nodes);
   printf("Time: %ld ms\n", get_time_ms() - start);
 
 }

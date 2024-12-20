@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1732555351 source:c:\codeblocks\august3\main.c
+1734706955 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -40,10 +40,11 @@
 	"evaluation.h"
 	"movegen.h"
 
-1732555351 source:c:\codeblocks\august3\bitboard.c
+1734371683 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<inttypes.h>
 	"bitboard.h"
 	"zobrist.h"
 	"uci.h"
@@ -56,7 +57,7 @@
 	"search.h"
 	"ttable.h"
 
-1732555382 c:\codeblocks\august3\bitboard.h
+1734706982 c:\codeblocks\august3\bitboard.h
 
 1732555351 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
@@ -66,10 +67,11 @@
 
 1732008647 c:\codeblocks\august3\attacktable.h
 
-1732008647 source:c:\codeblocks\august3\magicbitboard.c
+1732557993 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<inttypes.h>
 	"bitboard.h"
 	"magicbitboard.h"
 
@@ -129,31 +131,33 @@
 1732555399 c:\codeblocks\august3\movegen.h
 	"zobrist.h"
 
-1732008647 source:c:\codeblocks\august3\perft.c
+1734707198 source:c:\codeblocks\august3\perft.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<inttypes.h>
 	"bitboard.h"
 	"perft.h"
 	"movegen.h"
 	"zobrist.h"
+	"util.h"
 
-1732008647 c:\codeblocks\august3\perft.h
+1734706784 c:\codeblocks\august3\perft.h
 
 1732015287 c:\codeblocks\august3\util.h
 
-1732018014 source:c:\codeblocks\august3\util.c
+1734460780 source:c:\codeblocks\august3\util.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
 	<string.h>
 	"util.h"
-	<windows.h>
-	<sys/time.h>
 	<winsock2.h>
 	<sys/select.h>
+	<windows.h>
+	<sys/time.h>
 
-1732020205 source:c:\codeblocks\august3\uci.c
+1734451054 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -171,7 +175,7 @@
 
 1732008647 c:\codeblocks\august3\uci.h
 
-1732008647 source:c:\codeblocks\august3\evaluation.c
+1734374905 source:c:\codeblocks\august3\evaluation.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -185,10 +189,11 @@
 
 1727489562 ated upstream
 
-1732033996 source:c:\codeblocks\august3\search.c
+1733333438 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	<inttypes.h>
 	"bitboard.h"
 	"search.h"
 	"attacktable.h"

@@ -17,7 +17,7 @@ int parse_move(char *move_string)
 {
   moves move_list[1];
 
-  generate_moves(&move_list);
+  generate_moves(move_list);
 
   int source_square = (move_string[0] - 'a') + (8 - (move_string[1] - '0')) * 8;
 

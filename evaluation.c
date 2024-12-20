@@ -215,7 +215,7 @@ ui64 file_rank_mask(int file_number, int rank_number)
       {
         if (file == file_number)
         {
-          bitmask |= set_bit(bitmask, square);
+          set_bit(bitmask, square);
         }
       }
 
@@ -223,7 +223,7 @@ ui64 file_rank_mask(int file_number, int rank_number)
       {
         if (rank == rank_number)
         {
-          bitmask |= set_bit(bitmask, square);
+          set_bit(bitmask, square);
         }
       }
     }

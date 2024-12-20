@@ -3,15 +3,15 @@
 #include <unistd.h>
 #include <string.h>
 #include "util.h"
-#ifdef WIN64
-  #include <windows.h>
-#else
-  #include <sys/time.h>
-#endif
 #ifdef _WIN32
   #include <winsock2.h>
 #else
   #include <sys/select.h>
+#endif
+#ifdef WIN64
+  #include <windows.h>
+#else
+  #include <sys/time.h>
 #endif
 
 int quit = 0;

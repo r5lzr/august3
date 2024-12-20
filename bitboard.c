@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <inttypes.h>
 #include "bitboard.h"
 #include "zobrist.h"
 #include "uci.h"
@@ -63,7 +64,7 @@ void show_bitboard(ui64 bitboard)
   }
   printf("\n     a b c d e f g h\n\n");
 
-  printf("     Bitboard: %llud\n\n", bitboard);
+  printf("     Bitboard: %" PRIu64 "\n\n", bitboard);
 }
 
 void show_board()
@@ -104,7 +105,7 @@ void show_board()
    (board.castle & bk) ? 'k' : '-',
    (board.castle & bq) ? 'q' : '-');
 
-  printf("  zobrist key: %llx\n\n", zobrist_key);
+  printf("  zobrist key: %" PRIx64 "\n\n", zobrist_key);
 }
 
 void parse_fen(char *fen, FenBoard *board)
@@ -125,7 +126,7 @@ void parse_fen(char *fen, FenBoard *board)
   {
     if ((*fen >= 'b' && *fen <= 'r') || (*fen >= 'B' && *fen <= 'R'))
     {
-      int piece = char_pieces[*fen];
+      int piece = char_pieces[(unsigned char)*fen];
 
       set_bit(piece_bitboards[piece], square);
 
@@ -201,7 +202,5 @@ void parse_fen(char *fen, FenBoard *board)
   side_bitboards[both] |= side_bitboards[white] | side_bitboards[black];
 
   zobrist_key = generate_zobrist_key();
-
-  return board;
 }
 
