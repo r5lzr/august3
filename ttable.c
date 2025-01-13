@@ -10,6 +10,8 @@
 #include "util.h"
 #include "evaluation.h"
 
+transposition_table ttable[ttable_size];
+
 void restore_ttable()
 {
   for (int index = 0; index < ttable_size; index++)

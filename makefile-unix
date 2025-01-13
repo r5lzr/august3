@@ -7,7 +7,7 @@ LD = g++
 WINDRES = windres
 
 INC = 
-CFLAGS = -Wall
+CFLAGS = -Wall -Wextra -pedantic-errors -Wconversion -Wsign-conversion
 RESINC = 
 LIBDIR = 
 LIB = 

@@ -208,7 +208,7 @@ void parse_go(char *command)
     depth = 64;
   }
 
-  printf("time: %d start: %u stop: %u depth: %d timeset:%d\n", current_time, start_time, stop_time, depth, time_set);
+  printf("time: %d start: %d stop: %u depth: %d timeset:%d\n", current_time, start_time, stop_time, depth, time_set);
 
   search_position(depth);
 }

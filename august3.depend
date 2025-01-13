@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 192 <<<<<<< Updated upstream
 
-1734706955 source:c:\codeblocks\august3\main.c
+1736782073 source:c:\codeblocks\august3\main.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -40,7 +40,7 @@
 	"evaluation.h"
 	"movegen.h"
 
-1734371683 source:c:\codeblocks\august3\bitboard.c
+1736781189 source:c:\codeblocks\august3\bitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -57,7 +57,8 @@
 	"search.h"
 	"ttable.h"
 
-1734706982 c:\codeblocks\august3\bitboard.h
+1736629914 c:\codeblocks\august3\bitboard.h
+	<inttypes.h>
 
 1732555351 source:c:\codeblocks\august3\attacktable.c
 	<stdio.h>
@@ -67,7 +68,7 @@
 
 1732008647 c:\codeblocks\august3\attacktable.h
 
-1732557993 source:c:\codeblocks\august3\magicbitboard.c
+1736781287 source:c:\codeblocks\august3\magicbitboard.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -128,10 +129,10 @@
 	"magicbitboard.h"
 	"zobrist.h"
 
-1732555399 c:\codeblocks\august3\movegen.h
+1736458102 c:\codeblocks\august3\movegen.h
 	"zobrist.h"
 
-1734707198 source:c:\codeblocks\august3\perft.c
+1736781074 source:c:\codeblocks\august3\perft.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -144,20 +145,20 @@
 
 1734706784 c:\codeblocks\august3\perft.h
 
-1732015287 c:\codeblocks\august3\util.h
+1736780779 c:\codeblocks\august3\util.h
 
-1734460780 source:c:\codeblocks\august3\util.c
+1736781720 source:c:\codeblocks\august3\util.c
 	<stdio.h>
 	<stdlib.h>
 	<unistd.h>
 	<string.h>
 	"util.h"
 	<winsock2.h>
-	<sys/select.h>
 	<windows.h>
+	<sys/select.h>
 	<sys/time.h>
 
-1734451054 source:c:\codeblocks\august3\uci.c
+1736780883 source:c:\codeblocks\august3\uci.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -175,7 +176,7 @@
 
 1732008647 c:\codeblocks\august3\uci.h
 
-1734374905 source:c:\codeblocks\august3\evaluation.c
+1734710467 source:c:\codeblocks\august3\evaluation.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"
@@ -189,7 +190,7 @@
 
 1727489562 ated upstream
 
-1733333438 source:c:\codeblocks\august3\search.c
+1736780749 source:c:\codeblocks\august3\search.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -309,9 +310,9 @@
 	"util.h"
 	"evaluation.h"
 
-1732008647 c:\codeblocks\august3\ttable.h
+1736461989 c:\codeblocks\august3\ttable.h
 
-1732008647 source:c:\codeblocks\august3\ttable.c
+1736462011 source:c:\codeblocks\august3\ttable.c
 	<stdio.h>
 	<stdlib.h>
 	"bitboard.h"

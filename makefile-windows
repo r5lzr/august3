@@ -6,11 +6,11 @@ AR = ar.exe
 LD = g++.exe
 WINDRES = windres.exe
 
-INC = 
-CFLAGS = -Wall
-RESINC = 
-LIBDIR = 
-LIB = 
+INC =
+CFLAGS = -Wall -Wextra -pedantic-errors -Wconversion -Wsign-conversion
+RESINC =
+LIBDIR =
+LIB =
 LDFLAGS = -lws2_32
 
 INC_DEBUG = $(INC)
@@ -21,7 +21,7 @@ LIBDIR_DEBUG = $(LIBDIR)
 LIB_DEBUG = $(LIB)
 LDFLAGS_DEBUG = $(LDFLAGS)
 OBJDIR_DEBUG = obj\\Windows\\Debug
-DEP_DEBUG = 
+DEP_DEBUG =
 OUT_DEBUG = bin\\Windows\\Debug\\august3.exe
 
 INC_RELEASE = $(INC)
@@ -32,7 +32,7 @@ LIBDIR_RELEASE = $(LIBDIR)
 LIB_RELEASE = $(LIB)
 LDFLAGS_RELEASE = $(LDFLAGS) -s
 OBJDIR_RELEASE = obj\\Windows\\Release
-DEP_RELEASE = 
+DEP_RELEASE =
 OUT_RELEASE = bin\\Windows\\Release\\august3.exe
 
 OBJ_DEBUG = $(OBJDIR_DEBUG)\\perft.o $(OBJDIR_DEBUG)\\zobrist.o $(OBJDIR_DEBUG)\\util.o $(OBJDIR_DEBUG)\\uci.o $(OBJDIR_DEBUG)\\ttable.o $(OBJDIR_DEBUG)\\search.o $(OBJDIR_DEBUG)\\attacktable.o $(OBJDIR_DEBUG)\\movegen.o $(OBJDIR_DEBUG)\\main.o $(OBJDIR_DEBUG)\\magicbitboard.o $(OBJDIR_DEBUG)\\evaluation.o $(OBJDIR_DEBUG)\\bitboard.o

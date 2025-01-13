@@ -52,7 +52,7 @@ void perft_test(int depth)
 
   generate_moves(move_list);
 
-  long start = get_time_ms();
+  int start = get_time_ms();
 
   for (int move_count = 0; move_count < move_list->count; move_count++)
   {
@@ -66,11 +66,11 @@ void perft_test(int depth)
       continue;
     }
 
-    long cumulative_nodes = nodes;
+    ui64 cumulative_nodes = nodes;
 
     perft_driver(depth - 1);
 
-    long old_nodes = nodes - cumulative_nodes;
+    ui64 old_nodes = nodes - cumulative_nodes;
 
 //    printf("Initial make move from %s: board %d\n>>%s to move\n", board.side ? "white" : "black", move_count, !board.side ? "white" : "black");
 //    show_board();
@@ -87,7 +87,7 @@ void perft_test(int depth)
 
     if (promotion)
     {
-      printf("%s%s%c: %ld\n",
+      printf("%s%s%c: %llu\n",
              square_to_coordinates[get_move_source(move)],
              square_to_coordinates[get_move_target(move)],
              promotion,
@@ -96,7 +96,7 @@ void perft_test(int depth)
 
     else
     {
-      printf("%s%s: %ld\n",
+      printf("%s%s: %llu\n",
            square_to_coordinates[get_move_source(move)],
            square_to_coordinates[get_move_target(move)],
            old_nodes);
@@ -105,7 +105,7 @@ void perft_test(int depth)
   }
 
   printf("\nDepth: %d\n", depth);
-  printf("Nodes: %" PRId64 "\n", nodes);
-  printf("Time: %ld ms\n", get_time_ms() - start);
+  printf("Nodes: %llu\n", nodes);
+  printf("Time: %d ms\n", get_time_ms() - start);
 
 }

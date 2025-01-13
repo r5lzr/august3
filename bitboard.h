@@ -3,7 +3,7 @@
 
 #include <inttypes.h>
 
-typedef uint64_t ui64; // unsigned long long
+typedef unsigned long long ui64;
 
 #define get_bit(bitboard, square) ((bitboard) & (1ULL << (square)))
 #define set_bit(bitboard, square) ((bitboard) |= (1ULL << (square)))
@@ -38,7 +38,7 @@ typedef struct
   int enpassant;
   int castle;
 } FenBoard;
-FenBoard board;
+extern FenBoard board;
 
 extern char ascii_pieces[12];
 extern int char_pieces[];

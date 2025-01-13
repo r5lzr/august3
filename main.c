@@ -20,15 +20,7 @@ int main()
   restore_ttable();
   init_evaluation_masks();
 
-//  uci_loop();
-
-  parse_fen(initial_position, &board);
-  show_board();
-////
-//  search_position(10);
-//  make_move(pvar_table[0][0], all_moves);
-//  search_position(10);
-  perft_test(5);
+  uci_loop();
 
   return 0;
 }

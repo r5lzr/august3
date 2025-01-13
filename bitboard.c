@@ -16,6 +16,7 @@
 
 ui64 piece_bitboards[12];
 ui64 side_bitboards[3];
+FenBoard board;
 
 char ascii_pieces[12] = "PNBRQKpnbrqk";
 int char_pieces[] = {
@@ -64,7 +65,7 @@ void show_bitboard(ui64 bitboard)
   }
   printf("\n     a b c d e f g h\n\n");
 
-  printf("     Bitboard: %" PRIu64 "\n\n", bitboard);
+  printf("     Bitboard: %llu\n\n", bitboard);
 }
 
 void show_board()
@@ -105,7 +106,7 @@ void show_board()
    (board.castle & bk) ? 'k' : '-',
    (board.castle & bq) ? 'q' : '-');
 
-  printf("  zobrist key: %" PRIx64 "\n\n", zobrist_key);
+  printf("  zobrist key: %llx\n\n", zobrist_key);
 }
 
 void parse_fen(char *fen, FenBoard *board)

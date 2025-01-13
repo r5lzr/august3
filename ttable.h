@@ -16,7 +16,7 @@ typedef struct {
   int flag;
   int score;
 } transposition_table;
-transposition_table ttable[ttable_size];
+extern transposition_table ttable[ttable_size];
 
 void restore_ttable();
 int probe_ttable(int alpha, int beta, int depth);

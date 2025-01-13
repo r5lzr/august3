@@ -527,17 +527,17 @@ void search_position(int depth)
     {
       if (score > -mate_value && score < -mate_score)
       {
-        printf("info score mate %d depth %d nodes %" PRId64 "time %d pv ", -(score + mate_value) / 2 - 1, current_depth, nodes, get_time_ms() - start_time);
+        printf("info score mate %d depth %d nodes %llu time %d pv ", -(score + mate_value) / 2 - 1, current_depth, nodes, get_time_ms() - start_time);
       }
 
       else if (score > mate_score && score < mate_value)
       {
-        printf("info score mate %d depth %d nodes %" PRId64 " time %d pv ", (mate_value - score) / 2 + 1, current_depth, nodes, get_time_ms() - start_time);
+        printf("info score mate %d depth %d nodes %llu time %d pv ", (mate_value - score) / 2 + 1, current_depth, nodes, get_time_ms() - start_time);
       }
 
       else
       {
-        printf("info score cp %d depth %d nodes %" PRId64 " time %d pv ", score, current_depth, nodes, get_time_ms() - start_time);
+        printf("info score cp %d depth %d nodes %llu time %d pv ", score, current_depth, nodes, get_time_ms() - start_time);
       }
 
       for (int count = 0; count < pvar_length[0]; count++)

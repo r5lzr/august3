@@ -356,12 +356,12 @@ ui64 find_magic_number(int square, int relevant_bits, int sliding_piece)
 void init_magic_numbers()
 {
   for (int square = 0; square < 64; square++)
-    printf(" 0x%" PRIx64 "ULL,\n", find_magic_number(square, rook_relevant_bits[square], rook));
+    printf(" 0x%llxULL,\n", find_magic_number(square, rook_relevant_bits[square], rook));
 
   printf("\n\n");
 
   for (int square = 0; square < 64; square++)
-    printf(" 0x%" PRIx64 "ULL,\n", find_magic_number(square, bishop_relevant_bits[square], bishop));
+    printf(" 0x%llxULL,\n", find_magic_number(square, bishop_relevant_bits[square], bishop));
 }
 
 void init_slider_attacks(int sliding_piece)
@@ -383,7 +383,7 @@ void init_slider_attacks(int sliding_piece)
       {
         ui64 occupancy = key_mask(index, relevant_bits, occ_mask);
 
-        int magic_index = (occupancy * bishop_magic_numbers[square]) >> (64 - bishop_relevant_bits[square]);
+        int magic_index = (int)((occupancy * bishop_magic_numbers[square]) >> (64 - bishop_relevant_bits[square]));
 
         bishop_attacks_table[square][magic_index] = bishop_attack_mask(square, occupancy);
       }
@@ -392,7 +392,7 @@ void init_slider_attacks(int sliding_piece)
       {
         ui64 occupancy = key_mask(index, relevant_bits, occ_mask);
 
-        int magic_index = (occupancy * rook_magic_numbers[square]) >> (64 - rook_relevant_bits[square]);
+        int magic_index = (int)((occupancy * rook_magic_numbers[square]) >> (64 - rook_relevant_bits[square]));
 
         rook_attacks_table[square][magic_index] = rook_attack_mask(square, occupancy);
       }

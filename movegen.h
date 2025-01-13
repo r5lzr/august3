@@ -36,7 +36,7 @@ typedef struct {
   int moves[256];
   int count;
 } moves;
-moves move_list;
+extern moves move_list;
 
 extern char promoted_pieces[];
 extern const int castling_rights[64];

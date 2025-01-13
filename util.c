@@ -4,13 +4,12 @@
 #include <string.h>
 #include "util.h"
 #ifdef _WIN32
+  // For both 32-bit and 64-bit Windows
   #include <winsock2.h>
-#else
-  #include <sys/select.h>
-#endif
-#ifdef WIN64
   #include <windows.h>
 #else
+  // For Unix-like systems (Linux/macOS)
+  #include <sys/select.h>
   #include <sys/time.h>
 #endif
 
@@ -26,12 +25,12 @@ int stopped = 0;
 
 int get_time_ms()
 {
-  #ifdef WIN64
-    return GetTickCount();
+  #ifdef _WIN32
+    return (int)GetTickCount();
   #else
     struct timeval time_value;
     gettimeofday(&time_value, NULL);
-    return time_value.tv_sec * 1000 + time_value.tv_usec / 1000;
+    return (int)(time_value.tv_sec * 1000 + time_value.tv_usec / 1000);
   #endif
 }
 
@@ -48,9 +47,9 @@ void reset_tc()
   stopped = 0;
 }
 
-int input_waiting()
+unsigned long input_waiting()
 {
-  #ifdef WIN64
+  #ifdef _WIN32
     static int init = 0, pipe;
     static HANDLE inh;
     DWORD dw;
@@ -63,7 +62,7 @@ int input_waiting()
 
       if (!pipe)
       {
-        SetConsoleMode(inh, dw & ~(ENABLE_MOUSE_INPUT|ENABLE_WINDOW_INPUT));
+        SetConsoleMode(inh, dw & ~(DWORD)(ENABLE_MOUSE_INPUT | ENABLE_WINDOW_INPUT));
         FlushConsoleInputBuffer(inh);
       }
     }
@@ -97,7 +96,7 @@ int input_waiting()
 
 void read_input()
 {
-  int bytes;
+  long bytes;
 
   char input[256] = "", *endc;
 
@@ -107,7 +106,7 @@ void read_input()
 
     do
     {
-      bytes=read(fileno(stdin), input, 256);
+      bytes = read(fileno(stdin), input, 256);
     }
 
     while (bytes < 0);
