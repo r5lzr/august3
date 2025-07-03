@@ -1,6 +1,6 @@
 <h1 align="center">august3</h1>
 
-<p align="center">august3 is a UCI-compliant chess engine written in C, currently rated at ~2141 Elo using STS (Strategic Test Suite) rating.</p>
+<p align="center">august3 is a UCI-compliant chess engine written in C, rated at ~2141 Elo using STS (Strategic Test Suite) rating.</p>
 
 <p align="center"><img src="https://github.com/user-attachments/assets/e99726b5-670a-4281-86da-9d24652a084e" alt="board position example" width="800"/></p>
 
