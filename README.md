@@ -40,14 +40,14 @@ august3 can be built for both Windows and Unix systems. The respective binary ex
 - Unix: gcc 9.4.0/11.4.0
 - make build system
 
-### Windows
+### Windows:
 ```
 cd august3
 make -f makefile-windows clean
 make -f makefile-windows all
 ```
 
-### Unix
+### Unix:
 ```
 cd august3
 make -f makefile-unix clean
@@ -62,13 +62,13 @@ august3 can be launched from its respective binary executable files in a UCI GUI
 Open the engine from the UCI GUI software such as [Arena](http://www.playwitharena.de/) and install new chess engine pointing towards the august3 executable file. Make sure to choose the release file for full performance.
 
 ## UCI CLI
-### Windows
+### Windows:
 ```
 cd august3
 ./bin/Windows/Release/august3
 ```
 
-### Unix
+### Unix:
 ```
 cd august3
 ./bin/Unix/Release/august3
