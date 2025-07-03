@@ -6,7 +6,9 @@
 
 # Overview
 
-This project is a minimal UCI-compliant chess engine, built with the objective of exploring how chess engines function under the hood. By implementing the core components of a bitboard chess engine, I was able to have a deeper understanding of the algorithms, data structures, and design choices that is involved in modern chess engines.
+This project is a minimal UCI‑compliant chess engine, built with the educational objective of exploring how chess engines function under the hood. I was specifically inspired by how Stockfish works.
+
+By implementing the core components of a bitboard chess engine, I was able to have a deeper understanding of the algorithms, data structures, and design choices that is involved in modern chess engines.
 
 august3 is able to communicate with standard chess interaces and tournament software using the UCI protocol. This allows the engine to be played against other chess engines or human players.
 
