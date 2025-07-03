@@ -29,7 +29,7 @@ august3 can be played live on: https://august3chess.com/ (Recommended to be play
 - Principle variation search
 - PV/killer/history move ordering
 - Transposition table with Zobrist keys
-- Repetition Detection
+- Repetition detection
 - UCI protocol
 
 # Installation
@@ -61,7 +61,7 @@ make -f makefile-unix all
 august3 can be launched from its respective binary executable files in a UCI GUI or from the command line.
 
 ## UCI GUI
-Open the engine from the UCI GUI software such as [Arena](http://www.playwitharena.de/) and install new chess engine pointing towards the august3 executable file. Make sure to choose the release file for full performance.
+Open the engine from the UCI GUI software such as [Arena](http://www.playwitharena.de/) and install new chess engine pointing towards the august3 executable file. Make sure to choose the 'Release' file for full performance.
 
 ## UCI CLI
 ### Windows:
