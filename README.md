@@ -14,6 +14,8 @@ august3 is able to communicate with standard chess interaces and tournament soft
 
 august3 can be played live on: https://august3chess.com/ (Recommended to be played on Desktop).
 
+<p align="center"><img src="https://github.com/user-attachments/assets/fa697ccc-f92c-4ada-90cb-37d085a58250" alt="chess website example" width="800"/></p>
+
 # Features
 
 - Bitboard board representation as a 64-bit bitmap
