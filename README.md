@@ -34,7 +34,7 @@ august3 can be played live on: https://august3chess.com/ (Recommended to be play
 
 # Installation
 
-august3 can be built for both Windows and Unix systems. The respective binary executable files are already given, however if you would like to recompile the builds, the instructions are below:
+august3 can be built for both Windows and Unix systems. The respective binary executable files are already given in the Releases section of this repo, however if you would like to recompile the builds, the instructions are below:
 
 ## Requirements
 
