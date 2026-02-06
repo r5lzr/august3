@@ -16,7 +16,7 @@ august3 is able to communicate with standard chess interaces and tournament soft
 <p align="center"><img src="https://github.com/user-attachments/assets/fa697ccc-f92c-4ada-90cb-37d085a58250" alt="chess website example" width="1000"/></p>
 
 Chess engine is displayed using Flask web app:
-- **Short Demo**: https://github.com/user-attachments/assets/76ba45bc-03b3-4aa1-85cc-3630d5d8c3f4
+- **Short Demo**: [GIF](https://github.com/user-attachments/assets/76ba45bc-03b3-4aa1-85cc-3630d5d8c3f4)
 - **GitHub Repo**: https://github.com/r5lzr/web-engine
 - **Website**: https://a3-engine.onrender.com
 
