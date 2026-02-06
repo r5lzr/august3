@@ -17,8 +17,11 @@ august3 is able to communicate with standard chess interaces and tournament soft
 ![Animation](https://github.com/user-attachments/assets/76ba45bc-03b3-4aa1-85cc-3630d5d8c3f4)
 
 Chess engine is displayed using Flask web app located here:
-- Website: https://a3-engine.onrender.com
-- Repo: https://github.com/r5lzr/web-engine
+- **Repo**: https://github.com/r5lzr/web-engine
+
+- **Website**: https://a3-engine.onrender.com
+  - Now deployed on Render, was initially hosted on AWS EC2
+  - Spin-up can take up to about 1 minute, so first visit after inactivity period can feel slow to start up
 
 # Features
 
