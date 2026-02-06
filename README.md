@@ -12,7 +12,13 @@ By implementing the core components of a bitboard chess engine, I was able to ha
 
 august3 is able to communicate with standard chess interaces and tournament software using the UCI protocol. This allows the engine to be played against other chess engines or human players.
 
-<p align="center"><img src="https://github.com/user-attachments/assets/fa697ccc-f92c-4ada-90cb-37d085a58250" alt="chess website example" width="800"/></p>
+# Live Demo
+
+![Animation](https://github.com/user-attachments/assets/76ba45bc-03b3-4aa1-85cc-3630d5d8c3f4)
+
+Chess engine is displayed using Flask web app located here:
+- Website: https://a3-engine.onrender.com
+- Repo: https://github.com/r5lzr/web-engine
 
 # Features
 
